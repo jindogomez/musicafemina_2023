@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:musicafemina/Map/Clara/clara_map.dart';
+import 'menu.dart';
 
 void main() {
   runApp(const MusicaFemina());
@@ -21,8 +21,8 @@ class MusicaFemina extends StatelessWidget {
               color: Color.fromARGB(255, 255, 255, 255), size: 40),
         ),
       ),
-      // laded map zurzeit. Muss noch Menü gebaut werden.
-      home: const Map(),
+      // laded hautmenü
+      home: const Menu(),
     );
   }
 }

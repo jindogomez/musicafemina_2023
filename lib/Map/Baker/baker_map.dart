@@ -3,25 +3,25 @@ import 'package:analyzer_plugin/utilities/pair.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
-import '../../Services/clara_audio_button.dart';
+import '../../Services/baker_audio_button.dart';
 import '../../Services/constants.dart';
 import '../../Services/location_helper.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import '../../menu.dart';
-import 'clara_marker.dart';
+import 'baker_marker.dart';
 import '../../app_style.dart';
 import '../../Services/directions_service.dart';
-import 'clara_polylines.dart';
+import 'backer_polylines.dart';
 
-class MapClara extends StatefulWidget {
-  const MapClara({Key? key}) : super(key: key);
+class MapBaker extends StatefulWidget {
+  const MapBaker({Key? key}) : super(key: key);
 
   @override
-  State<MapClara> createState() => _MapClaraState();
+  State<MapBaker> createState() => _MapBakerState();
 }
 
-class _MapClaraState extends State<MapClara> {
+class _MapBakerState extends State<MapBaker> {
   MapController _mapController = MapController();
   List<LatLng> latlngList = [];
   List<LatLng> _routePoints = [];
@@ -196,6 +196,8 @@ class _MapClaraState extends State<MapClara> {
                       builder: (_) {
                         return const Icon(
                           Icons.my_location,
+                          color: Color.fromARGB(255, 221, 0,
+                              44), //wird nicht angezeigt.. fehler muss ich suchen
                         );
                       },
                     ),
