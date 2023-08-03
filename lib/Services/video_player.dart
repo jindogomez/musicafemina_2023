@@ -22,6 +22,7 @@ class _VideoPlayerState extends State<VideoPlayer> {
       flags: const YoutubePlayerFlags(
         autoPlay: true,
         mute: false,
+        hideThumbnail: true,
       ),
     );
     super.initState();
@@ -49,15 +50,13 @@ class _VideoPlayerState extends State<VideoPlayer> {
           height: 80,
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          YoutubePlayer(
-            controller: _controller,
-            showVideoProgressIndicator: true,
-            progressIndicatorColor: Colors.blueAccent,
-          ),
-        ],
+      body: Container(
+        color: Colors.black,
+        child: YoutubePlayer(
+          controller: _controller,
+          showVideoProgressIndicator: true,
+          progressIndicatorColor: Colors.red,
+        ),
       ),
     );
   }
