@@ -26,7 +26,7 @@ Future<LatLng?> getCurrentLocation(MapController mapController) async {
   LocationData locationData = await location.getLocation();
   LatLng currentPosition =
       LatLng(locationData.latitude!, locationData.longitude!);
-  mapController.move(currentPosition, 14.0);
+  //mapController.move(currentPosition, 14.0); //centers beim start anhand gps
 
   return currentPosition;
 }
