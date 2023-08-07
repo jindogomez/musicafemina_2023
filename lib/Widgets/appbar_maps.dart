@@ -20,13 +20,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.red,
       elevation: 0.0,
       centerTitle: true,
       toolbarHeight: 100,
       leading: IconButton(
         icon: const Icon(Icons.arrow_back_ios),
-        color: Colors.red,
+        color: Colors.white,
         onPressed: () {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => const Menu()));
@@ -46,10 +46,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             },
             icon: const Icon(Icons.video_collection)),
       ],
-      title: Image.asset(
-        'assets/images/mf_logo_B.png',
-        fit: BoxFit.cover,
-        height: 100,
+      title: const Text(
+        'Maison de France',
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 20,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.w700,
+        ),
       ),
     );
   }
