@@ -134,7 +134,7 @@ class _MapClaraState extends State<MapClara> {
       appBar: CustomAppBar(
         audioPlayer: audioPlayer,
         videoUrl: widget.videoUrl,
-        title: 'Clara Wieck Schumann',
+        title: 'Clara Wieck Schumann', //ändert titel in appbar
       ),
       body: Stack(
         children: [

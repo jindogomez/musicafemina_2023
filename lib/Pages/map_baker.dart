@@ -129,7 +129,7 @@ class _MapBakerState extends State<MapBaker> {
       appBar: CustomAppBar(
         audioPlayer: audioPlayer,
         videoUrl: widget.videoUrl,
-        title: 'Josephine Baker',
+        title: 'Josephine Baker', //ändert titel in appbar
       ),
       floatingActionButton: CenterFloatingActionButton(
         location: const LatLng(48.210333041716, 16.372817971454),
