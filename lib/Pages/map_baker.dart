@@ -7,7 +7,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 //file import
 import '../MapContent/All/waypoint_images.dart';
-import '../MapContent/Baker/backer_polylines.dart';
+import '../MapContent/Baker/baker_polylines.dart';
 import '../Services/constants_mapbox.dart';
 import '../Services/location_helper.dart';
 
@@ -126,7 +126,11 @@ class _MapBakerState extends State<MapBaker> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
-      appBar: CustomAppBar(audioPlayer: audioPlayer, videoUrl: widget.videoUrl),
+      appBar: CustomAppBar(
+        audioPlayer: audioPlayer,
+        videoUrl: widget.videoUrl,
+        title: 'Josephine Baker',
+      ),
       floatingActionButton: CenterFloatingActionButton(
         location: const LatLng(48.210333041716, 16.372817971454),
         zoom: 14.0,

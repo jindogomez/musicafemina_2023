@@ -131,7 +131,11 @@ class _MapClaraState extends State<MapClara> {
         zoom: 14.0,
         mapController: _mapController,
       ),
-      appBar: CustomAppBar(audioPlayer: audioPlayer, videoUrl: widget.videoUrl),
+      appBar: CustomAppBar(
+        audioPlayer: audioPlayer,
+        videoUrl: widget.videoUrl,
+        title: 'Clara Wieck Schumann',
+      ),
       body: Stack(
         children: [
           FlutterMap(

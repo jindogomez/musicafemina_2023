@@ -33,7 +33,7 @@ class MarkerCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(15.0),
           ),
           child: SizedBox(
-            height: 500,
+            height: 600,
             child: _selectedMarkerIndex != null
                 ? Padding(
                     padding: const EdgeInsets.all(2),

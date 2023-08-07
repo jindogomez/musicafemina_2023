@@ -7,11 +7,14 @@ import '../Pages/menu.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final AudioPlayer audioPlayer;
   final String videoUrl;
-
+  final String title;
+  final double height;
   const CustomAppBar({
     Key? key,
     required this.audioPlayer,
     required this.videoUrl,
+    required this.title,
+    this.height = kToolbarHeight,
   }) : super(key: key);
 
   @override
@@ -35,7 +38,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       actions: [
         IconButton(
-            color: Colors.red,
+            color: Colors.white,
             onPressed: () {
               Navigator.push(
                   context,
@@ -46,9 +49,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             },
             icon: const Icon(Icons.video_collection)),
       ],
-      title: const Text(
-        'Maison de France',
-        style: TextStyle(
+      title: Text(
+        title,
+        style: const TextStyle(
           color: Colors.white,
           fontSize: 20,
           fontFamily: 'Montserrat',
