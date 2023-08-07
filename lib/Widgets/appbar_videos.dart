@@ -6,10 +6,17 @@ import '../Pages/menu.dart';
 class CustomAppBarVideos extends StatelessWidget
     implements PreferredSizeWidget {
   final YoutubePlayerController controller;
+  final String title;
+  final double height;
+
+  final VoidCallback exitFullScreen;
 
   const CustomAppBarVideos({
     super.key,
     required this.controller,
+    required this.title,
+    required this.exitFullScreen,
+    this.height = kToolbarHeight,
   });
 
   @override
@@ -29,12 +36,17 @@ class CustomAppBarVideos extends StatelessWidget
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => const Menu()));
           controller.pause();
+          exitFullScreen();
         },
       ),
-      title: Image.asset(
-        'assets/images/mf_logo_B.png',
-        fit: BoxFit.cover,
-        height: 80,
+      title: Text(
+        title,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 20,
+          fontFamily: 'abel',
+          fontWeight: FontWeight.w700,
+        ),
       ),
     );
   }
