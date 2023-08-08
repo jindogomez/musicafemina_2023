@@ -68,7 +68,7 @@ class ImpressumPage extends StatelessWidget {
                   const Text('Martinstraße 91'),
                   const Text('1180 Wien'),
                   const Text('office@maezenatentum.at'),
-                  const Text('Website: www.fluttercorp.de'),
+                  const Text('www.musicafemina.at'),
                   const SizedBox(height: 16),
                   const Text('Spendenkonto:'),
                   const Text('IBAN: AT06 2011 1288 1692 0300'),

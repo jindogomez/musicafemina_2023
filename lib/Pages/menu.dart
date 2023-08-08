@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../MapContent/All/video_urls.dart';
+import 'impressum.dart';
 import 'map_baker.dart';
 import 'map_clara.dart';
 
@@ -208,6 +209,11 @@ class Menu extends StatelessWidget {
                           color: Color.fromARGB(255, 50, 46, 46),
                         ),
                         onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ImpressumPage()));
+
                           // Handle the button tap here
                         },
                       ),
