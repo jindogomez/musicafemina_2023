@@ -65,7 +65,7 @@ class Menu extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     iconColor: Colors.black,
-                    tileColor: const Color.fromARGB(255, 240, 138, 91),
+                    tileColor: const Color.fromARGB(115, 240, 138, 91),
                     focusColor: Colors.blue,
                     hoverColor: Colors.red,
                     textColor: Colors.white,
@@ -88,7 +88,7 @@ class Menu extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     iconColor: Colors.black,
-                    tileColor: const Color.fromARGB(255, 60, 116, 61),
+                    tileColor: const Color.fromARGB(111, 60, 116, 61),
                     focusColor: Colors.blue,
                     hoverColor: Colors.red,
                     textColor: Colors.white,
@@ -109,7 +109,7 @@ class Menu extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     iconColor: Colors.black,
-                    tileColor: const Color.fromARGB(255, 50, 42, 200),
+                    tileColor: const Color.fromARGB(73, 50, 42, 200),
                     focusColor: Colors.blue,
                     hoverColor: Colors.red,
                     textColor: Colors.white,
@@ -130,7 +130,7 @@ class Menu extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     iconColor: Colors.black,
-                    tileColor: const Color.fromARGB(255, 108, 200, 42),
+                    tileColor: const Color.fromARGB(102, 108, 200, 42),
                     focusColor: Colors.blue,
                     hoverColor: Colors.red,
                     textColor: Colors.white,
@@ -151,7 +151,7 @@ class Menu extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     iconColor: Colors.black,
-                    tileColor: const Color.fromARGB(255, 200, 42, 137),
+                    tileColor: const Color.fromARGB(99, 200, 42, 137),
                     focusColor: Colors.blue,
                     hoverColor: Colors.red,
                     textColor: Colors.white,
