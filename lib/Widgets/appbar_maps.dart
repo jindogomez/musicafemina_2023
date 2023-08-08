@@ -33,7 +33,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         color: Colors.white,
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => const Menu()));
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const Menu(
+                        paramHomepage: '',
+                      )));
           audioPlayer.stop();
         },
       ),

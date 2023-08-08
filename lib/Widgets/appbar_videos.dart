@@ -34,7 +34,11 @@ class CustomAppBarVideos extends StatelessWidget
         color: Colors.red,
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => const Menu()));
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const Menu(
+                        paramHomepage: '',
+                      )));
           controller.pause();
           exitFullScreen();
         },

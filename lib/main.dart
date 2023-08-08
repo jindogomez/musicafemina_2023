@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-
-import 'Pages/menu.dart';
+import 'Pages/splash_screen.dart';
 
 void main() {
   runApp(const MusicaFemina());
 }
 
 class MusicaFemina extends StatelessWidget {
-  const MusicaFemina({
-    super.key,
-  });
+  const MusicaFemina({Key? key}) : super(key: key); // corrected here
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +19,8 @@ class MusicaFemina extends StatelessWidget {
               color: Color.fromARGB(255, 255, 255, 255), size: 40),
         ),
       ),
-      // laded hautmenü
-      home: const Menu(),
+      // loaded home menu
+      home: const SplashPage(paramHomepage: 'Home'),
     );
   }
 }

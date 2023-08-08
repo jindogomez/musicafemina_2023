@@ -50,6 +50,7 @@ dependencies:
   flutter_map: ^5.0.0
   http: ^1.0.0
   youtube_player_flutter: ^8.1.2
+  video_player: ^2.7.0
  
 
  

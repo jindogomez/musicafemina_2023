@@ -5,7 +5,7 @@ import 'map_baker.dart';
 import 'map_clara.dart';
 
 class Menu extends StatelessWidget {
-  const Menu({super.key});
+  const Menu({super.key, required String paramHomepage});
 
   @override
   Widget build(BuildContext context) {
