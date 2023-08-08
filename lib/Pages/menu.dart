@@ -5,79 +5,218 @@ import 'map_baker.dart';
 import 'map_clara.dart';
 
 class Menu extends StatelessWidget {
-  const Menu({super.key, required String paramHomepage});
+  final String paramHomepage;
+
+  const Menu({Key? key, required this.paramHomepage}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        centerTitle: true,
-        toolbarHeight: 100,
-        title: Image.asset(
-          'assets/images/mf_logo_B.png',
-          fit: BoxFit.cover,
-          height: 100,
-        ),
-      ),
-      body: Center(
-        child: Container(
-          width: screenSize.width * 0.8,
-          height: screenSize.height * 0.9,
-          margin: const EdgeInsets.all(0),
-          child: ListView(
-            children: <Widget>[
-              const ListTile(),
-              ListTile(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-                iconColor: Colors.black,
-                tileColor: const Color.fromARGB(255, 240, 138, 91),
-                focusColor: Colors.blue,
-                hoverColor: Colors.red,
-                textColor: Colors.white,
-                leading: Image.asset('assets/images/Waypoint_Clara_01.png'),
-                title: const Text('Josephine Baker'),
-                subtitle: const Text('1819 - 1896'),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => MapBaker(
-                                videoUrl: VideoUrls().videoBaker,
+    return Container(
+        constraints: const BoxConstraints.expand(),
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/images/mf_main_bg.png"),
+                fit: BoxFit.cover)),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(120.0),
+            child: AppBar(
+              title: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Image.asset(
+                    'assets/images/mf_logo_B.png',
+                    fit: BoxFit.cover,
+                    height: 80, // and the height as well
+                  ),
+                  const Text('Stadtspaziergänge'),
+                  const SizedBox(
+                    height: 20,
+                  )
+                ],
+              ),
+              backgroundColor: const Color.fromARGB(137, 255, 255, 255),
+              iconTheme: const IconThemeData(
+                color: Colors.red,
+                size: 40,
+              ),
+              elevation: 0.0,
+              centerTitle: true,
+              toolbarHeight: 100,
+            ),
+          ),
+          body: Center(
+            child: Container(
+              width: screenSize.width * 0.8,
+              height: screenSize.height * 0.9,
+              margin: const EdgeInsets.all(0),
+              child: ListView(
+                children: <Widget>[
+                  const ListTile(),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  ListTile(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    iconColor: Colors.black,
+                    tileColor: const Color.fromARGB(255, 240, 138, 91),
+                    focusColor: Colors.blue,
+                    hoverColor: Colors.red,
+                    textColor: Colors.white,
+                    leading: Image.asset('assets/images/Waypoint_Clara_01.png'),
+                    title: const Text('Josephine Baker'),
+                    subtitle: const Text('1819 - 1896'),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MapBaker(
+                                    videoUrl: VideoUrls().videoBaker,
 
-                                // Pass the audio object
-                              )));
-                },
+                                    // Pass the audio object
+                                  )));
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  ListTile(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    iconColor: Colors.black,
+                    tileColor: const Color.fromARGB(255, 60, 116, 61),
+                    focusColor: Colors.blue,
+                    hoverColor: Colors.red,
+                    textColor: Colors.white,
+                    title: const Text('Clara Wieck Schumann'),
+                    subtitle: const Text('1819 - 1896'),
+                    leading: Image.asset('assets/images/Waypoint_Clara_01.png'),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MapClara(
+                                    videoUrl: VideoUrls().videoClara,
+                                  )));
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  ListTile(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    iconColor: Colors.black,
+                    tileColor: const Color.fromARGB(255, 50, 42, 200),
+                    focusColor: Colors.blue,
+                    hoverColor: Colors.red,
+                    textColor: Colors.white,
+                    title: const Text('Wienner Klassikerinnen'),
+                    subtitle: const Text('1819 - 1896'),
+                    leading: Image.asset('assets/images/Waypoint_Clara_01.png'),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MapClara(
+                                    videoUrl: VideoUrls().videoClara,
+                                  )));
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  ListTile(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    iconColor: Colors.black,
+                    tileColor: const Color.fromARGB(255, 108, 200, 42),
+                    focusColor: Colors.blue,
+                    hoverColor: Colors.red,
+                    textColor: Colors.white,
+                    title: const Text('Ns Verfemte'),
+                    subtitle: const Text('1819 - 1896'),
+                    leading: Image.asset('assets/images/Waypoint_Clara_01.png'),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MapClara(
+                                    videoUrl: VideoUrls().videoClara,
+                                  )));
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  ListTile(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    iconColor: Colors.black,
+                    tileColor: const Color.fromARGB(255, 200, 42, 137),
+                    focusColor: Colors.blue,
+                    hoverColor: Colors.red,
+                    textColor: Colors.white,
+                    title: const Text('Neueste'),
+                    subtitle: const Text('1819 - 1896'),
+                    leading: Image.asset('assets/images/Waypoint_Clara_01.png'),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MapClara(
+                                    videoUrl: VideoUrls().videoClara,
+                                  )));
+                    },
+                  ),
+                ],
               ),
-              const SizedBox(height: 10),
-              ListTile(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-                iconColor: Colors.black,
-                tileColor: const Color.fromARGB(255, 60, 116, 61),
-                focusColor: Colors.blue,
-                hoverColor: Colors.red,
-                textColor: Colors.white,
-                title: const Text('Clara Wieck Schumann'),
-                subtitle: const Text('1819 - 1896'),
-                leading: Image.asset('assets/images/Waypoint_Clara_01.png'),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => MapClara(
-                                videoUrl: VideoUrls().videoClara,
-                              )));
-                },
+            ),
+          ),
+          bottomNavigationBar: Stack(
+            children: [
+              // workaround für transparente navbar
+              BottomNavigationBar(
+                items: const [
+                  BottomNavigationBarItem(
+                      icon: SizedBox(width: 24, height: 24), label: ''),
+                  BottomNavigationBarItem(
+                      icon: SizedBox(width: 24, height: 24), label: ''),
+                ],
+                backgroundColor: const Color.fromARGB(137, 255, 255, 255),
+                elevation: 0.0, // schatten unter navbar
               ),
-              const SizedBox(height: 10),
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 0,
+                child: SizedBox(
+                  height: 100, // höhe navbar bottum
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      SizedBox(
+                        // logo wien
+                        child: Image.asset(
+                          'assets/images/Stadt-Wien_Logo_pos_rgb.gif',
+                          width: 100.0,
+                          height: 100.0,
+                        ),
+                      ),
+                      IconButton(
+                        icon: const Icon(
+                          Icons.info,
+                          size: 40.0,
+                          color: Color.fromARGB(255, 50, 46, 46),
+                        ),
+                        onPressed: () {
+                          // Handle the button tap here
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
