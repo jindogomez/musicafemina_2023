@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../Pages/video_player.dart';
@@ -51,11 +52,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ],
       title: Text(
         title,
-        style: const TextStyle(
+        style: TextStyle(
           color: Colors.white,
           fontSize: 20,
-          fontFamily: 'abel',
-          fontWeight: FontWeight.w700,
+          fontFamily: GoogleFonts.abel().fontFamily,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );
