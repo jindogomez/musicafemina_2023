@@ -127,6 +127,7 @@ class _MapBakerState extends State<MapBaker> {
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
       appBar: CustomAppBar(
+        bgColor: const Color.fromARGB(115, 240, 138, 91),
         audioPlayer: audioPlayer,
         videoUrl: widget.videoUrl,
         title: 'Josephine Baker', //ändert titel in appbar
@@ -166,7 +167,7 @@ class _MapBakerState extends State<MapBaker> {
                   Polyline(
                     points: _routePoints,
                     strokeWidth: 4,
-                    color: Colors.purple,
+                    color: const Color.fromARGB(115, 240, 138, 91),
                     isDotted: true,
                   ),
                 ],

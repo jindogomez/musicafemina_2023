@@ -10,12 +10,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String videoUrl;
   final String title;
   final double height;
+  final Color bgColor;
+
   const CustomAppBar({
     Key? key,
     required this.audioPlayer,
     required this.videoUrl,
     required this.title,
     this.height = kToolbarHeight,
+    required this.bgColor,
   }) : super(key: key);
 
   @override
@@ -24,13 +27,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.red,
+      backgroundColor: bgColor,
       elevation: 0.0,
       centerTitle: true,
       toolbarHeight: 100,
       leading: IconButton(
         icon: const Icon(Icons.arrow_back_ios),
-        color: Colors.white,
+        color: Colors.red,
         onPressed: () {
           Navigator.push(
               context,
@@ -43,7 +46,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       actions: [
         IconButton(
-            color: Colors.white,
+            color: Colors.red,
             onPressed: () {
               Navigator.push(
                   context,
@@ -57,7 +60,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Text(
         title,
         style: TextStyle(
-          color: Colors.white,
+          color: Colors.red,
           fontSize: 20,
           fontFamily: GoogleFonts.abel().fontFamily,
           fontWeight: FontWeight.bold,

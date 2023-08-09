@@ -132,6 +132,7 @@ class _MapClaraState extends State<MapClara> {
         mapController: _mapController,
       ),
       appBar: CustomAppBar(
+        bgColor: const Color.fromARGB(111, 60, 116, 61),
         audioPlayer: audioPlayer,
         videoUrl: widget.videoUrl,
         title: 'Clara Wieck Schumann', //ändert titel in appbar
@@ -170,7 +171,7 @@ class _MapClaraState extends State<MapClara> {
                   Polyline(
                     points: _routePoints,
                     strokeWidth: 4,
-                    color: Colors.purple,
+                    color: const Color.fromARGB(111, 60, 116, 61),
                     isDotted: true,
                   ),
                 ],
