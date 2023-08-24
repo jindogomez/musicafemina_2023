@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:musicafemina/Style/app_style.dart';
 //file import
 import '../MapContent/All/waypoint_images.dart';
 import '../MapContent/Baker/baker_polylines.dart';
@@ -167,7 +168,7 @@ class _MapBakerState extends State<MapBaker> {
                   Polyline(
                     points: _routePoints,
                     strokeWidth: 4,
-                    color: const Color.fromARGB(115, 240, 138, 91),
+                    color: Styles.polyColorBaker,
                     isDotted: true,
                   ),
                 ],

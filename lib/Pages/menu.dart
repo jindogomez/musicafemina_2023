@@ -24,22 +24,10 @@ class Menu extends StatelessWidget {
           appBar: PreferredSize(
             preferredSize: const Size.fromHeight(120.0),
             child: AppBar(
-              title: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Image.asset(
-                    'assets/images/mf_logo_B.png',
-                    fit: BoxFit.cover,
-                    height: 80, // and the height as well
-                  ),
-                  const Text('Stadtspaziergänge'),
-                  const SizedBox(
-                    height: 20,
-                  )
-                ],
+              title: Image.asset(
+                'assets/images/mf_logo_B.png',
+                fit: BoxFit.cover,
+                height: 80,
               ),
               backgroundColor: const Color.fromARGB(137, 255, 255, 255),
               iconTheme: const IconThemeData(

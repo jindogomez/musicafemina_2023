@@ -2,6 +2,9 @@
 import 'package:analyzer_plugin/utilities/pair.dart';
 import 'package:latlong2/latlong.dart';
 
+const String path = 'assets/images/Baker/';
+const String pathaudio = 'assets/audio/baker/';
+
 class MapMarkerBaker {
   final List<Pair<String, String>> imageSubtextPairs;
 
@@ -29,134 +32,85 @@ final mapMarkers = [
   //Clara Wieck Schumann
 
   MapMarkerBaker(
+    title: 'Josephine Baker',
+    backgroundImage: '${path}heldenplaz_baker_bg.png',
+    address: 'Parlament',
+    location: const LatLng(48.2082242087015, 16.3585868480227),
+    text:
+        'Als im Februar 1928 Josephine Baker im Wiener Theater Ronacher auftreten sollte, kam es im Parlament zu einer mehrstündigen Debatte. Der christlich-soziale Abgeordnete Anton Jerzabek hielt eine von theatralischen Zwischenrufen und von Gelächter unterbrochene Brandrede gegen Josephine Baker, erregte sich über ihre Kunst, über ihr Federn- und Perlenkostüm und verglich sie mit "einer Wilden aus dem Kongo".',
+
     //Bilder und Bild Untertitel für die Cards -> Pair (Bild, Untertitel)
     imageSubtextPairs: [
-      Pair('assets/images/Clara_Tuchlauben/Altes_Musikvereinsgebäude.jpg',
-          'Altes Musikvereinsgebäude'),
-      Pair('assets/images/Clara_Tuchlauben/TiuchlaubenGesderMusikfreunde.jpg',
-          'Tuchlauben 12'),
-      Pair(
-          'assets/images/Clara_Tuchlauben/Wieck-Torte.jpg', 'Torte à la Wieck'),
+      Pair('${path}heldenplatz_baker_1.jpeg', 'Josephine Baker'),
+      Pair('${path}heldenplatz_baker_2.jpg', 'Josephine Baker'),
     ],
 
     audioClip: 'assets/audio/baker/baker_bristol.mp3',
     music: null,
-    backgroundImage: 'assets/images/Clara_Tuchlauben/background_tuchlauben.png',
-    title: 'Baker',
-    address: 'Tuchlauben 12',
-    text:
-        'Das Gebäude auf der Tuchlauben 12, das Haus zum roten Igel, war zwar nicht das erste Gebäude der Gesellschaft der Musikfreunde. Aber das erste eigene: Es wurde 1822 angemietet und 1829 von der Gesellschaft für Musikfreunde gekauft. Das Haus auf der Tuchlauben hieß zum roten Igel und die Gesellschaft ließ einen dreistöckigen Neubau mit Konzertsaal erbauen. Das Festkonzert zur Eröffnung des Saales fand am 4. November 1831 statt, während die Cholera in Wien wütete. Fast 40 Jahre lang waren hier das Konservatorium und das Archiv der Gesellschaft, Büros und Probenräume untergebracht. Im Dezember 1837 konzertierte Clara Wieck Schumann erstmals in Wien. Auf insgesamt neun Reisen gab sie hier bis 1872 70 Konzerte.  Am 7. Januar 1838 spielte sie ihre Bellini-Variationen und ihren Hexentanz aus op.5. 1839 wurde Clara Schumann, im Jahr ihrer Eheschließung, mit 19 Jahren, jüngstes  Ehrenmitglied der Gesellschaft.',
-    location: const LatLng(48.210333041716, 16.3708946928166),
   ),
 
   MapMarkerBaker(
+    title: 'Josephine Baker',
+    backgroundImage: '${path}kaerntnerst_baker_bg.png',
+    address: 'Kärntnerdurchgang',
+    location: const LatLng(48.2071834219, 16.371258207246),
+    text:
+        'Strohkoffer, heute der Keller unter der American Loos Bar: Alfred Schmeller, der Kunsthistoriker, fand für den Artclub ein neues Lokal im Kärntnerdurchgang, den Keller unter der American Bar, die Alfred Loos im Jahre 1908 entworfen hatte. Dieser KünstlerInnen-Treffpunkt, der seinen Namen nach den mit Strohmatten ausgelegten Wänden hatte, bestand von 1951 bis 1953. Als 1952 das „Porgy and Bess-Ensemble“ in Wien gastierte – bekanntlich hatte George Gershwin seine Oper black singers reserviert – war der Strohkoffer das einzige Lokal in Wien, wo die Gäste willkommen waren – darunter Leontyne Price und Cab Calloway.',
     imageSubtextPairs: [
-      Pair('assets/images/Clara_Graben/kaiserhymne.jpg', 'Kaiserhymne'),
-      Pair('assets/images/Clara_Graben/Franz_Joseph_1865.jpg',
-          'Franz Joseph (1865)'),
-      Pair('assets/images/Clara_Graben/Clara_Schumann_Franz_Luckhardt.png',
-          'Clara Schumann von Franz Luckhardt'),
+      Pair('${path}kaerntnerst_baker_2.jpg', 'Josephine Baker'),
+      Pair('${path}kaerntnerst_baker_tanz.jpg', 'Tänzerin'),
+      Pair('${path}kaerntnerst_baker1.jpg', 'Josephine Baker'),
     ],
     audioClip: 'assets/audio/baker/baker_bristol.mp3',
     music: null,
-    backgroundImage: 'assets/images/Clara_Graben/background_graben.png',
-    title: 'Baker',
-    address: 'Graben 19',
-    text:
-        'Graben 19, Ecke Kohlmarkt: Hier befand sich der Musikverlag Tobias Haslinger.Und hier wurde Clara Schumanns berühmtestes und eines der schönsten Klavierstücke verlegt, das Impromptu Souvenir de Vienne. Clara Schumann hat es, nach ihrer Ernennung zur kaiserlich - königlichen Kammervirtuosin, erschaffen und es in Dankbarkeit dem Kaiser gewidmet. Darin eingewoben findet man daher auch Stellen aus der Kaiserhymne.',
-    location: const LatLng(48.2095862539005, 16.368266492727),
   ),
 
   MapMarkerBaker(
+    title: 'Josephine Baker',
+    backgroundImage: '${path}seilers_baker_bg.png',
+    address: 'Seilerstätte 9',
+    location: const LatLng(48.2053744179023, 16.375045749243),
+    text:
+        'Als die Zeitungen vom „N...skandal“ sprachen, die katholische Kirche Sondergottesdienste zur Buße gegen Bakers „schwere Verstöße gegen die Moral“ organisierte und die National- sozialistische Deutsche Arbeiterpartei (NSDAP) Wiens gegen die „obszönen“ Auftritte protestierte, entzogen die Behörden dem Ronacher-Theater 1928 die Bewilligung für die Show. Erst 1932 durfte Baker im Ronacher ein gefeiertes Gastspiel geben, danach erst wieder 1958.',
     imageSubtextPairs: [
-      Pair('assets/images/Clara_Bauernmarkt/clarajung.jpeg',
-          'Junge Clara Schumann'),
-      Pair('assets/images/Clara_Bauernmarkt/Grundhof_1940.jpg',
-          'Grundhof(1940)'),
-      Pair('assets/images/Clara_Bauernmarkt/Robert Schumann.jpg',
-          'Robert Schumann'),
-      Pair('assets/images/Clara_Bauernmarkt/Grillparzer.jpg',
-          'Franz Grillparzer'),
-      Pair(
-          'assets/images/Clara_Bauernmarkt/Joseph von Eichendorff  Foto H.-P.Haack.jpg',
-          'Joseph von Eichendorff (Foto H.-P.Haack)'),
+      Pair('${path}seilers_baker1.jpg', 'Josephine Baker'),
+      Pair('${path}seilers_baker_2.jpg', 'Josephine Baker'),
+      Pair('${path}seilers_baker_4.jpg', 'Josephine Baker'),
+      Pair('${path}seilers_baker_ronacher.jpg', 'Etablissement Ronacher'),
+      Pair('${path}seilers_baker_3.jpg', 'Josephine Baker'),
     ],
     audioClip: 'assets/audio/baker/baker_bristol.mp3',
     music: null,
-    backgroundImage:
-        'assets/images/Clara_Bauernmarkt/background_Bauernmarkt.png',
-    title: 'Clara Wieck Schumann',
-    address: 'Bauernmarkt 4',
-    text:
-        'Wir stehen hier: Bauernmarkt 4, Brandstätte 5. Hier bestand von 1820 bis 1822 die Gesellschaft der Musikfreunde. Es war der sogenannte Gundlhof, ein riesiges Areal, ein Zentrum Wiens. Clara Schumann wohnte hier gemeinsam mit ihrem Mann Robert, unterrichtete und konzertierte hier von 1876 bis 1877 und gab im Jänner ihr Abschlusskonzert. Bei dieser Matinée stellte sie zum ersten Mal ihr Trio vor, nicht zuletzt vor einem prominenten Auditorium: mit Joseph von Eichendorff und Franz Grillparzer.',
-    location: const LatLng(48.2095954782485, 16.3718016394278),
   ),
   MapMarkerBaker(
+    title: 'Josephine Baker',
+    backgroundImage: '${path}ring_baker_bg.png',
+    address: 'Kärntner Ring 1',
+    location: const LatLng(48.2027537234097, 16.370222119149),
+    text:
+        'Im Ringstraßen Hotel Bristol und im nahe gelegenen Anna Grand Hotel wohnte Josephine Baker mehrmals bei ihren Wien-Besuchen seit den 1920er Jahren. Von diesen Aufenthalten sind die Meldezettel überliefert mit ihrer eigenhändigen Unterschrift. Die Bristol Hotels in ganz Europa nennen mittlerweile eine ihrer Suiten nach Josephine Baker.',
     imageSubtextPairs: [
-      Pair('assets/images/Clara_Heldenplatz/clara schumann 2.jpg',
-          'Clara Wieck Schumann Portrait'),
-      Pair('assets/images/Clara_Heldenplatz/Robert Schumann.jpg',
-          'Robert Schumann Portrait'),
-      Pair('assets/images/Clara_Heldenplatz/Johannes_Brahms_portrait.jpg',
-          'Johannes Brahms Portrait'),
-      Pair('assets/images/Clara_Heldenplatz/Sam. Alter Musikinstrumente .jpg',
-          'Musikinstrumente'),
+      Pair('${path}ring_baker_1.jpg', 'Josephine Baker'),
+      Pair('${path}ring_baker_blackwomen.jpg', 'Josephine Baker'),
+      Pair('${path}ring_baker_hotel_bristl.jpg', 'Hotel Bristol'),
     ],
     audioClip: 'assets/audio/Clara/Heldenplatz.mp3',
     music: null,
-    backgroundImage: 'assets/images/background_clara_hofburg.png',
-    title: 'Clara Wieck Schumann',
-    address: 'Heldenplatz',
-    text:
-        'Hier im Kunsthistorischen Museum, in der Sammlung alter Musikinstrumente, finden wir einen Flügel, gebaut von Conrad Graf, der ihn Clara Wieck im Jahre 1838 aus Anlass ihrer triumphalen Konzertreise nach Wien geschenkt hatte. Nach ihrer Eheschließung wurde er überdies gern von ihrem Mann Robert Schumann benutzt. Nach seinem Tod schenkte sie ihn Johannes Brahms, der ihn bereits zu Lebzeiten der Gesellschaft der Musikfreunde vermachte, nachdem der Flügel anlässlich der Wiener Weltausstellung 1873 ausgestellt worden war. Heute ist das Instrument in der Neuen Hofburg zu besichtigen.',
-    location: const LatLng(48.2064362317004, 16.3631424119305),
   ),
   MapMarkerBaker(
+    title: 'Josephine Baker',
+    backgroundImage: '${path}favoriten_johanstraustheater.jpg',
+    address: 'Favoritenstraße 8',
+    location: const LatLng(48.1955981451396, 16.368934135274),
+    text:
+        'Josephine Baker trat 1928 in der Revue „Schwarz auf Weiß" im Johann Strauß-Theater auf. Nach 1945 hieß das Etablissement Scala-Theater. 1959 wurde das Theater, das über 1.000 Personen fasste, abgerissen.',
     imageSubtextPairs: [
-      Pair('assets/images/Clara_Musikvereinplatz/musikverein_alt.png',
-          'Musikverein'),
-      Pair('assets/images/Clara_Musikvereinplatz/Brahms Saal 1.jpg',
-          'Brahms Saal'),
-      Pair('assets/images/Clara_Musikvereinplatz/Brahms_4c 1.jpg',
-          'Johannes Brahms'),
+      Pair('${path}favoriten_baker_1.jpg', 'Josephine Baker'),
+      Pair('${path}favoriten_gedenktafel.jpg', 'Josephine Baker'),
+      Pair('${path}favoriten_johanstraustheater.jpg', 'Josephine Baker'),
+      Pair('${path}favoriten_paris.jpg', 'Josephine Baker'),
     ],
     audioClip: 'assets/audio/Clara/Musikvereinsplatz 1.mp3',
     music: null,
-    title: 'Clara Wieck Schumann',
-    backgroundImage:
-        'assets/images/Clara_Musikvereinplatz/mf_clara_06_footer.png',
-    text:
-        'Wir stehen hier vor der Gesellschaft der Musikfreunde, das bislang letzte, das neueste Haus, das sie sich erbaut hat und das bis heute auch das Archiv beherbergt, den Konzertsaal, die Sammlungen. Clara Schumann war bereits 1837 Ehrenmitglied der Musikfreunde und hier finden wir auch die einzige Büste der Komponistin, im Übrigen auch der einzigen Frau, der hier in dieser Form gehuldigt wird. Am 19. Jänner 1870 eröffnete Clara Schuman das Schatzkästchen, den kleineren Bruder des Großen Saals, den Kleinen Saal, seit 1937 benannt nach einem anderen Ehrenmitglied des Hauses, Johannes Brahms.',
-    address: 'Musikvereinsplatz 1',
-    location: const LatLng(48.200655004143, 16.372817971454),
-  ),
-
-  MapMarkerBaker(
-    imageSubtextPairs: [
-      Pair('assets/images/Clara_Argentienierstraße/1288432_default.jpg',
-          'Palais Wittgenstein'),
-      Pair(
-          'assets/images/Clara_Argentienierstraße/4_The_grand_staircase_in_the_Alleegasse.jpg',
-          'Palais Wittgenstein, Stiege'),
-      Pair(
-          'assets/images/Clara_Argentienierstraße/Palais_Wittgenstein_Musiksalon_1910.JPG',
-          'Brahms Saal'),
-      Pair(
-          'assets/images/Clara_Argentienierstraße/Palais_Wittgenstein_Rote_Salon_1910.JPG',
-          'Palais Wittgenstein'),
-      Pair('assets/images/Clara_Argentienierstraße/Clara_Schumann_1853.jpg',
-          'Clara Schumann, 1853'),
-      Pair('assets/images/Clara_Argentienierstraße/Alma_Mahler_1899a.jpg',
-          'Alma Mahler, 1899'),
-    ],
-    audioClip: 'assets/audio/Clara/Argentinierstraße16.mp3',
-    music: null,
-    title: 'Baker',
-    backgroundImage:
-        'assets/images/Clara_Argentienierstraße/mf_clara_05_header.png', // Note: change IMAGE bad quality
-    text:
-        ',Das Haus Argentinierstraße 16 lässt von seiner einstigen Blüte, Schönheit und Reichtum nichts mehr ahnen: Bis in die 1950er Jahre stand hier das Palais der Wittgensteins. Wir wissen allerdings nachweislich, dass Clara Schumann hier zu Gast war, sie hat hier wohl auch unterrichtet und konzertiert.Unter der illustren Gästeschar, die hier im Palais Wittgenstein bewirtet wurde, war nicht nur Johannes Brahms, sondern z.B. auch eine weitere Komponistin, Alma Mahler. ',
-    address: 'Argentinierstraße 16',
-    location: const LatLng(48.196682165848536, 16.37206196960226),
   ),
 ];
