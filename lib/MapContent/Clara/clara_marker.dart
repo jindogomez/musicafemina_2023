@@ -43,7 +43,7 @@ final mapMarkers = [
 
     audioClip: '${pathaudio}Tuchlauben 12.mp3',
     music: null,
-    backgroundImage: '${path}Clara_Tuchlauben/background_tuchlauben.png',
+    backgroundImage: 'assets/images/blank.png',
     title: 'Clara Wieck Schumann',
     address: 'Tuchlauben 12',
     text:
@@ -60,7 +60,7 @@ final mapMarkers = [
     ],
     audioClip: '${pathaudio}Graben 19.mp3',
     music: null,
-    backgroundImage: '${path}Clara_Graben/background_graben.png',
+    backgroundImage: 'assets/images/blank.png',
     title: 'Clara Wieck Schumann',
     address: 'Graben 19',
     text:
@@ -80,7 +80,7 @@ final mapMarkers = [
     ],
     audioClip: '${pathaudio}Bauernmarkt 4.mp3',
     music: null,
-    backgroundImage: '${path}Clara_Bauernmarkt/background_Bauernmarkt.png',
+    backgroundImage: 'assets/images/blank.png',
     title: 'Clara Wieck Schumann',
     address: 'Bauernmarkt 4',
     text:
@@ -100,7 +100,7 @@ final mapMarkers = [
     ],
     audioClip: '${pathaudio}Heldenplatz.mp3',
     music: null,
-    backgroundImage: 'assets/images/background_clara_hofburg.png',
+    backgroundImage: 'assets/images/blank.png',
     title: 'Clara Wieck Schumann',
     address: 'Heldenplatz',
     text:
@@ -116,7 +116,7 @@ final mapMarkers = [
     audioClip: '${pathaudio}Musikvereinsplatz 1.mp3',
     music: null,
     title: 'Clara Wieck Schumann',
-    backgroundImage: '${path}Clara_Musikvereinplatz/mf_clara_06_footer.png',
+    backgroundImage: 'assets/images/blank.png',
     text:
         'Wir stehen hier vor der Gesellschaft der Musikfreunde, das bislang letzte, das neueste Haus, das sie sich erbaut hat und das bis heute auch das Archiv beherbergt, den Konzertsaal, die Sammlungen. Clara Schumann war bereits 1837 Ehrenmitglied der Musikfreunde und hier finden wir auch die einzige Büste der Komponistin, im Übrigen auch der einzigen Frau, der hier in dieser Form gehuldigt wird. Am 19. Jänner 1870 eröffnete Clara Schuman das Schatzkästchen, den kleineren Bruder des Großen Saals, den Kleinen Saal, seit 1937 benannt nach einem anderen Ehrenmitglied des Hauses, Johannes Brahms.',
     address: 'Musikvereinsplatz 1',
@@ -144,8 +144,7 @@ final mapMarkers = [
     audioClip: '${pathaudio}Argentinierstraße16.mp3',
     music: null,
     title: 'Clara Wieck Schumann',
-    backgroundImage:
-        '${path}Clara_Argentienierstraße/mf_clara_05_header.png', // Note: change IMAGE bad quality
+    backgroundImage: 'assets/images/blank.png',
     text:
         ',Das Haus Argentinierstraße 16 lässt von seiner einstigen Blüte, Schönheit und Reichtum nichts mehr ahnen: Bis in die 1950er Jahre stand hier das Palais der Wittgensteins. Wir wissen allerdings nachweislich, dass Clara Schumann hier zu Gast war, sie hat hier wohl auch unterrichtet und konzertiert.Unter der illustren Gästeschar, die hier im Palais Wittgenstein bewirtet wurde, war nicht nur Johannes Brahms, sondern z.B. auch eine weitere Komponistin, Alma Mahler. ',
     address: 'Argentinierstraße 16',

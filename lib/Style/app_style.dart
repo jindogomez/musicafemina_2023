@@ -11,8 +11,8 @@ class Styles {
   static TextStyle textStyle = TextStyle(
       fontSize: 12, color: Colors.grey.shade700, fontWeight: FontWeight.w500);
 //colors for polylines
-  static Color polyColorBaker = const Color.fromARGB(255, 238, 19, 19);
-  static Color polyColorClara = const Color.fromARGB(255, 43, 170, 90);
+  static Color polyColorBaker = const Color.fromARGB(255, 171, 0, 0);
+  static Color polyColorClara = const Color.fromARGB(255, 171, 0, 0);
 
   static TextStyle headline = TextStyle(
       fontSize: 25,

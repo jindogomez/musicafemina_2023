@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../MapContent/All/video_urls.dart';
+import '../Style/app_style.dart';
 import 'impressum.dart';
 import 'map_baker.dart';
 import 'map_clara.dart';
@@ -30,8 +31,8 @@ class Menu extends StatelessWidget {
                 height: 80,
               ),
               backgroundColor: const Color.fromARGB(137, 255, 255, 255),
-              iconTheme: const IconThemeData(
-                color: Colors.red,
+              iconTheme: IconThemeData(
+                color: Styles.primaryColor,
                 size: 40,
               ),
               elevation: 0.0,

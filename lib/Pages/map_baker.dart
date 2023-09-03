@@ -128,7 +128,7 @@ class _MapBakerState extends State<MapBaker> {
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
       appBar: CustomAppBar(
-        bgColor: const Color.fromARGB(115, 240, 138, 91),
+        bgColor: const Color.fromARGB(137, 255, 255, 255),
         audioPlayer: audioPlayer,
         videoUrl: widget.videoUrl,
         title: 'Josephine Baker', //ändert titel in appbar

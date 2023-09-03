@@ -3,6 +3,8 @@ import 'package:flutter_map/flutter_map.dart';
 
 import 'package:latlong2/latlong.dart';
 
+import '../Style/app_style.dart';
+
 class CenterFloatingActionButton extends StatelessWidget {
   final LatLng location;
   final double zoom;
@@ -16,9 +18,9 @@ class CenterFloatingActionButton extends StatelessWidget {
     required this.location,
     required this.zoom,
     required MapController mapController,
-    this.iconData = Icons.adjust_rounded,
-    this.backgroundColor = const Color.fromARGB(255, 246, 83, 83),
-    this.foregroundColor = Colors.black,
+    this.iconData = Icons.gps_fixed,
+    this.foregroundColor = const Color.fromARGB(255, 171, 0, 0),
+    this.backgroundColor = const Color.fromARGB(137, 255, 255, 255),
     this.mini = false,
   }) : _mapController = mapController;
 

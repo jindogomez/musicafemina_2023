@@ -133,7 +133,7 @@ class _MapClaraState extends State<MapClara> {
         mapController: _mapController,
       ),
       appBar: CustomAppBar(
-        bgColor: const Color.fromARGB(111, 60, 116, 61),
+        bgColor: const Color.fromARGB(137, 255, 255, 255),
         audioPlayer: audioPlayer,
         videoUrl: widget.videoUrl,
         title: 'Clara Wieck Schumann', //ändert titel in appbar
