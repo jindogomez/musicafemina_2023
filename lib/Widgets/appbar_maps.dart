@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:musicafemina/Style/app_style.dart';
 
 import '../Pages/video_player.dart';
 import '../Pages/menu.dart';
@@ -33,7 +34,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       toolbarHeight: 100,
       leading: IconButton(
         icon: const Icon(Icons.arrow_back_ios),
-        color: Colors.red,
+        color: Styles.primaryColor,
         onPressed: () {
           Navigator.push(
               context,
@@ -46,7 +47,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       actions: [
         IconButton(
-            color: Colors.red,
+            color: Styles.primaryColor,
             onPressed: () {
               Navigator.push(
                   context,
@@ -60,7 +61,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Text(
         title,
         style: TextStyle(
-          color: Colors.red,
+          color: Styles.primaryColor,
           fontSize: 20,
           fontFamily: GoogleFonts.abel().fontFamily,
           fontWeight: FontWeight.bold,

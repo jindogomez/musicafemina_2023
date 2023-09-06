@@ -2,6 +2,9 @@
 import 'package:analyzer_plugin/utilities/pair.dart';
 import 'package:latlong2/latlong.dart';
 
+const String path = 'assets/images/Clara/';
+const String pathaudio = 'assets/audio/Clara/';
+
 class MapMarkerClara {
   final List<Pair<String, String>> imageSubtextPairs;
 
@@ -31,17 +34,16 @@ final mapMarkers = [
   MapMarkerClara(
     //Bilder und Bild Untertitel für die Cards -> Pair (Bild, Untertitel)
     imageSubtextPairs: [
-      Pair('assets/images/Clara_Tuchlauben/Altes_Musikvereinsgebäude.jpg',
+      Pair('${path}Clara_Tuchlauben/Altes_Musikvereinsgebäude.jpg',
           'Altes Musikvereinsgebäude'),
-      Pair('assets/images/Clara_Tuchlauben/TiuchlaubenGesderMusikfreunde.jpg',
+      Pair('${path}Clara_Tuchlauben/TiuchlaubenGesderMusikfreunde.jpg',
           'Tuchlauben 12'),
-      Pair(
-          'assets/images/Clara_Tuchlauben/Wieck-Torte.jpg', 'Torte à la Wieck'),
+      Pair('${path}Clara_Tuchlauben/Wieck-Torte.jpg', 'Torte à la Wieck'),
     ],
 
-    audioClip: 'assets/audio/Clara/Tuchlauben 12.mp3',
+    audioClip: '${pathaudio}Tuchlauben 12.mp3',
     music: null,
-    backgroundImage: 'assets/images/Clara_Tuchlauben/background_tuchlauben.png',
+    backgroundImage: 'assets/images/blank.png',
     title: 'Clara Wieck Schumann',
     address: 'Tuchlauben 12',
     text:
@@ -51,15 +53,14 @@ final mapMarkers = [
 
   MapMarkerClara(
     imageSubtextPairs: [
-      Pair('assets/images/Clara_Graben/kaiserhymne.jpg', 'Kaiserhymne'),
-      Pair('assets/images/Clara_Graben/Franz_Joseph_1865.jpg',
-          'Franz Joseph (1865)'),
-      Pair('assets/images/Clara_Graben/Clara_Schumann_Franz_Luckhardt.png',
+      Pair('${path}Clara_Graben/kaiserhymne.jpg', 'Kaiserhymne'),
+      Pair('${path}Clara_Graben/Franz_Joseph_1865.jpg', 'Franz Joseph (1865)'),
+      Pair('${path}Clara_Graben/Clara_Schumann_Franz_Luckhardt.png',
           'Clara Schumann von Franz Luckhardt'),
     ],
-    audioClip: 'assets/audio/Clara/Graben 19.mp3',
+    audioClip: '${pathaudio}Graben 19.mp3',
     music: null,
-    backgroundImage: 'assets/images/Clara_Graben/background_graben.png',
+    backgroundImage: 'assets/images/blank.png',
     title: 'Clara Wieck Schumann',
     address: 'Graben 19',
     text:
@@ -69,22 +70,17 @@ final mapMarkers = [
 
   MapMarkerClara(
     imageSubtextPairs: [
-      Pair('assets/images/Clara_Bauernmarkt/clarajung.jpeg',
-          'Junge Clara Schumann'),
-      Pair('assets/images/Clara_Bauernmarkt/Grundhof_1940.jpg',
-          'Grundhof(1940)'),
-      Pair('assets/images/Clara_Bauernmarkt/Robert Schumann.jpg',
-          'Robert Schumann'),
-      Pair('assets/images/Clara_Bauernmarkt/Grillparzer.jpg',
-          'Franz Grillparzer'),
+      Pair('${path}Clara_Bauernmarkt/clarajung.jpeg', 'Junge Clara Schumann'),
+      Pair('${path}Clara_Bauernmarkt/Grundhof_1940.jpg', 'Grundhof(1940)'),
+      Pair('${path}Clara_Bauernmarkt/Robert Schumann.jpg', 'Robert Schumann'),
+      Pair('${path}Clara_Bauernmarkt/Grillparzer.jpg', 'Franz Grillparzer'),
       Pair(
-          'assets/images/Clara_Bauernmarkt/Joseph von Eichendorff  Foto H.-P.Haack.jpg',
+          '${path}Clara_Bauernmarkt/Joseph von Eichendorff  Foto H.-P.Haack.jpg',
           'Joseph von Eichendorff (Foto H.-P.Haack)'),
     ],
-    audioClip: 'assets/audio/Clara/Bauernmarkt 4.mp3',
+    audioClip: '${pathaudio}Bauernmarkt 4.mp3',
     music: null,
-    backgroundImage:
-        'assets/images/Clara_Bauernmarkt/background_Bauernmarkt.png',
+    backgroundImage: 'assets/images/blank.png',
     title: 'Clara Wieck Schumann',
     address: 'Bauernmarkt 4',
     text:
@@ -93,18 +89,18 @@ final mapMarkers = [
   ),
   MapMarkerClara(
     imageSubtextPairs: [
-      Pair('assets/images/Clara_Heldenplatz/clara schumann 2.jpg',
+      Pair('${path}Clara_Heldenplatz/clara schumann 2.jpg',
           'Clara Wieck Schumann Portrait'),
-      Pair('assets/images/Clara_Heldenplatz/Robert Schumann.jpg',
+      Pair('${path}Clara_Heldenplatz/Robert Schumann.jpg',
           'Robert Schumann Portrait'),
-      Pair('assets/images/Clara_Heldenplatz/Johannes_Brahms_portrait.jpg',
+      Pair('${path}Clara_Heldenplatz/Johannes_Brahms_portrait.jpg',
           'Johannes Brahms Portrait'),
-      Pair('assets/images/Clara_Heldenplatz/Sam. Alter Musikinstrumente .jpg',
+      Pair('${path}Clara_Heldenplatz/Sam. Alter Musikinstrumente .jpg',
           'Musikinstrumente'),
     ],
-    audioClip: 'assets/audio/Clara/Heldenplatz.mp3',
+    audioClip: '${pathaudio}Heldenplatz.mp3',
     music: null,
-    backgroundImage: 'assets/images/background_clara_hofburg.png',
+    backgroundImage: 'assets/images/blank.png',
     title: 'Clara Wieck Schumann',
     address: 'Heldenplatz',
     text:
@@ -113,18 +109,14 @@ final mapMarkers = [
   ),
   MapMarkerClara(
     imageSubtextPairs: [
-      Pair('assets/images/Clara_Musikvereinplatz/musikverein_alt.png',
-          'Musikverein'),
-      Pair('assets/images/Clara_Musikvereinplatz/Brahms Saal 1.jpg',
-          'Brahms Saal'),
-      Pair('assets/images/Clara_Musikvereinplatz/Brahms_4c 1.jpg',
-          'Johannes Brahms'),
+      Pair('${path}Clara_Musikvereinplatz/musikverein_alt.png', 'Musikverein'),
+      Pair('${path}Clara_Musikvereinplatz/Brahms Saal 1.jpg', 'Brahms Saal'),
+      Pair('${path}Clara_Musikvereinplatz/Brahms_4c 1.jpg', 'Johannes Brahms'),
     ],
-    audioClip: 'assets/audio/Clara/Musikvereinsplatz 1.mp3',
+    audioClip: '${pathaudio}Musikvereinsplatz 1.mp3',
     music: null,
     title: 'Clara Wieck Schumann',
-    backgroundImage:
-        'assets/images/Clara_Musikvereinplatz/mf_clara_06_footer.png',
+    backgroundImage: 'assets/images/blank.png',
     text:
         'Wir stehen hier vor der Gesellschaft der Musikfreunde, das bislang letzte, das neueste Haus, das sie sich erbaut hat und das bis heute auch das Archiv beherbergt, den Konzertsaal, die Sammlungen. Clara Schumann war bereits 1837 Ehrenmitglied der Musikfreunde und hier finden wir auch die einzige Büste der Komponistin, im Übrigen auch der einzigen Frau, der hier in dieser Form gehuldigt wird. Am 19. Jänner 1870 eröffnete Clara Schuman das Schatzkästchen, den kleineren Bruder des Großen Saals, den Kleinen Saal, seit 1937 benannt nach einem anderen Ehrenmitglied des Hauses, Johannes Brahms.',
     address: 'Musikvereinsplatz 1',
@@ -133,27 +125,26 @@ final mapMarkers = [
 
   MapMarkerClara(
     imageSubtextPairs: [
-      Pair('assets/images/Clara_Argentienierstraße/1288432_default.jpg',
+      Pair('${path}Clara_Argentienierstraße/1288432_default.jpg',
           'Palais Wittgenstein'),
       Pair(
-          'assets/images/Clara_Argentienierstraße/4_The_grand_staircase_in_the_Alleegasse.jpg',
+          '${path}Clara_Argentienierstraße/4_The_grand_staircase_in_the_Alleegasse.jpg',
           'Palais Wittgenstein, Stiege'),
       Pair(
-          'assets/images/Clara_Argentienierstraße/Palais_Wittgenstein_Musiksalon_1910.JPG',
+          '${path}Clara_Argentienierstraße/Palais_Wittgenstein_Musiksalon_1910.JPG',
           'Brahms Saal'),
       Pair(
-          'assets/images/Clara_Argentienierstraße/Palais_Wittgenstein_Rote_Salon_1910.JPG',
+          '${path}Clara_Argentienierstraße/Palais_Wittgenstein_Rote_Salon_1910.JPG',
           'Palais Wittgenstein'),
-      Pair('assets/images/Clara_Argentienierstraße/Clara_Schumann_1853.jpg',
+      Pair('${path}Clara_Argentienierstraße/Clara_Schumann_1853.jpg',
           'Clara Schumann, 1853'),
-      Pair('assets/images/Clara_Argentienierstraße/Alma_Mahler_1899a.jpg',
+      Pair('${path}Clara_Argentienierstraße/Alma_Mahler_1899a.jpg',
           'Alma Mahler, 1899'),
     ],
-    audioClip: 'assets/audio/Clara/Argentinierstraße16.mp3',
+    audioClip: '${pathaudio}Argentinierstraße16.mp3',
     music: null,
     title: 'Clara Wieck Schumann',
-    backgroundImage:
-        'assets/images/Clara_Argentienierstraße/mf_clara_05_header.png', // Note: change IMAGE bad quality
+    backgroundImage: 'assets/images/blank.png',
     text:
         ',Das Haus Argentinierstraße 16 lässt von seiner einstigen Blüte, Schönheit und Reichtum nichts mehr ahnen: Bis in die 1950er Jahre stand hier das Palais der Wittgensteins. Wir wissen allerdings nachweislich, dass Clara Schumann hier zu Gast war, sie hat hier wohl auch unterrichtet und konzertiert.Unter der illustren Gästeschar, die hier im Palais Wittgenstein bewirtet wurde, war nicht nur Johannes Brahms, sondern z.B. auch eine weitere Komponistin, Alma Mahler. ',
     address: 'Argentinierstraße 16',

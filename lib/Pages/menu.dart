@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../MapContent/All/video_urls.dart';
+import '../Style/app_style.dart';
 import 'impressum.dart';
 import 'map_baker.dart';
 import 'map_clara.dart';
@@ -24,26 +25,14 @@ class Menu extends StatelessWidget {
           appBar: PreferredSize(
             preferredSize: const Size.fromHeight(120.0),
             child: AppBar(
-              title: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Image.asset(
-                    'assets/images/mf_logo_B.png',
-                    fit: BoxFit.cover,
-                    height: 80, // and the height as well
-                  ),
-                  const Text('Stadtspaziergänge'),
-                  const SizedBox(
-                    height: 20,
-                  )
-                ],
+              title: Image.asset(
+                'assets/images/mf_logo_B.png',
+                fit: BoxFit.cover,
+                height: 80,
               ),
               backgroundColor: const Color.fromARGB(137, 255, 255, 255),
-              iconTheme: const IconThemeData(
-                color: Colors.red,
+              iconTheme: IconThemeData(
+                color: Styles.primaryColor,
                 size: 40,
               ),
               elevation: 0.0,

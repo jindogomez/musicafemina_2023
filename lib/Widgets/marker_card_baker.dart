@@ -28,8 +28,8 @@ class MarkerCard extends StatelessWidget {
       child: Align(
         alignment: Alignment.center,
         child: Card(
-          color: const Color.fromARGB(255, 239, 197, 197),
           shape: RoundedRectangleBorder(
+            side: BorderSide(color: Styles.primaryColor, width: 0.7),
             borderRadius: BorderRadius.circular(15.0),
           ),
           child: SizedBox(

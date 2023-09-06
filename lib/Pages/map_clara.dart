@@ -9,6 +9,7 @@ import 'package:latlong2/latlong.dart';
 import '../MapContent/All/waypoint_images.dart';
 import '../Services/constants_mapbox.dart';
 import '../Services/location_helper.dart';
+import '../Style/app_style.dart';
 import '../Widgets/appbar_maps.dart';
 import '../Widgets/center_floatingbutton.dart';
 import '../MapContent/Clara/clara_marker.dart';
@@ -132,7 +133,7 @@ class _MapClaraState extends State<MapClara> {
         mapController: _mapController,
       ),
       appBar: CustomAppBar(
-        bgColor: const Color.fromARGB(111, 60, 116, 61),
+        bgColor: const Color.fromARGB(137, 255, 255, 255),
         audioPlayer: audioPlayer,
         videoUrl: widget.videoUrl,
         title: 'Clara Wieck Schumann', //ändert titel in appbar
@@ -171,7 +172,7 @@ class _MapClaraState extends State<MapClara> {
                   Polyline(
                     points: _routePoints,
                     strokeWidth: 4,
-                    color: const Color.fromARGB(111, 60, 116, 61),
+                    color: Styles.polyColorClara,
                     isDotted: true,
                   ),
                 ],

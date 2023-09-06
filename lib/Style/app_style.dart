@@ -8,9 +8,11 @@ class Styles {
   static Color textColor = const Color.fromARGB(255, 0, 0, 0);
   static Color navColor = const Color.fromARGB(255, 243, 233, 233);
   static Color bgColor = const Color.fromARGB(255, 234, 234, 234);
-  static Color itemColor = const Color.fromARGB(255, 59, 39, 157);
   static TextStyle textStyle = TextStyle(
       fontSize: 12, color: Colors.grey.shade700, fontWeight: FontWeight.w500);
+//colors for polylines
+  static Color polyColorBaker = const Color.fromARGB(255, 171, 0, 0);
+  static Color polyColorClara = const Color.fromARGB(255, 171, 0, 0);
 
   static TextStyle headline = TextStyle(
       fontSize: 25,

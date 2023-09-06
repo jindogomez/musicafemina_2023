@@ -77,13 +77,15 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
   - assets/images/
-  - assets/images/Clara_Heldenplatz/
-  - assets/images/Clara_Musikvereinplatz/
-  - assets/images/Clara_Bauernmarkt/
-  - assets/images/Clara_Graben/
-  - assets/images/Clara_Tuchlauben/
-  - assets/images/Clara_Argentienierstraße/
+  - assets/images/waypoints_all/
+  - assets/images/Clara/Clara_Heldenplatz/
+  - assets/images/Clara/Clara_Musikvereinplatz/
+  - assets/images/Clara/Clara_Bauernmarkt/
+  - assets/images/Clara/Clara_Graben/
+  - assets/images/Clara/Clara_Tuchlauben/
+  - assets/images/Clara/Clara_Argentienierstraße/
   - assets/audio/Clara/
+  - assets/images/Baker/
   - assets/audio/baker/
   
 
