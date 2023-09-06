@@ -1,17 +1,11 @@
-// to do: add correct waypoints
+// TODO: add correct waypoints
 
 List<List<double>> waypointsBaker = [
-  [48.196682165848536, 16.37206196960226], // Argentinierstraße 30
+  [48.20822420870148, 16.35858684802273], // Parlament
 
-  [48.21033304171603, 16.37089469281659], // Bauernmarkt 4
-
-  [48.2095954782485, 16.37180163942776], // Tuchlauben 12
-
-  // Graben 19
-
-  [48.20643623170044, 16.36314241193054], // Heldenplatz
-
-  [48.200655004142995, 16.372817971453987],
-
-  [48.209586253900504, 16.368266492727017] // Musikvereinsplatz 1
 ];
+
+class WayBaker
+{
+  static double coor1 = waypointsBaker[0] as double;
+}
