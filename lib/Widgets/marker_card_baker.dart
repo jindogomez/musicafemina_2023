@@ -23,23 +23,22 @@ class MarkerCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
     return Visibility(
       visible: _isCardVisible,
       child: Align(
         alignment: Alignment.center,
         child: Card(
-          shape: RoundedRectangleBorder(
-            side: BorderSide(color: Styles.primaryColor, width: 0.7),
-            borderRadius: BorderRadius.circular(15.0),
-          ),
+          margin: EdgeInsets.zero,
           child: SizedBox(
-            height: 500,
+            width: width,
+            height: height,
             child: _selectedMarkerIndex != null
                 ? Padding(
-                    padding: const EdgeInsets.all(2),
+                    padding: const EdgeInsets.all(5),
                     child: DecoratedBox(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
                           image: DecorationImage(
                             image: AssetImage(mapMarkers[_selectedMarkerIndex!]
                                     .backgroundImage ??

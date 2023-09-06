@@ -17,7 +17,7 @@ class Styles {
   static TextStyle headline = TextStyle(
       fontSize: 25,
       fontFamily: GoogleFonts.abel().fontFamily,
-      color: const Color.fromARGB(255, 171, 0, 0),
+      color: Colors.black,
       fontWeight: FontWeight.bold);
 
   static TextStyle textStyle1 = TextStyle(

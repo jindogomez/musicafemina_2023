@@ -18,6 +18,7 @@ import '../MapContent/Baker/baker_marker.dart';
 import '../Services/directions_service.dart';
 
 import '../Widgets/marker_card_baker.dart';
+import 'menu.dart';
 
 typedef UpdateCallback = void Function(void Function());
 
@@ -42,7 +43,7 @@ class _MapBakerState extends State<MapBaker> {
   late AudioPlayer audioPlayer;
   String? lastAudioClip;
   StreamSubscription<PlayerState>? playerStateStreamSubscription;
-
+  final double customAppBarHeight = 100.0;
   @override
   void initState() {
     super.initState();
@@ -122,6 +123,26 @@ class _MapBakerState extends State<MapBaker> {
 
   bool _isCardVisible = false;
 
+  void _toggleCardVisibility() {
+    if (_isCardVisible) {
+      setState(() {
+        _isCardVisible = false;
+      });
+    } else {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const Menu(
+                  paramHomepage: 'home',
+                )), // Your menu page class
+      );
+    }
+
+    audioPlayer.stop();
+    _mapController.move(const LatLng(48.210333041716, 16.372817971454),
+        14.0); // Centering the map
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -130,96 +151,109 @@ class _MapBakerState extends State<MapBaker> {
       appBar: CustomAppBar(
         bgColor: const Color.fromARGB(137, 255, 255, 255),
         audioPlayer: audioPlayer,
+        onLeadingButtonPressed: _toggleCardVisibility,
         videoUrl: widget.videoUrl,
         title: 'Josephine Baker', //ändert titel in appbar
       ),
-      floatingActionButton: CenterFloatingActionButton(
-        location: const LatLng(48.210333041716, 16.372817971454),
-        zoom: 14.0,
-        mapController: _mapController,
-      ),
-      body: Stack(
-        children: [
-          FlutterMap(
-            mapController: _mapController,
-            options: MapOptions(
-              minZoom: 14,
-              maxZoom: 18,
-              zoom: 15,
-              center: AppConstants.myLocation,
-              interactiveFlags: InteractiveFlag.all & ~InteractiveFlag.rotate,
-              onTap: (tapPosition, LatLng point) {
-                if (_isCardVisible) {
-                  setState(() {
-                    _isCardVisible = false;
-                    audioPlayer.stop();
-                  });
-                }
+      floatingActionButton: _isCardVisible
+          ? null
+          : CenterFloatingActionButton(
+              location: const LatLng(48.210333041716, 16.372817971454),
+              zoom: 14.0,
+              mapController: _mapController,
+              onPressed: () {
+                setState(() {
+                  _isCardVisible =
+                      true; // Or any other action you want to perform
+                });
               },
             ),
-            children: [
-              TileLayer(
-                /// Mapbox tile layer Stored in constants_mapbox.dart
-                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                userAgentPackageName: 'dev.fleaflet.flutter_map.example',
+      body: Stack(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(top: customAppBarHeight),
+            child: FlutterMap(
+              mapController: _mapController,
+              options: MapOptions(
+                minZoom: 14,
+                maxZoom: 18,
+                zoom: 15,
+                center: AppConstants.myLocation,
+                interactiveFlags: InteractiveFlag.all & ~InteractiveFlag.rotate,
+                onTap: (tapPosition, LatLng point) {
+                  if (_isCardVisible) {
+                    setState(() {
+                      _isCardVisible = false;
+                      audioPlayer.stop();
+                    });
+                  }
+                },
               ),
-              PolylineLayer(
-                polylines: [
-                  Polyline(
-                    points: _routePoints,
-                    strokeWidth: 4,
-                    color: Styles.polyColorBaker,
-                    isDotted: true,
-                  ),
-                ],
-              ),
-              MarkerLayer(
-                markers: [
-                  if (_currentLocation != null)
-                    Marker(
-                      height: 80,
-                      width: 80,
-                      point: _currentLocation!,
-                      builder: (_) {
-                        return const Icon(
-                          Icons.my_location,
-                          color: Color.fromARGB(255, 221, 0,
-                              44), //wird nicht angezeigt.. fehler muss ich suchen
-                        );
-                      },
+              children: [
+                TileLayer(
+                  /// Mapbox tile layer Stored in constants_mapbox.dart
+                  urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                  userAgentPackageName: 'dev.fleaflet.flutter_map.example',
+                ),
+                PolylineLayer(
+                  polylines: [
+                    Polyline(
+                      points: _routePoints,
+                      strokeWidth: 4,
+                      color: Styles.polyColorBaker,
+                      isDotted: true,
                     ),
-                  for (int i = 0; i < mapMarkers.length; i++)
-                    Marker(
-                      height: 60,
-                      width: 60,
-                      point: mapMarkers[i].location ?? AppConstants.myLocation,
-                      builder: (_) {
-                        return GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _isCardVisible = true;
-                              _selectedMarkerIndex = i;
-                              audioPlayer.stop();
-                            });
-                          },
-                          child: Image.asset(
-                            WaypointImages().bakerWaypoint,
-                          ),
-                        );
-                      },
-                    ),
-                ],
-              ),
-              //Design von den Karten stored in marker_card_baker.dart
-              MarkerCard(
-                _isCardVisible,
-                _selectedMarkerIndex,
-                audioPlayer,
-                isPlaying,
-                playPauseAudio,
-                restartAudio,
-              ),
-            ],
+                  ],
+                ),
+                MarkerLayer(
+                  markers: [
+                    if (_currentLocation != null)
+                      Marker(
+                        height: 80,
+                        width: 80,
+                        point: _currentLocation!,
+                        builder: (_) {
+                          return const Icon(
+                            Icons.my_location,
+                            color: Color.fromARGB(255, 221, 0,
+                                44), //wird nicht angezeigt.. fehler muss ich suchen
+                          );
+                        },
+                      ),
+                    for (int i = 0; i < mapMarkers.length; i++)
+                      Marker(
+                        height: 60,
+                        width: 60,
+                        point:
+                            mapMarkers[i].location ?? AppConstants.myLocation,
+                        builder: (_) {
+                          return GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _isCardVisible = true;
+                                _selectedMarkerIndex = i;
+                                audioPlayer.stop();
+                              });
+                            },
+                            child: Image.asset(
+                              WaypointImages().bakerWaypoint,
+                            ),
+                          );
+                        },
+                      ),
+                  ],
+                ),
+                //Design von den Karten stored in marker_card_baker.dart
+                MarkerCard(
+                  _isCardVisible,
+                  _selectedMarkerIndex,
+                  audioPlayer,
+                  isPlaying,
+                  playPauseAudio,
+                  restartAudio,
+                ),
+              ],
+            ),
           ),
         ],
       ),

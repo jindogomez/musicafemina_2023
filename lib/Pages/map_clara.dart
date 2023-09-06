@@ -16,6 +16,7 @@ import '../MapContent/Clara/clara_marker.dart';
 import '../Services/directions_service.dart';
 import '../MapContent/Clara/clara_polylines.dart';
 import '../Widgets/marker_card_clara.dart';
+import 'menu.dart';
 
 typedef UpdateCallback = void Function(void Function());
 
@@ -37,6 +38,7 @@ class _MapClaraState extends State<MapClara> {
   String? lastAudioClip;
   StreamSubscription<PlayerState>? playerStateStreamSubscription;
   late String videoUrl;
+  final double customAppBarHeight = 100.0;
 
   @override
   void initState() {
@@ -122,105 +124,133 @@ class _MapClaraState extends State<MapClara> {
 
   bool _isCardVisible = false;
 
+  void _toggleCardVisibility() {
+    if (_isCardVisible) {
+      setState(() {
+        _isCardVisible = false;
+      });
+    } else {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const Menu(
+                  paramHomepage: 'home',
+                )), // Your menu page class
+      );
+    }
+
+    audioPlayer.stop();
+    _mapController.move(const LatLng(48.210333041716, 16.372817971454),
+        14.0); // Centering the map
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
-      floatingActionButton: CenterFloatingActionButton(
-        location: const LatLng(48.210333041716, 16.372817971454),
-        zoom: 14.0,
-        mapController: _mapController,
-      ),
+      floatingActionButton: !_isCardVisible
+          ? CenterFloatingActionButton(
+              location: const LatLng(48.210333041716, 16.372817971454),
+              zoom: 14.0,
+              mapController: _mapController,
+              onPressed: () {},
+            )
+          : null,
       appBar: CustomAppBar(
         bgColor: const Color.fromARGB(137, 255, 255, 255),
         audioPlayer: audioPlayer,
         videoUrl: widget.videoUrl,
+        onLeadingButtonPressed: _toggleCardVisibility,
         title: 'Clara Wieck Schumann', //ändert titel in appbar
       ),
       body: Stack(
         children: [
-          FlutterMap(
-            mapController: _mapController,
-            options: MapOptions(
-              minZoom: 14,
-              maxZoom: 18,
-              zoom: 15,
-              center: AppConstants.myLocation,
-              interactiveFlags: InteractiveFlag.all & ~InteractiveFlag.rotate,
-              onTap: (tapPosition, LatLng point) {
-                if (_isCardVisible) {
-                  setState(() {
-                    _isCardVisible = false;
-                    audioPlayer.stop();
-                  });
-                }
-              },
-            ),
-            children: [
-              TileLayer(
-                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+          Padding(
+            padding: EdgeInsets.only(top: customAppBarHeight),
+            child: FlutterMap(
+              mapController: _mapController,
+              options: MapOptions(
+                minZoom: 14,
+                maxZoom: 18,
+                zoom: 15,
+                center: AppConstants.myLocation,
+                interactiveFlags: InteractiveFlag.all & ~InteractiveFlag.rotate,
+                onTap: (tapPosition, LatLng point) {
+                  if (_isCardVisible) {
+                    setState(() {
+                      _isCardVisible = false;
+                      audioPlayer.stop();
+                    });
+                  }
+                },
+              ),
+              children: [
+                TileLayer(
+                  urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
 
-                //"${AppConstants.mapBoxUrl}?access_token={accessToken}",
-                // additionalOptions: const {
-                //'id': AppConstants.id,
-                // 'accessToken': AppConstants.mapBoxAccessToken,
-                // },
-              ),
-              PolylineLayer(
-                polylines: [
-                  Polyline(
-                    points: _routePoints,
-                    strokeWidth: 4,
-                    color: Styles.polyColorClara,
-                    isDotted: true,
-                  ),
-                ],
-              ),
-              MarkerLayer(
-                markers: [
-                  if (_currentLocation != null)
-                    Marker(
-                      height: 80,
-                      width: 80,
-                      point: _currentLocation!,
-                      builder: (_) {
-                        return const Icon(
-                          Icons.my_location,
-                        );
-                      },
+                  //"${AppConstants.mapBoxUrl}?access_token={accessToken}",
+                  // additionalOptions: const {
+                  //'id': AppConstants.id,
+                  // 'accessToken': AppConstants.mapBoxAccessToken,
+                  // },
+                ),
+                PolylineLayer(
+                  polylines: [
+                    Polyline(
+                      points: _routePoints,
+                      strokeWidth: 4,
+                      color: Styles.polyColorClara,
+                      isDotted: true,
                     ),
-                  for (int i = 0; i < mapMarkers.length; i++)
-                    Marker(
-                      height: 60,
-                      width: 60,
-                      point: mapMarkers[i].location ?? AppConstants.myLocation,
-                      builder: (_) {
-                        return GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _isCardVisible = true;
-                              _selectedMarkerIndex = i;
-                              audioPlayer.stop();
-                            });
-                          },
-                          child: Image.asset(
-                            WaypointImages().claraWaypoint,
-                          ),
-                        );
-                      },
-                    ),
-                ],
-              ),
-              MarkerCard(
-                _isCardVisible,
-                _selectedMarkerIndex,
-                audioPlayer,
-                isPlaying,
-                playPauseAudio,
-                restartAudio,
-              ),
-            ],
+                  ],
+                ),
+                MarkerLayer(
+                  markers: [
+                    if (_currentLocation != null)
+                      Marker(
+                        height: 80,
+                        width: 80,
+                        point: _currentLocation!,
+                        builder: (_) {
+                          return const Icon(
+                            Icons.my_location,
+                          );
+                        },
+                      ),
+                    for (int i = 0; i < mapMarkers.length; i++)
+                      Marker(
+                        height: 60,
+                        width: 60,
+                        point:
+                            mapMarkers[i].location ?? AppConstants.myLocation,
+                        builder: (_) {
+                          return GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _isCardVisible = true;
+                                _selectedMarkerIndex = i;
+                                audioPlayer.stop();
+                              });
+                            },
+                            child: Image.asset(
+                              WaypointImages().claraWaypoint,
+                            ),
+                          );
+                        },
+                      ),
+                  ],
+                ),
+                MarkerCard(
+                  _isCardVisible,
+                  _selectedMarkerIndex,
+                  audioPlayer,
+                  isPlaying,
+                  playPauseAudio,
+                  restartAudio,
+                ),
+              ],
+            ),
           ),
         ],
       ),

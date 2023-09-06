@@ -4,7 +4,6 @@ import 'package:just_audio/just_audio.dart';
 import 'package:musicafemina/Style/app_style.dart';
 
 import '../Pages/video_player.dart';
-import '../Pages/menu.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final AudioPlayer audioPlayer;
@@ -12,6 +11,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final double height;
   final Color bgColor;
+  final VoidCallback onLeadingButtonPressed;
 
   const CustomAppBar({
     Key? key,
@@ -20,30 +20,21 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.title,
     this.height = kToolbarHeight,
     required this.bgColor,
+    required this.onLeadingButtonPressed,
   }) : super(key: key);
 
   @override
-  Size get preferredSize => const Size.fromHeight(80.0);
+  Size get preferredSize => const Size.fromHeight(60.0);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: bgColor,
-      elevation: 0.0,
       centerTitle: true,
       toolbarHeight: 100,
       leading: IconButton(
         icon: const Icon(Icons.arrow_back_ios),
         color: Styles.primaryColor,
-        onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const Menu(
-                        paramHomepage: '',
-                      )));
-          audioPlayer.stop();
-        },
+        onPressed: onLeadingButtonPressed,
       ),
       actions: [
         IconButton(

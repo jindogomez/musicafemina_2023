@@ -25,6 +25,7 @@ class Menu extends StatelessWidget {
           appBar: PreferredSize(
             preferredSize: const Size.fromHeight(120.0),
             child: AppBar(
+              automaticallyImplyLeading: false,
               title: Image.asset(
                 'assets/images/mf_logo_B.png',
                 fit: BoxFit.cover,
@@ -59,9 +60,10 @@ class Menu extends StatelessWidget {
                     focusColor: Colors.blue,
                     hoverColor: Colors.red,
                     textColor: Colors.white,
-                    leading: Image.asset('assets/images/Waypoint_Clara_01.png'),
+                    leading: Image.asset(
+                        'assets/images/waypoints_all/waypoint_backer.png'),
                     title: const Text('Josephine Baker'),
-                    subtitle: const Text('1819 - 1896'),
+                    subtitle: const Text('1906  - 1975'),
                     onTap: () {
                       Navigator.push(
                           context,
@@ -84,7 +86,8 @@ class Menu extends StatelessWidget {
                     textColor: Colors.white,
                     title: const Text('Clara Wieck Schumann'),
                     subtitle: const Text('1819 - 1896'),
-                    leading: Image.asset('assets/images/Waypoint_Clara_01.png'),
+                    leading: Image.asset(
+                        'assets/images/waypoints_all/waypoint_clara.png'),
                     onTap: () {
                       Navigator.push(
                           context,
@@ -103,9 +106,10 @@ class Menu extends StatelessWidget {
                     focusColor: Colors.blue,
                     hoverColor: Colors.red,
                     textColor: Colors.white,
-                    title: const Text('Wienner Klassikerinnen'),
-                    subtitle: const Text('1819 - 1896'),
-                    leading: Image.asset('assets/images/Waypoint_Clara_01.png'),
+                    title: const Text('Wiener Klassikerinnen'),
+                    subtitle: const Text('1789 - 1919'),
+                    leading: Image.asset(
+                        'assets/images/waypoints_all/waypoint_klassikerinnen.png'),
                     onTap: () {
                       Navigator.push(
                           context,
@@ -125,8 +129,9 @@ class Menu extends StatelessWidget {
                     hoverColor: Colors.red,
                     textColor: Colors.white,
                     title: const Text('Ns Verfemte'),
-                    subtitle: const Text('1819 - 1896'),
-                    leading: Image.asset('assets/images/Waypoint_Clara_01.png'),
+                    subtitle: const Text(' 1888 - 1960'),
+                    leading: Image.asset(
+                        'assets/images/waypoints_all/waypoint_nsverfemmte.png'),
                     onTap: () {
                       Navigator.push(
                           context,
@@ -145,8 +150,8 @@ class Menu extends StatelessWidget {
                     focusColor: Colors.blue,
                     hoverColor: Colors.red,
                     textColor: Colors.white,
-                    title: const Text('Neueste'),
-                    subtitle: const Text('1819 - 1896'),
+                    title: const Text('Strauss Zeitgenössinnen'),
+                    subtitle: const Text('1825 - 1899'),
                     leading: Image.asset('assets/images/Waypoint_Clara_01.png'),
                     onTap: () {
                       Navigator.push(

@@ -32,7 +32,7 @@ final mapMarkers = [
   //Clara Wieck Schumann
 
   MapMarkerBaker(
-    title: 'Josephine Baker',
+    title: '',
     backgroundImage: 'assets/images/blank.png',
     address: 'Parlament',
     location: const LatLng(48.2082242087015, 16.3585868480227),
@@ -50,7 +50,7 @@ final mapMarkers = [
   ),
 
   MapMarkerBaker(
-    title: 'Josephine Baker',
+    title: '',
     backgroundImage: 'assets/images/blank.png',
     address: 'Kärntnerdurchgang',
     location: const LatLng(48.2071834219, 16.371258207246),
@@ -66,7 +66,7 @@ final mapMarkers = [
   ),
 
   MapMarkerBaker(
-    title: 'Josephine Baker',
+    title: '',
     backgroundImage: 'assets/images/blank.png',
     address: 'Seilerstätte 9',
     location: const LatLng(48.2053744179023, 16.375045749243),
@@ -83,7 +83,7 @@ final mapMarkers = [
     music: null,
   ),
   MapMarkerBaker(
-    title: 'Josephine Baker',
+    title: '',
     backgroundImage: 'assets/images/blank.png',
     address: 'Kärntner Ring 1',
     location: const LatLng(48.2027537234097, 16.370222119149),
@@ -98,7 +98,7 @@ final mapMarkers = [
     music: null,
   ),
   MapMarkerBaker(
-    title: 'Josephine Baker',
+    title: '',
     backgroundImage: 'assets/images/blank.png',
     address: 'Favoritenstraße 8',
     location: const LatLng(48.1955981451396, 16.368934135274),
