@@ -8,6 +8,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:musicafemina/Style/app_style.dart';
 //file import
 import '../MapContent/All/waypoint_images.dart';
+
 import '../MapContent/Baker/baker_polylines.dart';
 import '../Services/constants_mapbox.dart';
 import '../Services/location_helper.dart';
@@ -66,7 +67,8 @@ class _MapBakerState extends State<MapBaker> {
   }
 
   Future<void> loadRouteCoordinates() async {
-    List<List<double>> coordinates = await getRouteCoordinates(waypointsBaker);
+    List<List<double>> coordinates =
+        await getRouteCoordinates(WayBaker.waypointsBaker);
     setState(() {
       _routePoints = coordinates
           .map((coordinate) => LatLng(coordinate[0], coordinate[1]))
