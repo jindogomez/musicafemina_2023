@@ -22,21 +22,4 @@ class BakerText {
     'Kärntner Ring 1',
     'Favoritenstraße 8',
   ];
-
-  static List<String> getTextList(int index) {
-    switch (index) {
-      case 1:
-        return [titles[index - 1], addresses[index - 1], texts[index - 1]];
-      case 2:
-        return [titles[index - 1], addresses[index - 1], texts[index - 1]];
-      case 3:
-        return [titles[index - 1], addresses[index - 1], texts[index - 1]];
-      case 4:
-        return [titles[index - 1], addresses[index - 1], texts[index - 1]];
-      case 5:
-        return [titles[index - 1], addresses[index - 1], texts[index - 1]];
-      default:
-        throw ArgumentError('Invalid index: $index');
-    }
-  }
 }
