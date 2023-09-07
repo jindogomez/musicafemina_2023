@@ -41,8 +41,7 @@ class MarkerCard extends StatelessWidget {
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage(mapMarkers[_selectedMarkerIndex!]
-                                    .backgroundImage ??
-                                ''),
+                                .backgroundImage),
                             fit: BoxFit.cover,
                             alignment: Alignment.topCenter,
                           ),
@@ -57,14 +56,11 @@ class MarkerCard extends StatelessWidget {
                                 children: [
                                   const SizedBox(height: 15),
                                   Text(
-                                      mapMarkers[_selectedMarkerIndex!]
-                                              .address ??
-                                          '',
+                                      mapMarkers[_selectedMarkerIndex!].address,
                                       style: Styles.headline),
                                   const SizedBox(height: 2),
                                   Text(
-                                    mapMarkers[_selectedMarkerIndex!].title ??
-                                        '',
+                                    mapMarkers[_selectedMarkerIndex!].title,
                                     style: Styles.textStyle1,
                                   ),
                                   const SizedBox(height: 20),
@@ -78,8 +74,7 @@ class MarkerCard extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 20),
                                   Text(
-                                    mapMarkers[_selectedMarkerIndex!].text ??
-                                        '',
+                                    mapMarkers[_selectedMarkerIndex!].text,
                                     style: Styles.textMain,
                                   ),
                                   const SizedBox(height: 15),

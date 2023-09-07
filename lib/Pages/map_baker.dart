@@ -226,8 +226,7 @@ class _MapBakerState extends State<MapBaker> {
                       Marker(
                         height: 60,
                         width: 60,
-                        point:
-                            mapMarkers[i].location ?? AppConstants.myLocation,
+                        point: mapMarkers[i].location,
                         builder: (_) {
                           return GestureDetector(
                             onTap: () {

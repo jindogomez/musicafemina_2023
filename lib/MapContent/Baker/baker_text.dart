@@ -22,4 +22,28 @@ class BakerText {
     'Kärntner Ring 1',
     'Favoritenstraße 8',
   ];
+
+  static String getTitle(int index) {
+    if (index > 0 && index <= titles.length) {
+      return titles[index - 1];
+    } else {
+      return 'Index not found';
+    }
+  }
+
+  static String getAddress(int index) {
+    if (index > 0 && index <= addresses.length) {
+      return addresses[index - 1];
+    } else {
+      return 'Index not found';
+    }
+  }
+
+  static String getText(int index) {
+    if (index > 0 && index <= texts.length) {
+      return texts[index - 1];
+    } else {
+      return 'Index not found';
+    }
+  }
 }
