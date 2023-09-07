@@ -31,20 +31,18 @@ class MapMarkerBaker {
 }
 
 MapMarkerBaker createMarker({
-  required String title,
-  required String address,
+  required int textsindex,
   required int locationIndex,
-  required String text,
   required List<Pair<String, String>> imageSubtextPairs,
   required int audioIndex,
   LatLng? music,
 }) {
   return MapMarkerBaker(
-    title: title,
+    title: BakerText.titles[textsindex - 1],
+    address: BakerText.addresses[textsindex - 1],
+    text: BakerText.texts[textsindex - 1],
     backgroundImage: blankImage,
-    address: address,
     location: WayBaker.getLatLng(locationIndex),
-    text: text,
     imageSubtextPairs: imageSubtextPairs,
     audioClip: AudioPathBaker.getAudioPath(audioIndex),
     music: music,
@@ -53,43 +51,33 @@ MapMarkerBaker createMarker({
 
 final mapMarkers = [
   createMarker(
-    title: BakerText.getTitle(1),
-    address: BakerText.getAddress(1),
-    text: BakerText.getText(1),
+    textsindex: 1,
     locationIndex: 1,
     imageSubtextPairs: createImageSubtextPairs(imageSubtextsList1),
     audioIndex: 1,
   ),
   createMarker(
-    title: BakerText.getTitle(2),
-    address: BakerText.getAddress(2),
-    text: BakerText.getText(2),
+    textsindex: 2,
     locationIndex: 2,
     imageSubtextPairs: createImageSubtextPairs(imageSubtextsList2),
-    audioIndex: 1,
+    audioIndex: 2,
   ),
   createMarker(
-    title: BakerText.getTitle(3),
-    address: BakerText.getAddress(3),
-    text: BakerText.getText(3),
+    textsindex: 3,
     locationIndex: 3,
     imageSubtextPairs: createImageSubtextPairs(imageSubtextsList3),
-    audioIndex: 1,
+    audioIndex: 3,
   ),
   createMarker(
-    title: BakerText.getTitle(4),
-    address: BakerText.getAddress(4),
-    text: BakerText.getText(4),
+    textsindex: 4,
     locationIndex: 4,
     imageSubtextPairs: createImageSubtextPairs(imageSubtextsList4),
-    audioIndex: 1,
+    audioIndex: 4,
   ),
   createMarker(
-    title: BakerText.getTitle(5),
-    address: BakerText.getAddress(5),
-    text: BakerText.getText(5),
+    textsindex: 5,
     locationIndex: 5,
     imageSubtextPairs: createImageSubtextPairs(imageSubtextsList5),
-    audioIndex: 1,
+    audioIndex: 5,
   ),
 ];
