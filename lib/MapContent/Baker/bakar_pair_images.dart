@@ -1,8 +1,10 @@
 // image_subtext_pairs.dart
 import 'package:analyzer_plugin/utilities/pair.dart';
 
+// Define the directory path for storing image assets
 const String imagePath = 'assets/images/Baker/';
 
+// Define multiple lists that contain image file names and their corresponding subtexts.
 final List<Map<String, String>> imageSubtextsList1 = [
   {'image': 'heldenplatz_baker_1.jpeg', 'subtext': 'Josephine Baker'},
   {'image': 'heldenplatz_baker_2.jpg', 'subtext': 'Josephine Baker2'},
@@ -35,6 +37,8 @@ final List<Map<String, String>> imageSubtextsList5 = [
   {'image': 'favoriten_paris.jpg', 'subtext': 'Josephine Baker'},
 ];
 
+// Function to transform a list of maps into a list of Pair objects.
+// Each Pair object holds the complete image path and its corresponding subtext.
 List<Pair<String, String>> createImageSubtextPairs(
     List<Map<String, String>> imagesSubtexts) {
   return imagesSubtexts
@@ -42,7 +46,8 @@ List<Pair<String, String>> createImageSubtextPairs(
       .toList();
 }
 
-// Function to get a specific list by index
+// Function to retrieve a specific list of image-subtext maps based on a given index.
+// Throws an ArgumentError if the index is invalid.
 List<Map<String, String>> getImageSubtextList(int index) {
   switch (index) {
     case 1:

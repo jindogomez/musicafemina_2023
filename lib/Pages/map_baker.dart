@@ -6,18 +6,16 @@ import 'package:just_audio/just_audio.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:musicafemina/Style/app_style.dart';
+import 'package:musicafemina/Widgets/costum_icons.dart';
 //file import
 import '../MapContent/All/waypoint_images.dart';
-
 import '../MapContent/Baker/baker_polylines.dart';
 import '../Services/constants_mapbox.dart';
 import '../Services/location_helper.dart';
-
 import '../Widgets/appbar_maps.dart';
 import '../Widgets/center_floatingbutton.dart';
 import '../MapContent/Baker/baker_marker.dart';
 import '../Services/directions_service.dart';
-
 import '../Widgets/marker_card_baker.dart';
 import 'menu.dart';
 
@@ -48,32 +46,96 @@ class _MapBakerState extends State<MapBaker> {
   @override
   void initState() {
     super.initState();
-    initializeMapController();
+    _initializeComponents();
+  }
+
+  void _initializeComponents() {
+    _initializeMapController();
     setupLocationHelper();
     loadRouteCoordinates();
     setupAudioPlayer();
   }
 
-  void initializeMapController() {
+  void _initializeMapController() {
     _mapController = MapController();
   }
 
   void setupLocationHelper() {
     LocationHelper.fetchCurrentLocation(_mapController, (newLocation) {
-      setState(() {
-        _currentLocation = newLocation;
-      });
+      if (mounted) {
+        setState(() {
+          _currentLocation = newLocation;
+        });
+      }
+    }).catchError((e) {
+      if (mounted) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            content: Text('Error fetching location: $e'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
+      }
     });
   }
 
   Future<void> loadRouteCoordinates() async {
-    List<List<double>> coordinates =
-        await getRouteCoordinates(WayBaker.waypointsBaker);
-    setState(() {
-      _routePoints = coordinates
-          .map((coordinate) => LatLng(coordinate[0], coordinate[1]))
-          .toList();
-    });
+    try {
+      List<List<double>> coordinates =
+          await getRouteCoordinates(WayBaker.waypointsBaker);
+
+      if (coordinates.isNotEmpty) {
+        if (mounted) {
+          setState(() {
+            _routePoints = coordinates
+                .map((coordinate) => LatLng(coordinate[0], coordinate[1]))
+                .toList();
+          });
+        }
+      } else {
+        if (mounted) {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              content: const Text('No Coordinates found'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            content: Text('No Coordinates found: $e'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
+      }
+    }
   }
 
   void setupAudioPlayer() {
@@ -81,17 +143,15 @@ class _MapBakerState extends State<MapBaker> {
     playerStateStreamSubscription =
         audioPlayer.playerStateStream.listen((state) {
       if (mounted) {
-        if (state.processingState == ProcessingState.completed ||
-            state.processingState == ProcessingState.idle) {
-          setState(() {
+        setState(() {
+          if (state.processingState == ProcessingState.completed ||
+              state.processingState == ProcessingState.idle) {
             isPlaying.value = false;
-          });
-        } else if (state.processingState == ProcessingState.ready &&
-            state.playing) {
-          setState(() {
+          } else if (state.processingState == ProcessingState.ready &&
+              state.playing) {
             isPlaying.value = true;
-          });
-        }
+          }
+        });
       }
     });
   }
@@ -100,18 +160,49 @@ class _MapBakerState extends State<MapBaker> {
 
   /// Play or pause audio
   void playPauseAudio(String? audioClip, UpdateCallback updateUI) async {
-    if (audioPlayer.playing) {
-      await audioPlayer.pause();
-      updateUI(() => isPlaying.value = false);
-    } else {
-      if (lastAudioClip != audioClip ||
-          audioPlayer.processingState == ProcessingState.completed) {
-        await audioPlayer.stop();
-        await audioPlayer.setAsset(audioClip!);
-        lastAudioClip = audioClip;
+    if (audioClip == null) {
+      throw ArgumentError('Audio clip cannot be found');
+    }
+
+    try {
+      if (audioPlayer.playing) {
+        await audioPlayer.pause();
+        if (mounted) {
+          updateUI(() => isPlaying.value = false);
+        }
+      } else {
+        if (lastAudioClip != audioClip ||
+            audioPlayer.processingState == ProcessingState.completed) {
+          await audioPlayer.stop();
+          await audioPlayer.setAsset(audioClip);
+          lastAudioClip = audioClip;
+        }
+        await audioPlayer.play();
+        if (mounted) {
+          updateUI(() => isPlaying.value = true);
+        }
       }
-      await audioPlayer.play();
-      updateUI(() => isPlaying.value = true);
+    } catch (e) {
+      if (mounted) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Error'),
+              content:
+                  Text('An error occurred while trying to play the audio: $e'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
+      }
     }
   }
 
@@ -125,24 +216,23 @@ class _MapBakerState extends State<MapBaker> {
 
   bool _isCardVisible = false;
 
-  void _toggleCardVisibility() {
-    if (_isCardVisible) {
-      setState(() {
+  void _toggleCardVisibility() async {
+    await audioPlayer.stop();
+    await audioPlayer.seek(Duration.zero);
+    setState(() {
+      if (_isCardVisible) {
         _isCardVisible = false;
-      });
-    } else {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) => const Menu(
-                  paramHomepage: 'home',
-                )), // Your menu page class
-      );
-    }
-
-    audioPlayer.stop();
-    _mapController.move(const LatLng(48.210333041716, 16.372817971454),
-        14.0); // Centering the map
+      } else {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const Menu(paramHomepage: 'home'),
+          ),
+        );
+        _mapController.move(
+            const LatLng(48.210333041716, 16.372817971454), 14.0);
+      }
+    });
   }
 
   @override
@@ -151,7 +241,7 @@ class _MapBakerState extends State<MapBaker> {
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
       appBar: CustomAppBar(
-        bgColor: const Color.fromARGB(137, 255, 255, 255),
+        bgColor: Styles.bgColor,
         audioPlayer: audioPlayer,
         onLeadingButtonPressed: _toggleCardVisibility,
         videoUrl: widget.videoUrl,
@@ -214,36 +304,32 @@ class _MapBakerState extends State<MapBaker> {
                         height: 80,
                         width: 80,
                         point: _currentLocation!,
-                        builder: (_) {
-                          return const Icon(
-                            Icons.my_location,
-                            color: Color.fromARGB(255, 221, 0,
-                                44), //wird nicht angezeigt.. fehler muss ich suchen
-                          );
-                        },
+                        builder: (_) => Icon(
+                          Icons.my_location,
+                          color: Styles.primaryColor,
+                        ),
                       ),
                     for (int i = 0; i < mapMarkers.length; i++)
                       Marker(
                         height: 60,
                         width: 60,
                         point: mapMarkers[i].location,
-                        builder: (_) {
-                          return GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                _isCardVisible = true;
-                                _selectedMarkerIndex = i;
-                                audioPlayer.stop();
-                              });
-                            },
-                            child: Image.asset(
-                              WaypointImages().bakerWaypoint,
-                            ),
-                          );
-                        },
+                        builder: (_) => CustomIcon(
+                          location: mapMarkers[i].location,
+                          imageAsset: WaypointImages().bakerWaypoint,
+                          onTap: () {
+                            setState(() {
+                              _isCardVisible = true;
+                              _selectedMarkerIndex = i;
+                              audioPlayer.stop();
+                              audioPlayer.seek(Duration.zero);
+                            });
+                          },
+                        ),
                       ),
                   ],
                 ),
+
                 //Design von den Karten stored in marker_card_baker.dart
                 MarkerCard(
                   _isCardVisible,
@@ -264,8 +350,9 @@ class _MapBakerState extends State<MapBaker> {
   //close AudioPlayer and StreamSubscription when leaving the page
   @override
   void dispose() {
-    playerStateStreamSubscription?.cancel();
+    // Cancel your stream subscription or any other ongoing operation here
     audioPlayer.dispose();
+    playerStateStreamSubscription?.cancel();
     super.dispose();
   }
 }

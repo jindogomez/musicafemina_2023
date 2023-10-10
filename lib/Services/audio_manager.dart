@@ -1,46 +1,68 @@
-// audio_manager.dart
-
+import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:flutter/foundation.dart';
-
-typedef UpdateCallback = Function(VoidCallback callback);
 
 class AudioManager {
-  late AudioPlayer audioPlayer;
+  late final AudioPlayer audioPlayer;
   String? lastAudioClip;
   final ValueNotifier<bool> isPlaying = ValueNotifier<bool>(false);
+  final ValueNotifier<String?> errorMessage = ValueNotifier<String?>(null);
+  bool _isDisposed = false;
 
   AudioManager() {
     audioPlayer = AudioPlayer();
   }
 
-  /// Play or pause audio
   Future<void> playPauseAudio(
       String? audioClip, UpdateCallback updateUI) async {
-    if (audioPlayer.playing) {
-      await audioPlayer.pause();
-      updateUI(() => isPlaying.value = false);
-    } else {
-      if (lastAudioClip != audioClip ||
-          audioPlayer.processingState == ProcessingState.completed) {
-        await audioPlayer.stop();
-        await audioPlayer.setAsset(audioClip!);
-        lastAudioClip = audioClip;
+    if (audioClip == null) {
+      errorMessage.value = 'Audio clip cannot be null';
+      return;
+    }
+
+    try {
+      if (audioPlayer.playing) {
+        await audioPlayer.pause();
+        if (!_isDisposed) {
+          updateUI(() => isPlaying.value = false);
+        }
+      } else {
+        if (lastAudioClip != audioClip ||
+            audioPlayer.processingState == ProcessingState.completed) {
+          await audioPlayer.stop();
+          await audioPlayer.setAsset(audioClip);
+          lastAudioClip = audioClip;
+        }
+        await audioPlayer.play();
+        if (!_isDisposed) {
+          updateUI(() => isPlaying.value = true);
+        }
       }
-      await audioPlayer.play();
-      updateUI(() => isPlaying.value = true);
+    } catch (e) {
+      errorMessage.value = 'Error occurred: $e';
     }
   }
 
-  /// Restart audio
   Future<void> restartAudio(String? audioClip) async {
-    await audioPlayer.stop();
-    await audioPlayer.setAsset(audioClip!);
-    await audioPlayer.play();
-    isPlaying.value = true;
+    if (audioClip == null) {
+      errorMessage.value = 'Audio clip cannot be null';
+      return;
+    }
+
+    try {
+      await audioPlayer.stop();
+      await audioPlayer.setAsset(audioClip);
+      await audioPlayer.play();
+      isPlaying.value = true;
+    } catch (e) {
+      errorMessage.value = 'Error occurred: $e';
+    }
   }
 
   void dispose() {
+    audioPlayer.pause();
     audioPlayer.dispose();
+    _isDisposed = true;
   }
 }
+
+typedef UpdateCallback = void Function(Function updateUI);

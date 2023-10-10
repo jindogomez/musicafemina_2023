@@ -14,18 +14,23 @@ class VideoPlayerPage extends StatefulWidget {
 
 class VideoPlayerPageState extends State<VideoPlayerPage> {
   late VideoPlayerController _controller;
+  bool _isError = false;
 
   @override
   void initState() {
     super.initState();
     _controller = VideoPlayerController.networkUrl(Uri.parse(
       widget.videoUrl,
-    ));
-    _controller.initialize().then((_) {
-      setState(() {
-        _controller.play();
+    ))
+      ..initialize().then((_) {
+        setState(() {
+          _controller.play();
+        });
+      }, onError: (_) {
+        setState(() {
+          _isError = true;
+        });
       });
-    });
   }
 
   @override
@@ -37,17 +42,27 @@ class VideoPlayerPageState extends State<VideoPlayerPage> {
         title: '',
       ),
       body: Center(
-        child: _controller.value.isInitialized
-            ? RotatedBox(
-                quarterTurns: 5,
-                child: AspectRatio(
-                  aspectRatio: _controller.value.aspectRatio,
-                  child: VideoPlayer(_controller),
-                ),
-              )
-            : const CircularProgressIndicator(),
+        child: _buildBodyContent(),
       ),
     );
+  }
+
+  Widget _buildBodyContent() {
+    if (_isError) {
+      return const Text('An error occurred while loading the video');
+    }
+
+    if (_controller.value.isInitialized) {
+      return RotatedBox(
+        quarterTurns: 1, // Adjusted quarter turns
+        child: AspectRatio(
+          aspectRatio: _controller.value.aspectRatio,
+          child: VideoPlayer(_controller),
+        ),
+      );
+    }
+
+    return const CircularProgressIndicator();
   }
 
   @override
