@@ -54,7 +54,7 @@ final mapMarkers = List<MapMarkerBaker>.generate(
   (index) => MapMarkerBaker.create(
     textsIndex: index + 1,
     locationIndex: index + 1,
-    imageSubtextPairs: createImageSubtextPairs(getImageSubtextList(index + 1)),
+    imageSubtextPairs: createImageSubtextPairs(getImageSubtextListBaker(index + 1)),
     audioIndex: index + 1,
   ),
 );

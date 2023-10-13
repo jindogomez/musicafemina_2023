@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:musicafemina/MapContent/Strauss/strauss_marker.dart';
 
 import '../Style/app_style.dart';
-import '../MapContent/Clara/clara_marker.dart';
+
+
 
 typedef UpdateCallback = void Function(VoidCallback update);
 
 class AudioControls extends StatefulWidget {
-  final List<MapMarkerClara> mapMarkers;
+  final List<MapMarkerStrauss> mapMarkers;
   final int? selectedMarkerIndex;
   final void Function(String?, UpdateCallback) playPauseAudio;
   final Future<void> Function(String?) restartAudio;

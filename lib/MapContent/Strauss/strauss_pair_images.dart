@@ -1,6 +1,4 @@
-import 'package:analyzer_plugin/utilities/pair.dart';
-
-const String basePath = 'assets/images/strauss_img/';
+const String basePath = 'assets/images/strauss_img';
 
 // folder names
 final List<String> folders = [
@@ -10,11 +8,15 @@ final List<String> folders = [
   'strauss_palaiscoburg',
   'strauss_prater',
   'strauss_wiednerhauptstr',
+  'strauss_spiegelgasse',
   'strauss_zieglergasse',
 ];
 
-// list of image-subtext map lists for each folder
-final Map<String, List<Map<String, String>>> imagesSubtextsMap = {
+String _generateFullPath(String folderName, String imageName) {
+  return '$basePath/$folderName/$imageName';
+}
+
+final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
   'strauss_karlsplatz': [
     {
       'image':
@@ -49,7 +51,7 @@ final Map<String, List<Map<String, String>>> imagesSubtextsMap = {
     },
   ],
   'strauss_nussdorf': [
-    {'Sechter.jpg': '', 'subtext': 'Sechter'},
+    {'image': 'Sechter.jpg', 'subtext': 'Sechter'},
     {
       'image': 'SisiAnkunftInNußdorf.jpg',
       'subtext': 'Sissi Ankunft in Nußdorf'
@@ -107,27 +109,42 @@ final Map<String, List<Map<String, String>>> imagesSubtextsMap = {
     },
   ],
   'strauss_wiednerhauptstr': [
-    {'image': 'GoldenesLamm_AntiquariatJohannesMüllerSzbg.jpg', 'subtext': 'GoldenesLamm - Antiquariat Johannes Müller'},
+    {
+      'image': 'GoldenesLamm_AntiquariatJohannesMüllerSzbg.jpg',
+      'subtext': 'GoldenesLamm - Antiquariat Johannes Müller'
+    },
     {'image': 'GoldenesLamm.jpg', 'subtext': 'Goldenes Lamm'},
   ],
   'strauss_zieglergasse': [
-    {'image': '640px-Groepsportret_eerste_Europese_damesorkest_Erstes_Europäisches_Damen-Orchester_(titel_op_object),_RP-F-F00627.jpg', 'subtext': 'Erstes Europäisches Damen Orchester'},
-    {'image': 'Weinlich.sophie-drinker-institut.jpg', 'subtext': 'Weinlich Sophie'},
+    {
+      'image':
+          '640px-Groepsportret_eerste_Europese_damesorkest_Erstes_Europäisches_Damen-Orchester_(titel_op_object),_RP-F-F00627.jpg',
+      'subtext': 'Erstes Europäisches Damen Orchester'
+    },
+    {
+      'image': 'Weinlich.sophie-drinker-institut.jpg',
+      'subtext': 'Weinlich Sophie'
+    },
   ],
 };
 
-List<Pair<String, String>> createImageSubtextPairs(String folder) {
-  final imagePath =
-      '$basePath$folder/'; // =  final imagePath = basePath + folder + '/';
-  return imagesSubtextsMap[folder]!
-      .map((item) => Pair('$imagePath${item['image']}', item['subtext']!))
-      .toList();
-}
-
-List<Map<String, String>> getImageSubtextList(int index) {
-  if (index > 0 && index <= folders.length) {
-    return imagesSubtextsMap[folders[index - 1]]!;
-  } else {
+List<Map<String, String>> getImageSubtextListWithFullPath(int index) {
+  if (index < 0 || index >= folders.length) {
     throw ArgumentError('Invalid index: $index');
   }
+
+  String folder = folders[index];
+  return imageSubtextsMap[folder] ?? [];
 }
+
+final Map<String, List<Map<String, String>>> imageSubtextsMap =
+    rawImageSubtextsMap.map((folder, images) {
+  return MapEntry(
+      folder,
+      images.map((img) {
+        return {
+          'image': _generateFullPath(folder, img['image'] ?? ''),
+          'subtext': img['subtext'] ?? ''
+        };
+      }).toList());
+});

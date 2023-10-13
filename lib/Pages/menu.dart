@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:musicafemina/MapContent/All/waypoint_images.dart';
+import 'package:musicafemina/Pages/map_strauss.dart';
 
 import '../MapContent/All/video_urls.dart';
 import '../Style/app_style.dart';
@@ -60,8 +62,8 @@ class Menu extends StatelessWidget {
                     focusColor: Colors.blue,
                     hoverColor: Colors.red,
                     textColor: Colors.white,
-                    leading: Image.asset(
-                        'assets/images/waypoints_all/waypoint_backer.png'),
+                    leading: Image.asset( WaypointImages().bakerWaypoint,),
+                
                     title: const Text('Josephine Baker'),
                     subtitle: const Text('1906  - 1975'),
                     onTap: () {
@@ -87,7 +89,7 @@ class Menu extends StatelessWidget {
                     title: const Text('Clara Wieck Schumann'),
                     subtitle: const Text('1819 - 1896'),
                     leading: Image.asset(
-                        'assets/images/waypoints_all/waypoint_clara.png'),
+                        WaypointImages().claraWaypoint,),
                     onTap: () {
                       Navigator.push(
                           context,
@@ -109,7 +111,7 @@ class Menu extends StatelessWidget {
                     title: const Text('Wiener Klassikerinnen'),
                     subtitle: const Text('1789 - 1919'),
                     leading: Image.asset(
-                        'assets/images/waypoints_all/waypoint_klassikerinnen.png'),
+                       WaypointImages().wienerklassikerinnenWaypoint,),
                     onTap: () {
                       Navigator.push(
                           context,
@@ -131,7 +133,7 @@ class Menu extends StatelessWidget {
                     title: const Text('Ns Verfemte'),
                     subtitle: const Text(' 1888 - 1960'),
                     leading: Image.asset(
-                        'assets/images/waypoints_all/waypoint_nsverfemmte.png'),
+                       WaypointImages().nsWaypoint),
                     onTap: () {
                       Navigator.push(
                           context,
@@ -150,14 +152,14 @@ class Menu extends StatelessWidget {
                     focusColor: Colors.blue,
                     hoverColor: Colors.red,
                     textColor: Colors.white,
-                    title: const Text('Strauss Zeitgenössinnen'),
+                    title: const Text('Strauss Zeitgenossinnen'),
                     subtitle: const Text('1825 - 1899'),
-                    leading: Image.asset('assets/images/Waypoint_Clara_01.png'),
+                    leading: Image.asset( WaypointImages().straussWaypoint),
                     onTap: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => MapClara(
+                              builder: (context) => MapStrauss(
                                     videoUrl: VideoUrls().videoClara,
                                   )));
                     },

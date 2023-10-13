@@ -1,5 +1,6 @@
+// TODO:Text Gehört gemacht, titel verwende ich zurzeit nicht weil schon überschrift in appbar
 
-class BakerText {
+class StraussText {
   static const List<String> texts = [
     'Als im Februar 1928 Josephine Baker im Wiener Theater Ronacher auftreten sollte, kam es im Parlament zu einer mehrstündigen Debatte. Der christlich-soziale Abgeordnete Anton Jerzabek hielt eine von theatralischen Zwischenrufen und von Gelächter unterbrochene Brandrede gegen Josephine Baker, erregte sich über ihre Kunst, über ihr Federn- und Perlenkostüm und verglich sie mit "einer Wilden aus dem Kongo".', //Palarment
     'Strohkoffer, heute der Keller unter der American Loos Bar: Alfred Schmeller, der Kunsthistoriker, fand für den Artclub ein neues Lokal im Kärntnerdurchgang, den Keller unter der American Bar, die Alfred Loos im Jahre 1908 entworfen hatte. Dieser KünstlerInnen-Treffpunkt, der seinen Namen nach den mit Strohmatten ausgelegten Wänden hatte, bestand von 1951 bis 1953.Als 1952 das „Porgy and Bess-Ensemble“ in Wien gastierte – bekanntlich hatte George Gershwin seine Oper black singers reserviert – war der Strohkoffer das einzige Lokal in Wien, wo die Gäste willkommen waren – darunter Leontyne Price und Cab Calloway.', //Kärntnerdurchgang

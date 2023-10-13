@@ -90,13 +90,13 @@ flutter:
   assets:
   - assets/images/
   - assets/images/strauss_img/
-  - assets/images/strauss_img/strauss_karlsplatz
-  - assets/images/strauss_img/strauss_landstrasserhpt
-  - assets/images/strauss_img/strauss_nussdorf
-  - assets/images/strauss_img/strauss_palaiscoburg
-  - assets/images/strauss_img/strauss_prater
-  - assets/images/strauss_img/strauss_wiednerhauptstr
-  - assets/images/strauss_img/strauss_zieglergasse
+  - assets/images/strauss_img/strauss_karlsplatz/
+  - assets/images/strauss_img/strauss_landstrasserhpt/
+  - assets/images/strauss_img/strauss_nussdorf/
+  - assets/images/strauss_img/strauss_palaiscoburg/
+  - assets/images/strauss_img/strauss_prater/
+  - assets/images/strauss_img/strauss_wiednerhauptstr/
+  - assets/images/strauss_img/strauss_zieglergasse/
   - assets/images/waypoints_all/
   - assets/images/Clara/Clara_Heldenplatz/
   - assets/images/Clara/Clara_Musikvereinplatz/
