@@ -9,7 +9,7 @@ final List<String> folders = [
   'strauss_nussdorf',
   'strauss_palaiscoburg',
   'strauss_prater',
-  'strauss_wiednerhpt',
+  'strauss_wiednerhauptstr',
   'strauss_zieglergasse',
 ];
 
