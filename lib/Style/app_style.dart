@@ -13,7 +13,7 @@ class Styles {
 //colors for polylines
   static Color polyColorBaker = const Color.fromARGB(255, 171, 0, 0);
   static Color polyColorClara = const Color.fromARGB(255, 171, 0, 0);
-
+ static Color polyColorStrauss = const Color.fromARGB(255, 171, 0, 0);
   static TextStyle headline = TextStyle(
       fontSize: 25,
       fontFamily: GoogleFonts.abel().fontFamily,

@@ -43,128 +43,131 @@ class Menu extends StatelessWidget {
               toolbarHeight: 100,
             ),
           ),
-          body: Center(
-            child: Container(
-              width: screenSize.width * 0.8,
-              height: screenSize.height * 0.9,
-              margin: const EdgeInsets.all(0),
-              child: ListView(
-                children: <Widget>[
-                  const ListTile(),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  ListTile(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    iconColor: Colors.black,
-                    tileColor: const Color.fromARGB(115, 240, 138, 91),
-                    focusColor: Colors.blue,
-                    hoverColor: Colors.red,
-                    textColor: Colors.white,
-                    leading: Image.asset( WaypointImages().bakerWaypoint,),
-                
-                    title: const Text('Josephine Baker'),
-                    subtitle: const Text('1906  - 1975'),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MapBaker(
-                                    videoUrl: VideoUrls().videoBaker,
-
-                                    // Pass the audio object
-                                  )));
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  ListTile(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    iconColor: Colors.black,
-                    tileColor: const Color.fromARGB(111, 60, 116, 61),
-                    focusColor: Colors.blue,
-                    hoverColor: Colors.red,
-                    textColor: Colors.white,
-                    title: const Text('Clara Wieck Schumann'),
-                    subtitle: const Text('1819 - 1896'),
-                    leading: Image.asset(
-                        WaypointImages().claraWaypoint,),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MapClara(
-                                    videoUrl: VideoUrls().videoClara,
-                                  )));
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  ListTile(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    iconColor: Colors.black,
-                    tileColor: const Color.fromARGB(73, 50, 42, 200),
-                    focusColor: Colors.blue,
-                    hoverColor: Colors.red,
-                    textColor: Colors.white,
-                    title: const Text('Wiener Klassikerinnen'),
-                    subtitle: const Text('1789 - 1919'),
-                    leading: Image.asset(
-                       WaypointImages().wienerklassikerinnenWaypoint,),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MapClara(
-                                    videoUrl: VideoUrls().videoClara,
-                                  )));
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  ListTile(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    iconColor: Colors.black,
-                    tileColor: const Color.fromARGB(102, 108, 200, 42),
-                    focusColor: Colors.blue,
-                    hoverColor: Colors.red,
-                    textColor: Colors.white,
-                    title: const Text('Ns Verfemte'),
-                    subtitle: const Text(' 1888 - 1960'),
-                    leading: Image.asset(
-                       WaypointImages().nsWaypoint),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MapClara(
-                                    videoUrl: VideoUrls().videoClara,
-                                  )));
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  ListTile(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    iconColor: Colors.black,
-                    tileColor: const Color.fromARGB(99, 200, 42, 137),
-                    focusColor: Colors.blue,
-                    hoverColor: Colors.red,
-                    textColor: Colors.white,
-                    title: const Text('Strauss Zeitgenossinnen'),
-                    subtitle: const Text('1825 - 1899'),
-                    leading: Image.asset( WaypointImages().straussWaypoint),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MapStrauss(
-                                    videoUrl: VideoUrls().videoClara,
-                                  )));
-                    },
-                  ),
-                ],
+          body: SingleChildScrollView(
+            child: Center(
+              child: Container(
+                width: screenSize.width * 0.8,
+                height: screenSize.height * 0.9,
+                margin: const EdgeInsets.all(0),
+                child: ListView(
+                  children: <Widget>[
+                    const ListTile(),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    ListTile(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      iconColor: Colors.black,
+                      tileColor: const Color.fromARGB(115, 240, 138, 91),
+                      focusColor: Colors.blue,
+                      hoverColor: Colors.red,
+                      textColor: Colors.white,
+                      leading: Image.asset( WaypointImages().bakerWaypoint,),
+                  
+                      title: const Text('Josephine Baker'),
+                      subtitle: const Text('1906  - 1975'),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MapBaker(
+                                      videoUrl: VideoUrls().videoBaker,
+          
+                                      // Pass the audio object
+                                    )));
+                      },
+                    ),
+                    const SizedBox(height: 10),
+                    ListTile(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      iconColor: Colors.black,
+                      tileColor: const Color.fromARGB(111, 60, 116, 61),
+                      focusColor: Colors.blue,
+                      hoverColor: Colors.red,
+                      textColor: Colors.white,
+                      title: const Text('Clara Wieck Schumann'),
+                      subtitle: const Text('1819 - 1896'),
+                      leading: Image.asset(
+                          WaypointImages().claraWaypoint,),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MapClara(
+                                      videoUrl: VideoUrls().videoClara,
+                                    )));
+                      },
+                    ),
+                    const SizedBox(height: 10),
+                    ListTile(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      iconColor: Colors.black,
+                      tileColor: const Color.fromARGB(73, 50, 42, 200),
+                      focusColor: Colors.blue,
+                      hoverColor: Colors.red,
+                      textColor: Colors.white,
+                      title: const Text('Wiener Klassikerinnen'),
+                      subtitle: const Text('1789 - 1919'),
+                      leading: Image.asset(
+                         WaypointImages().wienerklassikerinnenWaypoint,),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MapClara(
+                                      videoUrl: VideoUrls().videoClara,
+                                    )));
+                      },
+                    ),
+                    const SizedBox(height: 10),
+                    ListTile(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                  
+                          iconColor: Colors.black,
+                      tileColor: const Color.fromARGB(99, 200, 42, 137),
+                      focusColor: Colors.blue,
+                      hoverColor: Colors.red,
+                      textColor: Colors.white,
+                      title: const Text('Ns Verfemte'),
+                      subtitle: const Text(' 1888 - 1960'),
+                      leading: Image.asset(
+                         WaypointImages().nsWaypoint),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MapClara(
+                                      videoUrl: VideoUrls().videoClara,
+                                    )));
+                      },
+                    ),
+                    const SizedBox(height: 10),
+                    ListTile(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      iconColor: Colors.black,
+                      tileColor: const Color.fromARGB(102, 108, 200, 42),
+                      focusColor: Colors.blue,
+                      hoverColor: Colors.red,
+                      textColor: Colors.white,
+                      title: const Text('Strauss Zeitgenossinnen'),
+                      subtitle: const Text('1825 - 1899'),
+                      leading: Image.asset( WaypointImages().straussWaypoint),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MapStrauss(
+                                      videoUrl: VideoUrls().videoClara,
+                                    )));
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -184,9 +187,9 @@ class Menu extends StatelessWidget {
               Positioned(
                 left: 0,
                 right: 0,
-                bottom: 0,
+                bottom: 5,
                 child: SizedBox(
-                  height: 100, // höhe navbar bottum
+                  height: 50,// höhe navbar bottum
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -194,8 +197,8 @@ class Menu extends StatelessWidget {
                         // logo wien
                         child: Image.asset(
                           'assets/images/Stadt-Wien_Logo_pos_rgb.gif',
-                          width: 100.0,
-                          height: 100.0,
+                          width: 80.0,
+                          height: 80.0,
                         ),
                       ),
                       IconButton(
