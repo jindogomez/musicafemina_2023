@@ -31,6 +31,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       centerTitle: true,
       toolbarHeight: 100,
+      
       leading: IconButton(
         icon: const Icon(Icons.arrow_back_ios),
         color: Styles.primaryColor,
@@ -49,15 +50,38 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             },
             icon: const Icon(Icons.video_collection)),
       ],
-      title: Text(
-        title,
-        style: TextStyle(
-          color: Styles.primaryColor,
-          fontSize: 20,
-          fontFamily: GoogleFonts.abel().fontFamily,
-          fontWeight: FontWeight.bold,
-        ),
+      title: Column(
+        children: [
+          Text(
+            title,
+            style: TextStyle(
+              color: Styles.primaryColor,
+              fontSize: 22,
+              fontFamily: GoogleFonts.abel().fontFamily,
+              fontWeight: FontWeight.bold,
+            ),
+          
+            
+          ),
+           Text('Stadtspaziergang',  style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              fontFamily: GoogleFonts.abel().fontFamily,
+              fontWeight: FontWeight.normal,
+            ),  ),
+        ],
       ),
+   flexibleSpace: const Image(
+          image: AssetImage('assets/images/mf_main_bg.png'), 
+          fit: BoxFit.cover,
+        ),
+         shape: Border(
+    bottom: BorderSide(
+      color: Styles.primaryColor,
+      width: 0.2
+    
+    )
+    ),
     );
   }
 }

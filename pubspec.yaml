@@ -107,6 +107,8 @@ flutter:
   - assets/audio/Clara/
   - assets/images/Baker/
   - assets/audio/baker/
+  - assets/audio/strauss_audio/
+  
   
 
   # An image asset can refer to one or more resolution-specific "variants", see

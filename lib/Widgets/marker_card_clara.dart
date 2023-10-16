@@ -36,10 +36,10 @@ class MarkerCard extends StatelessWidget {
             height: height,
             child: _selectedMarkerIndex != null
                 ? Padding(
-                    padding: const EdgeInsets.all(2),
+                    padding: const EdgeInsets.all(0),
                     child: DecoratedBox(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
+                          borderRadius: BorderRadius.circular(0),
                           image: DecorationImage(
                             image: AssetImage(mapMarkers[_selectedMarkerIndex!]
                                     .backgroundImage ??
@@ -53,7 +53,7 @@ class MarkerCard extends StatelessWidget {
                           child: SingleChildScrollView(
                             scrollDirection: Axis.vertical,
                             child: Padding(
-                              padding: const EdgeInsets.all(10.0),
+                              padding: const EdgeInsets.all(15.0),
                               child: Column(
                                 children: [
                                   const SizedBox(height: 15),
@@ -62,13 +62,13 @@ class MarkerCard extends StatelessWidget {
                                               .address ??
                                           '',
                                       style: Styles.headline),
-                                  const SizedBox(height: 2),
+                       
                                   Text(
                                     mapMarkers[_selectedMarkerIndex!].title ??
                                         '',
                                     style: Styles.textStyle1,
                                   ),
-                                  const SizedBox(height: 20),
+                          
                                   AudioControls(
                                     mapMarkers: mapMarkers,
                                     selectedMarkerIndex: _selectedMarkerIndex,

@@ -25,13 +25,18 @@ class Menu extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(120.0),
+            preferredSize: const Size.fromHeight(100.0),
             child: AppBar(
               automaticallyImplyLeading: false,
-              title: Image.asset(
-                'assets/images/mf_logo_B.png',
-                fit: BoxFit.cover,
-                height: 80,
+              title: Column(
+                children: [
+                  Image.asset(
+                    'assets/images/mf_logo_B.png',
+                    fit: BoxFit.cover,
+                    height: 80,
+                  ),
+  
+                ],
               ),
               backgroundColor: const Color.fromARGB(137, 255, 255, 255),
               iconTheme: IconThemeData(
@@ -49,12 +54,43 @@ class Menu extends StatelessWidget {
                 width: screenSize.width * 0.8,
                 height: screenSize.height * 0.9,
                 margin: const EdgeInsets.all(0),
+                
                 child: ListView(
                   children: <Widget>[
-                    const ListTile(),
+                 
                     const SizedBox(
-                      height: 10,
+                      height: 0,
                     ),
+  Stack(
+  children: [
+
+    Container(
+      height: 3,
+      decoration:  BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.white, Styles.primaryColor],
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+        ),
+      ),
+    ),
+
+  
+
+    Center(
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Text(
+          "Stadtspaziergänge:",
+          style: Styles.textMain,
+        ),
+      ),
+    ),
+  ],
+),
+
+const SizedBox(height: 0),
+                   
                     ListTile(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
@@ -63,8 +99,9 @@ class Menu extends StatelessWidget {
                       focusColor: Colors.blue,
                       hoverColor: Colors.red,
                       textColor: Colors.white,
-                      leading: Image.asset( WaypointImages().bakerWaypoint,),
-                  
+                      leading: Image.asset(
+                        WaypointImages().bakerWaypoint,
+                      ),
                       title: const Text('Josephine Baker'),
                       subtitle: const Text('1906  - 1975'),
                       onTap: () {
@@ -73,7 +110,7 @@ class Menu extends StatelessWidget {
                             MaterialPageRoute(
                                 builder: (context) => MapBaker(
                                       videoUrl: VideoUrls().videoBaker,
-          
+
                                       // Pass the audio object
                                     )));
                       },
@@ -90,7 +127,8 @@ class Menu extends StatelessWidget {
                       title: const Text('Clara Wieck Schumann'),
                       subtitle: const Text('1819 - 1896'),
                       leading: Image.asset(
-                          WaypointImages().claraWaypoint,),
+                        WaypointImages().claraWaypoint,
+                      ),
                       onTap: () {
                         Navigator.push(
                             context,
@@ -112,7 +150,8 @@ class Menu extends StatelessWidget {
                       title: const Text('Wiener Klassikerinnen'),
                       subtitle: const Text('1789 - 1919'),
                       leading: Image.asset(
-                         WaypointImages().wienerklassikerinnenWaypoint,),
+                        WaypointImages().wienerklassikerinnenWaypoint,
+                      ),
                       onTap: () {
                         Navigator.push(
                             context,
@@ -126,16 +165,14 @@ class Menu extends StatelessWidget {
                     ListTile(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
-                  
-                          iconColor: Colors.black,
+                      iconColor: Colors.black,
                       tileColor: const Color.fromARGB(99, 200, 42, 137),
                       focusColor: Colors.blue,
                       hoverColor: Colors.red,
                       textColor: Colors.white,
                       title: const Text('Ns Verfemte'),
                       subtitle: const Text(' 1888 - 1960'),
-                      leading: Image.asset(
-                         WaypointImages().nsWaypoint),
+                      leading: Image.asset(WaypointImages().nsWaypoint),
                       onTap: () {
                         Navigator.push(
                             context,
@@ -156,7 +193,7 @@ class Menu extends StatelessWidget {
                       textColor: Colors.white,
                       title: const Text('Strauss Zeitgenossinnen'),
                       subtitle: const Text('1825 - 1899'),
-                      leading: Image.asset( WaypointImages().straussWaypoint),
+                      leading: Image.asset(WaypointImages().straussWaypoint),
                       onTap: () {
                         Navigator.push(
                             context,
@@ -189,7 +226,7 @@ class Menu extends StatelessWidget {
                 right: 0,
                 bottom: 5,
                 child: SizedBox(
-                  height: 50,// höhe navbar bottum
+                  height: 50, // höhe navbar bottum
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -213,7 +250,7 @@ class Menu extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) => const ImpressumPage()));
 
-                          // Handle the button tap here
+                    
                         },
                       ),
                     ],

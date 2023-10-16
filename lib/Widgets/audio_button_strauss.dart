@@ -4,8 +4,6 @@ import 'package:musicafemina/MapContent/Strauss/strauss_marker.dart';
 
 import '../Style/app_style.dart';
 
-
-
 typedef UpdateCallback = void Function(VoidCallback update);
 
 class AudioControls extends StatefulWidget {
@@ -28,30 +26,33 @@ class AudioControls extends StatefulWidget {
   @override
   State<AudioControls> createState() => _AudioControlsState();
 }
-
 class _AudioControlsState extends State<AudioControls> {
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        width: 100,
+        width:110,
         decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(50)),
+          borderRadius: const BorderRadius.all(Radius.circular(5)),
           color: const Color.fromARGB(255, 207, 185, 185),
           border: Border.all(
             color: Styles.primaryColor,
-            width: 1,
+            width: 0.2,
           ),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+               const SizedBox(
+              width: 5,
+            ),
+            
             /// Play/Pause Button
             ValueListenableBuilder(
               valueListenable: widget.isPlaying,
               builder: (BuildContext context, bool isPlaying, Widget? child) {
                 return CircleAvatar(
-                  radius: 20,
+                  radius: 22,
                   backgroundColor: Styles.bgColor,
                   child: Center(
                     child: IconButton(
@@ -59,9 +60,9 @@ class _AudioControlsState extends State<AudioControls> {
                         isPlaying ? Icons.pause : Icons.play_arrow,
                         color: Styles.primaryColor,
                       ),
-                      iconSize: 20,
-                      splashColor: Colors.orange,
-                      highlightColor: Colors.orange,
+                      iconSize: 22,
+                      splashColor: Colors.white,
+                      highlightColor: Colors.white,
                       onPressed: () {
                         widget.playPauseAudio(
                           widget.mapMarkers[widget.selectedMarkerIndex!]
@@ -75,20 +76,24 @@ class _AudioControlsState extends State<AudioControls> {
               },
             ),
             const SizedBox(
-              width: 10,
+              width: 5,
             ),
-            CircleAvatar(
-              backgroundColor: Styles.bgColor,
-              radius: 20,
-              child: IconButton(
-                icon: Icon(Icons.restart_alt, color: Styles.primaryColor),
-                iconSize: 20,
-                splashColor: Colors.orange,
-                highlightColor: Colors.orange,
-                onPressed: () async {
-                  await widget.restartAudio(
-                      widget.mapMarkers[widget.selectedMarkerIndex!].audioClip);
-                },
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: CircleAvatar(
+                
+                backgroundColor: Styles.bgColor,
+                radius: 22,
+                child: IconButton(
+                  icon: Icon(Icons.restart_alt, color: Styles.primaryColor),
+                  iconSize: 22,
+                  splashColor: Colors.white,
+                  highlightColor: Colors.white,
+                  onPressed: () async {
+                    await widget.restartAudio(
+                        widget.mapMarkers[widget.selectedMarkerIndex!].audioClip);
+                  },
+                ),
               ),
             ),
           ],

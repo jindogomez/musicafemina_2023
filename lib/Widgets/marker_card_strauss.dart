@@ -8,18 +8,18 @@ import 'package:musicafemina/MapContent/Strauss/strauss_marker.dart';
 import 'audio_button_strauss.dart';
 import '../Style/app_style.dart';
 
-
 class MarkerCard extends StatelessWidget {
   final bool _isCardVisible;
   final int? _selectedMarkerIndex;
 
   final AudioPlayer audioPlayer;
   final ValueNotifier<bool> isPlaying;
-  final void Function(String? audioClip, UpdateCallback updateUI) playPauseAudio;
+  final void Function(String? audioClip, UpdateCallback updateUI)
+      playPauseAudio;
   final Future<void> Function(String? audioClip) restartAudio;
 
   // Add mapMarkers to the list of parameters
-  const MarkerCard(this._isCardVisible, this._selectedMarkerIndex,   
+  const MarkerCard(this._isCardVisible, this._selectedMarkerIndex,
       this.audioPlayer, this.isPlaying, this.playPauseAudio, this.restartAudio,
       {Key? key})
       : super(key: key);
@@ -39,71 +39,65 @@ class MarkerCard extends StatelessWidget {
             height: height,
             child: _selectedMarkerIndex != null
                 ? Padding(
-                    padding: const EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(0),
                     child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(mapMarkers[_selectedMarkerIndex!]
-                                .backgroundImage),
-                            fit: BoxFit.cover,
-                            alignment: Alignment.topCenter,
-                          ),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(mapMarkers[_selectedMarkerIndex!]
+                              .backgroundImage),
+                          fit: BoxFit.cover,
+                          alignment: Alignment.topCenter,
                         ),
-                        child: ConstrainedBox(
-                          constraints: const BoxConstraints(maxHeight: 600),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.vertical,
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Column(
-                                children: [
-                                  const SizedBox(height: 15),
-                                  Text(
-                                    mapMarkers[_selectedMarkerIndex!].address,
-                                      style: Styles.headline),
-                                  const SizedBox(height: 2),
-                                  Text(
-                                   mapMarkers[_selectedMarkerIndex!].title,
-                                    style: Styles.textStyle1,
+                      ),
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(maxHeight: 600),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: Column(
+                              children: [
+                                const SizedBox(height: 15),
+                                Text(mapMarkers[_selectedMarkerIndex!].address,
+                                    style: Styles.headline),
+                            
+                                Text(
+                                  mapMarkers[_selectedMarkerIndex!].title,
+                                  style: Styles.textStyle1,
+                                ),
+                             
+                                AudioControls(
+                                  mapMarkers: mapMarkers,
+                                  selectedMarkerIndex: _selectedMarkerIndex,
+                                  playPauseAudio: playPauseAudio,
+                                  restartAudio: restartAudio,
+                                  audioPlayer: audioPlayer,
+                                  isPlaying: isPlaying, // Add this line
+                                ),
+                                const SizedBox(height: 20),
+                                Text(
+                                  mapMarkers[_selectedMarkerIndex!].text,
+                                  style: Styles.textMain,
+                                ),
+                                const SizedBox(height: 15),
+                                for (Pair<String, String> imageSubtextPair
+                                    in mapMarkers[_selectedMarkerIndex!]
+                                        .imageSubtextPairs)
+                                  Column(
+                                    children: [
+                                      Image.asset(imageSubtextPair.first),
+                                      Text(
+                                        imageSubtextPair.last,
+                                        style: Styles.textMain,
+                                      ),
+                                    ],
                                   ),
-                                  const SizedBox(height: 20),
-                                  AudioControls(
-                                    mapMarkers: mapMarkers,
-                                    selectedMarkerIndex: _selectedMarkerIndex,
-                                    playPauseAudio: playPauseAudio,
-                                    restartAudio: restartAudio,
-                                    audioPlayer: audioPlayer,
-                                    isPlaying: isPlaying, // Add this line
-                                  ),
-                                  const SizedBox(height: 20),
-                                  Text(
-                                    mapMarkers[_selectedMarkerIndex!].text,
-                                    style: Styles.textMain,
-                                  ),
-                                  const SizedBox(height: 15),
-                               for (Pair<String, String> imageSubtextPair in mapMarkers[_selectedMarkerIndex!].imageSubtextPairs)
-    Column(
-      children: [
-        Image.asset(imageSubtextPair.first),
-        Text(
-          imageSubtextPair.last,
-          style: Styles.textMain,
-        ),
-      ],
-    ),
-
-
-
-
-                                  
-                                     
-                                      ],
-                                    ),
-                              
-                              ),
+                              ],
                             ),
                           ),
                         ),
+                      ),
+                    ),
                   )
                 : Container(),
           ),

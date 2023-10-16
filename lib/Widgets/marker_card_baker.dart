@@ -30,13 +30,14 @@ class MarkerCard extends StatelessWidget {
       child: Align(
         alignment: Alignment.center,
         child: Card(
+          color: Styles.primaryColor,
           margin: EdgeInsets.zero,
           child: SizedBox(
             width: width,
             height: height,
             child: _selectedMarkerIndex != null
                 ? Padding(
-                    padding: const EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(0),
                     child: DecoratedBox(
                         decoration: BoxDecoration(
                           image: DecorationImage(
@@ -51,19 +52,19 @@ class MarkerCard extends StatelessWidget {
                           child: SingleChildScrollView(
                             scrollDirection: Axis.vertical,
                             child: Padding(
-                              padding: const EdgeInsets.all(10.0),
+                              padding: const EdgeInsets.all(15),
                               child: Column(
                                 children: [
                                   const SizedBox(height: 15),
                                   Text(
                                       mapMarkers[_selectedMarkerIndex!].address,
                                       style: Styles.headline),
-                                  const SizedBox(height: 2),
+                                
                                   Text(
                                     mapMarkers[_selectedMarkerIndex!].title,
                                     style: Styles.textStyle1,
                                   ),
-                                  const SizedBox(height: 20),
+                     
                                   AudioControls(
                                     mapMarkers: mapMarkers,
                                     selectedMarkerIndex: _selectedMarkerIndex,
