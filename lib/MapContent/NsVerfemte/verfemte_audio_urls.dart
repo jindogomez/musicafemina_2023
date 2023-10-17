@@ -1,5 +1,5 @@
 // Defines a constant path where all audio files are located.
-const String audioPath = 'assets/audio/ns_verfemte_audio/';
+const String audioPath = 'assets/audio/ns_audio/';
 
 // Utility class for handling audio paths.
 class AudioPathVerfemte {
