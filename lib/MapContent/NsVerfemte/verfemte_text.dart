@@ -1,4 +1,4 @@
-// TODO: texte updaten
+
 class VerfemteText {
   static const List<String> texts = [
     'Die blinde Komponistin, Sängerin, Pianistin und Pädagogin ist eine der von Kaiserin Maria Theresia geförderten Komponistinnen. Ihre Kompositionen – Lieder, Kammermusik, Klavierkonzerte und Musiktheater – wurden seit den 1780er Jahren gedruckt. Sie regte zu den ersten Blindenmusikschulen in Europa an, behalf sich selbst mit einem Notensetzbrett und gründete 1808 am Rabensteig 8 eine Musikschule für blinde Mädchen.',
