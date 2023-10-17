@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:musicafemina/MapContent/All/waypoint_images.dart';
 import 'package:musicafemina/Pages/map_strauss.dart';
+import 'package:musicafemina/Pages/map_wiener.dart';
 
 import '../MapContent/All/video_urls.dart';
 import '../Style/app_style.dart';
@@ -35,7 +36,6 @@ class Menu extends StatelessWidget {
                     fit: BoxFit.cover,
                     height: 80,
                   ),
-  
                 ],
               ),
               backgroundColor: const Color.fromARGB(137, 255, 255, 255),
@@ -54,43 +54,35 @@ class Menu extends StatelessWidget {
                 width: screenSize.width * 0.8,
                 height: screenSize.height * 0.9,
                 margin: const EdgeInsets.all(0),
-                
                 child: ListView(
                   children: <Widget>[
-                 
                     const SizedBox(
                       height: 0,
                     ),
-  Stack(
-  children: [
-
-    Container(
-      height: 3,
-      decoration:  BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Colors.white, Styles.primaryColor],
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-        ),
-      ),
-    ),
-
-  
-
-    Center(
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Text(
-          "Stadtspaziergänge:",
-          style: Styles.textMain,
-        ),
-      ),
-    ),
-  ],
-),
-
-const SizedBox(height: 0),
-                   
+                    Stack(
+                      children: [
+                        Container(
+                          height: 3,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [Colors.white, Styles.primaryColor],
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                            ),
+                          ),
+                        ),
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Text(
+                              "Stadtspaziergänge:",
+                              style: Styles.textMain,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 0),
                     ListTile(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
@@ -156,7 +148,7 @@ const SizedBox(height: 0),
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => MapClara(
+                                builder: (context) => MapWiener(
                                       videoUrl: VideoUrls().videoClara,
                                     )));
                       },
@@ -249,8 +241,6 @@ const SizedBox(height: 0),
                               context,
                               MaterialPageRoute(
                                   builder: (context) => const ImpressumPage()));
-
-                    
                         },
                       ),
                     ],

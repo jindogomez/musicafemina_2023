@@ -253,8 +253,7 @@ class _MapStraussState extends State<MapStrauss> {
               mapController: _mapController,
               onPressed: () {
                 setState(() {
-                  _isCardVisible =
-                      true; 
+                  _isCardVisible = true;
                 });
               },
             ),

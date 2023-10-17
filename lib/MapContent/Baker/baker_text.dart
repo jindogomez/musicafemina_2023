@@ -1,4 +1,3 @@
-
 class BakerText {
   static const List<String> texts = [
     'Als im Februar 1928 Josephine Baker im Wiener Theater Ronacher auftreten sollte, kam es im Parlament zu einer mehrstündigen Debatte. Der christlich-soziale Abgeordnete Anton Jerzabek hielt eine von theatralischen Zwischenrufen und von Gelächter unterbrochene Brandrede gegen Josephine Baker, erregte sich über ihre Kunst, über ihr Federn- und Perlenkostüm und verglich sie mit "einer Wilden aus dem Kongo".', //Palarment
