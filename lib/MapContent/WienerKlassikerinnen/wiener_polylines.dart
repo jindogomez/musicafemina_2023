@@ -18,7 +18,7 @@ class WayWiener {
 
   static LatLng getLatLng(int index) {
     return LatLng(
-        waypointsWiener[index ][0], waypointsWiener[index ][1]);
+        waypointsWiener[index - 1][0], waypointsWiener[index - 1][1]);
   }
 }
 // -1 ist das index bei 1 startet nicht bei 0
