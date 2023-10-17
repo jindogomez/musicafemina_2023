@@ -1,4 +1,4 @@
-// TODO:Text Gehört gemacht, titel verwende ich zurzeit nicht weil schon überschrift in appbar
+
 
 class StraussText {
  static const List<String> texts = [
@@ -51,11 +51,11 @@ static String getTitle(int index) {
       if (index >= 0 && index < titles.length) {  // Corrected index check
         return titles[index];
       } else {
-        print("Index out of range for titles: $index");
+
         return 'Index not found';
       }
     } catch (e) {
-      print("An error occurred in strauss_text.dart (getTitle): $e");
+   
       return 'Error occurred';
     }
   }
@@ -65,11 +65,11 @@ static String getTitle(int index) {
       if (index >= 0 && index < addresses.length) {  // Corrected index check
         return addresses[index];
       } else {
-        print("Index out of range for addresses: $index");
+
         return 'Index not found';
       }
     } catch (e) {
-      print("An error occurred in strauss_text.dart (getAddress): $e");
+ 
       return 'Error occurred';
     }
   }
@@ -79,11 +79,11 @@ static String getTitle(int index) {
       if (index >= 0 && index < texts.length) {  // Corrected index check
         return texts[index];
       } else {
-        print("Index out of range for texts: $index");
+
         return 'Index not found';
       }
     } catch (e) {
-      print("An error occurred in strauss_text.dart (getText): $e");
+   
       return 'Error occurred';
     }
   }

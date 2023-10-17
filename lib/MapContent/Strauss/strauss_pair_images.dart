@@ -33,16 +33,20 @@ final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
       'image': 'FranzSchubert_1826_JosephineFröhlichMitteoestnationalbib.jpg',
       'subtext': 'Franz Schubert und Josephine Fröhlich 1826'
     },
+
     {'image': 'Josephine_Froehlich.jpg', 'subtext': 'Josephine_Froehlich'},
+
     {
       'image': 'Moritz_Michael_Daffinger_Franz_Grillparzer.jpg',
       'subtext': 'Franz Grillparzer von Moritz Michael Daffinger'
     },
+
     {
       'image':
           'Waldmüller_La_soprano_Josephine_Fröhlich,_el_barítono_Johann_Michael_Vogl_y_Franz_Schubert_cantan_y_tocan_un_lied_a_tres_voc.png',
       'subtext': 'Franz Schubert, Josephine Fröhlich, Johann Michael Vogl'
     },
+
   ],
   'strauss_karlsplatz': [
     {
@@ -133,11 +137,11 @@ List<Map<String, String>> getImageSubtextListWithFullPath(int index) {
       String folder = folders[index];
       return imageSubtextsMap[folder] ?? [];
     } else {
-      print("Index out of range for folders: $index");
+     
       return []; // Return an empty list or throw an exception, based on your needs
     }
   } catch (e) {
-    print("An error occurred in strauss_pair_images.dart: $e");
+
     return []; // Return an empty list or throw an exception, based on your needs
   }
 }

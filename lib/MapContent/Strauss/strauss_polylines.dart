@@ -20,12 +20,12 @@ class WayStrauss {
         // Safe to access waypointsStrauss
         return LatLng(waypointsStrauss[index][0], waypointsStrauss[index][1]);
       } else {
-        print("Index out of range for waypointsStrauss: $index");
+     
         throw Exception(
             'Invalid index: $index'); // You can decide to throw an exception or return a default value
       }
     } catch (e) {
-      print("An error occurred: $e");
+
       throw Exception(
           'An error occurred: $e'); // You can also choose to return a default LatLng value here
     }
