@@ -1,10 +1,10 @@
 import 'package:analyzer_plugin/utilities/pair.dart';
 import 'package:latlong2/latlong.dart';
 
-import 'package:musicafemina/MapContent/Strauss/strauss_pair_images.dart';
+import 'package:musicafemina/MapContent/WienerKlassikerinnen/wiener_pair_images.dart';
 
 
-import 'package:musicafemina/MapContent/Strauss/strauss_text.dart';
+import 'package:musicafemina/MapContent/WienerKlassikerinnen/wiener_text.dart';
 import 'package:musicafemina/MapContent/WienerKlassikerinnen/wiener_audio_urls.dart';
 import 'package:musicafemina/MapContent/WienerKlassikerinnen/wiener_polylines.dart';
 
@@ -42,9 +42,9 @@ class MapMarkerWiener {
       backgroundImage: blankImage,
       imageSubtextPairs: imageSubtextPairs,
       audioClip: AudioPathWiener.getAudioPath(audioIndex),
-      title: StraussText.getText(textsIndex),
-      text: StraussText.getText(textsIndex),
-      address: StraussText.getAddress(textsIndex),
+      title: WienerText.getText(textsIndex),
+      text: WienerText.getText(textsIndex),
+      address: WienerText.getAddress(textsIndex),
       location: WayWiener.getLatLng(locationIndex),
       music: music,
     );
@@ -61,8 +61,9 @@ List<Pair<String, String>> convertMapListToPairList(
 // Usage:
 
 final mapMarkers = List<MapMarkerWiener>.generate(
- 12,
+ 10,
   (index) => MapMarkerWiener.create(
+    
     textsIndex: index + 1,
     locationIndex: index + 1,
     imageSubtextPairs:

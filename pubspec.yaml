@@ -108,6 +108,8 @@ flutter:
   - assets/images/Baker/
   - assets/audio/baker/
   - assets/audio/strauss_audio/
+  - assets/audio/wiener_audio/
+  - assets/audio/ns_verfemte_audio/
   
   
 

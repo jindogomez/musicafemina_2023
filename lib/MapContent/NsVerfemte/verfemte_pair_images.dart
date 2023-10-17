@@ -1,5 +1,5 @@
 const String basePath = 'assets/images/strauss_img';
-
+// TODO: images updaten und subs
 // folder names
 final List<String> folders = [
   'strauss_karlsplatz',

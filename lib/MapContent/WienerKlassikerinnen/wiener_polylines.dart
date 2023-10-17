@@ -1,5 +1,5 @@
 import 'package:latlong2/latlong.dart';
-
+// TODO: ferteig aber 12 orte? 11 audios?
 class WayWiener {
   static final List<List<double>> waypointsWiener = [
     [48.183981531980834, 16.40326972223622], //St. Marxer Friedhof Nanette Streicher 

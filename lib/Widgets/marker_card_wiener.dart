@@ -3,9 +3,11 @@
 import 'package:analyzer_plugin/utilities/pair.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:musicafemina/MapContent/Strauss/strauss_marker.dart';
 
-import 'audio_button_strauss.dart';
+
+
+import '../MapContent/WienerKlassikerinnen/wiener_marker.dart';
+import 'audio_button_wiener.dart';
 import '../Style/app_style.dart';
 
 class MarkerCard extends StatelessWidget {

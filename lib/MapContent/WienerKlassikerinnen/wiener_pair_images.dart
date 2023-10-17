@@ -1,5 +1,5 @@
 const String basePath = 'assets/images/strauss_img';
-
+// TODO: images und sub texts fehlen noch
 // folder names
 final List<String> folders = [
   'strauss_karlsplatz',
@@ -10,6 +10,9 @@ final List<String> folders = [
   'strauss_wiednerhauptstr',
   'strauss_spiegelgasse',
   'strauss_zieglergasse',
+    'strauss_zieglergasse',
+      'strauss_zieglergasse',
+        'strauss_zieglergasse',
 ];
 
 String _generateFullPath(String folderName, String imageName) {
@@ -116,6 +119,41 @@ final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
     {'image': 'GoldenesLamm.jpg', 'subtext': 'Goldenes Lamm'},
   ],
   'strauss_zieglergasse': [
+    {
+      'image':
+          '640px-Groepsportret_eerste_Europese_damesorkest_Erstes_Europäisches_Damen-Orchester_(titel_op_object),_RP-F-F00627.jpg',
+      'subtext': 'Erstes Europäisches Damen Orchester'
+    },
+    {
+      'image': 'Weinlich.sophie-drinker-institut.jpg',
+      'subtext': 'Weinlich Sophie'
+    },
+  ],
+
+    'strauss_zieglergasse1': [
+    {
+      'image':
+          '640px-Groepsportret_eerste_Europese_damesorkest_Erstes_Europäisches_Damen-Orchester_(titel_op_object),_RP-F-F00627.jpg',
+      'subtext': 'Erstes Europäisches Damen Orchester'
+    },
+    {
+      'image': 'Weinlich.sophie-drinker-institut.jpg',
+      'subtext': 'Weinlich Sophie'
+    },
+  ],
+
+    'strauss_zieglergasse2': [
+    {
+      'image':
+          '640px-Groepsportret_eerste_Europese_damesorkest_Erstes_Europäisches_Damen-Orchester_(titel_op_object),_RP-F-F00627.jpg',
+      'subtext': 'Erstes Europäisches Damen Orchester'
+    },
+    {
+      'image': 'Weinlich.sophie-drinker-institut.jpg',
+      'subtext': 'Weinlich Sophie'
+    },
+  ],
+    'strauss_zieglergasse3': [
     {
       'image':
           '640px-Groepsportret_eerste_Europese_damesorkest_Erstes_Europäisches_Damen-Orchester_(titel_op_object),_RP-F-F00627.jpg',
