@@ -26,7 +26,7 @@ class AudioPathWiener {
     // Check if the index is within the valid range.
     if (index > 0 && index <= _audioPaths.length) {
       // Return the audio path at the index specified.
-      return _audioPaths[index - 1];
+      return _audioPaths[index ];
     } else {
       // Throw an error if the index is out of range.
       throw ArgumentError('No audio path found for the given index');

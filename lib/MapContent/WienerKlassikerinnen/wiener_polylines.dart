@@ -7,7 +7,7 @@ class WayWiener {
     [48.20806385911976, 16.378344708527347], //  Postgasse/bächerstraße Josepha Auernhammer 
     [48.2099825023509, 16.37607962688728], // St. Michael Marianna von Martines
     [48.21202459843818, 16.37540697688557], //Rabensteig 8 Maria Theresia Paradis
-    [48.21370769261443, 16.36506102778664], // Helferstorferstraße Josepha Müllner Gollenhofer
+   [48.21370769261443, 16.36506102778664], // Helferstorferstraße Josepha Müllner 
     [48.21189092202002, 16.349602926197317], // Florianigasse/ Kochgasse Leopoldine Blahetka 
     [48.20791960983279, 16.367276919731427], // Kohlmarkt/ Michealahaus Marianna von Martines
     [48.20548661795838, 16.36811170760451], // Augustiner Kirche Maria Theresia Paradis
@@ -18,7 +18,7 @@ class WayWiener {
 
   static LatLng getLatLng(int index) {
     return LatLng(
-        waypointsWiener[index - 1][0], waypointsWiener[index - 1][1]);
+        waypointsWiener[index ][0], waypointsWiener[index ][1]);
   }
 }
 // -1 ist das index bei 1 startet nicht bei 0

@@ -10,9 +10,11 @@ final List<String> folders = [
   'strauss_wiednerhauptstr',
   'strauss_spiegelgasse',
   'strauss_zieglergasse',
-    'strauss_zieglergasse',
-      'strauss_zieglergasse',
-        'strauss_zieglergasse',
+    'strauss_spiegelgasse',
+  'strauss_zieglergasse',
+    'strauss_spiegelgasse',
+  'strauss_zieglergasse',
+ 
 ];
 
 String _generateFullPath(String folderName, String imageName) {
@@ -164,6 +166,29 @@ final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
       'subtext': 'Weinlich Sophie'
     },
   ],
+    'strauss_zieglergasse4': [
+    {
+      'image':
+          '640px-Groepsportret_eerste_Europese_damesorkest_Erstes_Europäisches_Damen-Orchester_(titel_op_object),_RP-F-F00627.jpg',
+      'subtext': 'Erstes Europäisches Damen Orchester'
+    },
+    {
+      'image': 'Weinlich.sophie-drinker-institut.jpg',
+      'subtext': 'Weinlich Sophie'
+    },
+  ],
+      'strauss_zieglergasse5': [
+    {
+      'image':
+          '640px-Groepsportret_eerste_Europese_damesorkest_Erstes_Europäisches_Damen-Orchester_(titel_op_object),_RP-F-F00627.jpg',
+      'subtext': 'Erstes Europäisches Damen Orchester'
+    },
+    {
+      'image': 'Weinlich.sophie-drinker-institut.jpg',
+      'subtext': 'Weinlich Sophie'
+    },
+  ],
+  
 };
 
 List<Map<String, String>> getImageSubtextListWithFullPath(int index) {
