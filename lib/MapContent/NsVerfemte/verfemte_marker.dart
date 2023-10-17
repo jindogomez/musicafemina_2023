@@ -1,9 +1,6 @@
 import 'package:analyzer_plugin/utilities/pair.dart';
 import 'package:latlong2/latlong.dart';
-
 import 'package:musicafemina/MapContent/Strauss/strauss_pair_images.dart';
-
-
 import 'package:musicafemina/MapContent/Strauss/strauss_text.dart';
 import 'package:musicafemina/MapContent/WienerKlassikerinnen/wiener_audio_urls.dart';
 import 'package:musicafemina/MapContent/WienerKlassikerinnen/wiener_polylines.dart';
@@ -61,7 +58,7 @@ List<Pair<String, String>> convertMapListToPairList(
 // Usage:
 
 final mapMarkers = List<MapMarkerVerfemte>.generate(
- 11,
+  11,
   (index) => MapMarkerVerfemte.create(
     textsIndex: index + 1,
     locationIndex: index + 1,
