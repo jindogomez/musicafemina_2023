@@ -264,9 +264,9 @@ class _MapStraussState extends State<MapStrauss> {
             child: FlutterMap(
               mapController: _mapController,
               options: MapOptions(
-                minZoom: 14,
+                minZoom: 12,
                 maxZoom: 18,
-                zoom: 15,
+                zoom: 12,
                 center: AppConstants.myLocation,
                 interactiveFlags: InteractiveFlag.all & ~InteractiveFlag.rotate,
                 onTap: (tapPosition, LatLng point) {

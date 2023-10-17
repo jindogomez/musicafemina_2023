@@ -3,7 +3,7 @@ import 'package:analyzer_plugin/utilities/pair.dart';
 import 'package:latlong2/latlong.dart';
 
 const String path = 'assets/images/Clara/';
-const String pathaudio = 'assets/audio/Clara/';
+const String pathaudio = 'assets/audio/clara_audio/';
 
 class MapMarkerClara {
   final List<Pair<String, String>> imageSubtextPairs;

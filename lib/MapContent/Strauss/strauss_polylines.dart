@@ -1,19 +1,33 @@
 import 'package:latlong2/latlong.dart';
-// TODO: coordinaten einfügen
 
 class WayStrauss {
   static final List<List<double>> waypointsStrauss = [
-    [48.2082242087015, 16.3585868480227], //Heldenplatz
-    [48.2071834219, 16.371258207246], // Kärntner durchgang
-    [48.2053744179023, 16.375045749243], // seilerstätte 9
-    [48.2027537234097, 16.370222119149], //kärntner ring 1
-    [48.1955981451396, 16.368934135274], //
-    [48.1955981251396, 16.3689341352274], // Favoritenstraße 8Favoritenstraße 8
-  ];
+    [48.205768299109664, 16.376696949057813], // 1010, Palais Coburg
+    [48.20808069343108, 16.370632991307364], //1010 Wien. Spiegelgasse 1
+    [48.2006546342065, 16.372364152777823], // 1010, Musikverein Karlsplatz
+    [48.20027936976553, 16.34487439307539], // 1070, Zieglergasse 25
+    [48.1988690214902, 16.36804809493463], // 1040, Wiedner Hauptstraße 7
 
+    [48.19897726037587, 16.394640376143403], // 1030, Landstraßer Hauptstraße 97
+
+    [48.21558627415207, 16.400195363856138], // Prater
+    [
+      48.26683619036202, 16.365221889682317], // 1190, Nussdorf Donau Schifffahrt Anlegestelle
+  ];
   static LatLng getLatLng(int index) {
-    return LatLng(
-        waypointsStrauss[index - 1][0], waypointsStrauss[index - 1][1]);
+    try {
+      if (index >= 0 && index < waypointsStrauss.length) {
+        // Safe to access waypointsStrauss
+        return LatLng(waypointsStrauss[index][0], waypointsStrauss[index][1]);
+      } else {
+        print("Index out of range for waypointsStrauss: $index");
+        throw Exception(
+            'Invalid index: $index'); // You can decide to throw an exception or return a default value
+      }
+    } catch (e) {
+      print("An error occurred: $e");
+      throw Exception(
+          'An error occurred: $e'); // You can also choose to return a default LatLng value here
+    }
   }
 }
-// -1 ist das index bei 1 startet nicht bei 0

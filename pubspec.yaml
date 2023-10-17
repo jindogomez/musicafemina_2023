@@ -97,6 +97,7 @@ flutter:
   - assets/images/strauss_img/strauss_prater/
   - assets/images/strauss_img/strauss_wiednerhauptstr/
   - assets/images/strauss_img/strauss_zieglergasse/
+  - assets/images/strauss_img/strauss_spiegelgasse/
   - assets/images/waypoints_all/
   - assets/images/Clara/Clara_Heldenplatz/
   - assets/images/Clara/Clara_Musikvereinplatz/
@@ -104,12 +105,12 @@ flutter:
   - assets/images/Clara/Clara_Graben/
   - assets/images/Clara/Clara_Tuchlauben/
   - assets/images/Clara/Clara_Argentienierstraße/
-  - assets/audio/Clara/
+  - assets/audio/clara_audio/
   - assets/images/Baker/
-  - assets/audio/baker/
+  - assets/audio/baker_audio/
   - assets/audio/strauss_audio/
   - assets/audio/wiener_audio/
-  - assets/audio/ns_verfemte_audio/
+  - assets/audio/ns_audio/
   
   
 

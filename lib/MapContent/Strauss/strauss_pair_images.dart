@@ -2,14 +2,14 @@ const String basePath = 'assets/images/strauss_img';
 
 // folder names
 final List<String> folders = [
-  'strauss_karlsplatz',
-  'strauss_landstrasserhpt',
-  'strauss_nussdorf',
   'strauss_palaiscoburg',
-  'strauss_prater',
-  'strauss_wiednerhauptstr',
   'strauss_spiegelgasse',
+  'strauss_karlsplatz',
   'strauss_zieglergasse',
+  'strauss_landstrasserhpt',
+  'strauss_wiednerhauptstr',
+  'strauss_prater',
+  'strauss_nussdorf',
 ];
 
 String _generateFullPath(String folderName, String imageName) {
@@ -17,6 +17,33 @@ String _generateFullPath(String folderName, String imageName) {
 }
 
 final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
+  'strauss_palaiscoburg': [
+    {'image': 'Coburgpalais.jpg', 'subtext': 'Coburgpalais'},
+    {
+      'image': 'Family_portrait_of_Prinz_Leopold_of_Saxe-Coburg-Gotha.jpg',
+      'subtext': 'Familienporträt von Prinz Leopold von Sachsen'
+    },
+    {
+      'image': 'Geiger_Konstanze_Adelheid_Therese.jpg',
+      'subtext': 'Konstanze Adelheid Therese Geiger'
+    },
+  ],
+  'strauss_spiegelgasse': [
+    {
+      'image': 'FranzSchubert_1826_JosephineFröhlichMitteoestnationalbib.jpg',
+      'subtext': 'Franz Schubert und Josephine Fröhlich 1826'
+    },
+    {'image': 'Josephine_Froehlich.jpg', 'subtext': 'Josephine_Froehlich'},
+    {
+      'image': 'Moritz_Michael_Daffinger_Franz_Grillparzer.jpg',
+      'subtext': 'Franz Grillparzer von Moritz Michael Daffinger'
+    },
+    {
+      'image':
+          'Waldmüller_La_soprano_Josephine_Fröhlich,_el_barítono_Johann_Michael_Vogl_y_Franz_Schubert_cantan_y_tocan_un_lied_a_tres_voc.png',
+      'subtext': 'Franz Schubert, Josephine Fröhlich, Johann Michael Vogl'
+    },
+  ],
   'strauss_karlsplatz': [
     {
       'image':
@@ -41,6 +68,24 @@ final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
       'subtext': 'Rudolf von Habsburg und Prinzessin Stephanie'
     },
   ],
+  'strauss_zieglergasse': [
+    {
+      'image':
+          '640px-Groepsportret_eerste_Europese_damesorkest_Erstes_Europäisches_Damen-Orchester_(titel_op_object),_RP-F-F00627.jpg',
+      'subtext': 'Erstes Europäisches Damen Orchester'
+    },
+    {
+      'image': 'Weinlich.sophie-drinker-institut.jpg',
+      'subtext': 'Weinlich Sophie'
+    },
+  ],
+  'strauss_wiednerhauptstr': [
+    {
+      'image': 'GoldenesLamm_AntiquariatJohannesMüllerSzbg.jpg',
+      'subtext': 'GoldenesLamm - Antiquariat Johannes Müller'
+    },
+    {'image': 'GoldenesLamm.jpg', 'subtext': 'Goldenes Lamm'},
+  ],
   'strauss_landstrasserhpt': [
     {'image': 'drehersaal-bm03.jpg', 'subtext': 'Drehersaal'},
     {'image': 'head_drehersetablissement_bm03.jpg', 'subtext': 'Drehersaal'},
@@ -48,25 +93,6 @@ final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
       'image':
           'Postkarte_SuesseMaedelnAK_10101828_ScanHB.Wiener Damen.Orchester.jpg',
       'subtext': ' Wiener Damen Orchester'
-    },
-  ],
-  'strauss_nussdorf': [
-    {'image': 'Sechter.jpg', 'subtext': 'Sechter'},
-    {
-      'image': 'SisiAnkunftInNußdorf.jpg',
-      'subtext': 'Sissi Ankunft in Nußdorf'
-    },
-    {'image': 'Tomasek.jpg', 'subtext': 'Tomasek'},
-  ],
-  'strauss_palaiscoburg': [
-    {'image': 'Coburgpalais.jpg', 'subtext': 'Coburgpalais'},
-    {
-      'image': 'Family_portrait_of_Prinz_Leopold_of_Saxe-Coburg-Gotha.jpg',
-      'subtext': 'Familienporträt von Prinz Leopold von Sachsen'
-    },
-    {
-      'image': 'Geiger_Konstanze_Adelheid_Therese.jpg',
-      'subtext': 'Konstanze Adelheid Therese Geiger'
     },
   ],
   'strauss_prater': [
@@ -92,49 +118,28 @@ final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
       'subtext': 'Rotunde Weltausstellung'
     },
   ],
-  'strauss_spiegelgasse': [
+  'strauss_nussdorf': [
+    {'image': 'Sechter.jpg', 'subtext': 'Sechter'},
     {
-      'image': 'FranzSchubert_1826_JosephineFröhlichMitte)oestnationalbib.jpg',
-      'subtext': 'Franz Schubert und Josephine Fröhlich 1826'
+      'image': 'SisiAnkunftInNußdorf.jpg',
+      'subtext': 'Sissi Ankunft in Nußdorf'
     },
-    {'image': 'Josephine_Froehlich.jpg', 'subtext': 'Josephine_Froehlich'},
-    {
-      'image': 'Moritz_Michael_Daffinger_Franz_Grillparzer.jpg',
-      'subtext': 'Franz Grillparzer von Moritz Michael Daffinger'
-    },
-    {
-      'image':
-          'Waldmüller_La_soprano_Josephine_Fröhlich,_el_barítono_Johann_Michael_Vogl_y_Franz_Schubert_cantan_y_tocan_un_lied_a_tres_voc.png',
-      'subtext': 'Franz Schubert, Josephine Fröhlich, Johann Michael Vogl'
-    },
-  ],
-  'strauss_wiednerhauptstr': [
-    {
-      'image': 'GoldenesLamm_AntiquariatJohannesMüllerSzbg.jpg',
-      'subtext': 'GoldenesLamm - Antiquariat Johannes Müller'
-    },
-    {'image': 'GoldenesLamm.jpg', 'subtext': 'Goldenes Lamm'},
-  ],
-  'strauss_zieglergasse': [
-    {
-      'image':
-          '640px-Groepsportret_eerste_Europese_damesorkest_Erstes_Europäisches_Damen-Orchester_(titel_op_object),_RP-F-F00627.jpg',
-      'subtext': 'Erstes Europäisches Damen Orchester'
-    },
-    {
-      'image': 'Weinlich.sophie-drinker-institut.jpg',
-      'subtext': 'Weinlich Sophie'
-    },
+    {'image': 'Tomasek.jpg', 'subtext': 'Tomasek'},
   ],
 };
-
 List<Map<String, String>> getImageSubtextListWithFullPath(int index) {
-  if (index < 0 || index >= folders.length) {
-    throw ArgumentError('Invalid index: $index');
+  try {
+    if (index >= 0 && index < folders.length) {
+      String folder = folders[index];
+      return imageSubtextsMap[folder] ?? [];
+    } else {
+      print("Index out of range for folders: $index");
+      return []; // Return an empty list or throw an exception, based on your needs
+    }
+  } catch (e) {
+    print("An error occurred in strauss_pair_images.dart: $e");
+    return []; // Return an empty list or throw an exception, based on your needs
   }
-
-  String folder = folders[index];
-  return imageSubtextsMap[folder] ?? [];
 }
 
 final Map<String, List<Map<String, String>>> imageSubtextsMap =

@@ -40,7 +40,7 @@ class MapMarkerStrauss {
       backgroundImage: blankImage,
       imageSubtextPairs: imageSubtextPairs,
       audioClip: AudioPathStrauss.getAudioPath(audioIndex),
-      title: StraussText.getText(textsIndex),
+      title: StraussText.getTitle(textsIndex),
       text: StraussText.getText(textsIndex),
       address: StraussText.getAddress(textsIndex),
       location: WayStrauss.getLatLng(locationIndex),
@@ -59,12 +59,11 @@ List<Pair<String, String>> convertMapListToPairList(
 // Usage:
 
 final mapMarkers = List<MapMarkerStrauss>.generate(
-  5,
+  8,
   (index) => MapMarkerStrauss.create(
-    textsIndex: index + 1,
-    locationIndex: index + 1,
-    imageSubtextPairs:
-        convertMapListToPairList(getImageSubtextListWithFullPath(index + 1)),
-    audioIndex: index + 1,
+    textsIndex: index,
+    locationIndex: index,
+    imageSubtextPairs: convertMapListToPairList(getImageSubtextListWithFullPath(index)),
+    audioIndex: index,
   ),
 );
