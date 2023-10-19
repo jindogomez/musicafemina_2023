@@ -22,12 +22,12 @@ class WayStrauss {
       } else {
      
         throw Exception(
-            'Invalid index: $index'); // You can decide to throw an exception or return a default value
+            'Invalid index: $index'); 
       }
     } catch (e) {
 
       throw Exception(
-          'An error occurred: $e'); // You can also choose to return a default LatLng value here
+          'An error occurred: $e'); 
     }
   }
 }

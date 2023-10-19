@@ -8,9 +8,13 @@ class AudioManager {
   final ValueNotifier<String?> errorMessage = ValueNotifier<String?>(null);
   bool _isDisposed = false;
 
-  AudioManager() {
+AudioManager() {
+  try {
     audioPlayer = AudioPlayer();
+  } catch (e) {
+    errorMessage.value = 'Error occurred during audio player initialization: $e';
   }
+}
 
   Future<void> playPauseAudio(
       String? audioClip, UpdateCallback updateUI) async {
@@ -46,7 +50,9 @@ class AudioManager {
     if (audioClip == null) {
       errorMessage.value = 'Audio clip cannot be null';
       return;
+      
     }
+    
 
     try {
       await audioPlayer.stop();

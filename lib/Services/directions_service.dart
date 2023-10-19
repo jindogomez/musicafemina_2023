@@ -23,18 +23,21 @@ Future<List<List<double>>> getRouteCoordinates(
 
     final legs = jsonResponse['response']['route'][0]['leg'];
 
-    for (final leg in legs) {
-      for (final point in leg['maneuver']) {
-        try {
-          final List<double> waypoint = [];
-          waypoint.add(point['position']['latitude'].toDouble());
-          waypoint.add(point['position']['longitude'].toDouble());
-          pathCoordinates.add(waypoint);
-        } catch (e) {
-          // Handle the exception here or print debug information
-        }
-      }
-    }
+ for (final leg in legs) {
+  for (final point in leg['maneuver']) {
+try {
+  final List<double> waypoint = [];
+  waypoint.add(point['position']['latitude'].toDouble());
+  waypoint.add(point['position']['longitude'].toDouble());
+  pathCoordinates.add(waypoint);
+} catch (e) {
+  print('Error parsing waypoint: $e');
+  print('Point Data: ${point.toString()}'); // Log point data for debugging.
+  // Handle the exception here or print additional debug information.
+}
+
+  }
+}
 
     return pathCoordinates;
   } else {

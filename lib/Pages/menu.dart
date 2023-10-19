@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:musicafemina/MapContent/All/waypoint_images.dart';
+import 'package:musicafemina/Pages/map_ns.dart';
 import 'package:musicafemina/Pages/map_strauss.dart';
 import 'package:musicafemina/Pages/map_wiener.dart';
 
@@ -169,7 +170,7 @@ class Menu extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => MapClara(
+                                builder: (context) => MapNs(
                                       videoUrl: VideoUrls().videoClara,
                                     )));
                       },

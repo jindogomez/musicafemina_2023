@@ -1,9 +1,10 @@
 import 'package:analyzer_plugin/utilities/pair.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:musicafemina/MapContent/Strauss/strauss_pair_images.dart';
-import 'package:musicafemina/MapContent/Strauss/strauss_text.dart';
-import 'package:musicafemina/MapContent/WienerKlassikerinnen/wiener_audio_urls.dart';
-import 'package:musicafemina/MapContent/WienerKlassikerinnen/wiener_polylines.dart';
+import 'package:musicafemina/MapContent/NsVerfemte/verfemte_audio_urls.dart';
+import 'package:musicafemina/MapContent/NsVerfemte/verfemte_pair_images.dart';
+import 'package:musicafemina/MapContent/NsVerfemte/verfemte_polylines.dart';
+import 'package:musicafemina/MapContent/NsVerfemte/verfemte_text.dart';
+
 
 const String blankImage = 'assets/images/blank.png';
 
@@ -38,11 +39,11 @@ class MapMarkerVerfemte {
     return MapMarkerVerfemte._(
       backgroundImage: blankImage,
       imageSubtextPairs: imageSubtextPairs,
-      audioClip: AudioPathWiener.getAudioPath(audioIndex),
-      title: StraussText.getText(textsIndex),
-      text: StraussText.getText(textsIndex),
-      address: StraussText.getAddress(textsIndex),
-      location: WayWiener.getLatLng(locationIndex),
+      audioClip: AudioPathVerfemte.getAudioPath(audioIndex),
+      title: VerfemteText.getTitle(textsIndex),
+      text: VerfemteText.getText(textsIndex),
+      address: VerfemteText.getAddress(textsIndex),
+      location: WayVerfehmte.getLatLng(locationIndex),
       music: music,
     );
   }
@@ -58,12 +59,11 @@ List<Pair<String, String>> convertMapListToPairList(
 // Usage:
 
 final mapMarkers = List<MapMarkerVerfemte>.generate(
-  11,
+  8,
   (index) => MapMarkerVerfemte.create(
-    textsIndex: index + 1,
-    locationIndex: index + 1,
-    imageSubtextPairs:
-        convertMapListToPairList(getImageSubtextListWithFullPath(index + 1)),
-    audioIndex: index + 1,
+    textsIndex: index,
+    locationIndex: index,
+    imageSubtextPairs: convertMapListToPairList(getImageSubtextListWithFullPath(index)),
+    audioIndex: index,
   ),
 );
