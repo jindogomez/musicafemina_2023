@@ -61,13 +61,11 @@ List<Pair<String, String>> convertMapListToPairList(
 // Usage:
 
 final mapMarkers = List<MapMarkerWiener>.generate(
- 10,
+  12,
   (index) => MapMarkerWiener.create(
-    
-    textsIndex: index + 1,
-    locationIndex: index + 1,
-    imageSubtextPairs:
-        convertMapListToPairList(getImageSubtextListWithFullPath(index + 1)),
-    audioIndex: index + 1,
+    textsIndex: index,
+    locationIndex: index,
+    imageSubtextPairs: convertMapListToPairList(getImageSubtextListWithFullPath(index)),
+    audioIndex: index,
   ),
 );

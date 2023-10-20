@@ -98,7 +98,19 @@ flutter:
   - assets/images/ns_img/ns_rechtewienzeile/
   - assets/images/ns_img/ns_strozzigasse/
   - assets/images/ns_img/ns_wollzeile/
- 
+  - assets/images/wiener_img/
+  - assets/images/wiener_img/wiener_augustinerkirche/
+  - assets/images/wiener_img/wiener_florianigasse/
+  - assets/images/wiener_img/wiener_helferstorferstrasse/
+  - assets/images/wiener_img/wiener_himmelpfortgasse/
+  - assets/images/wiener_img/wiener_karlsplatz/
+  - assets/images/wiener_img/wiener_kohlmarkt/
+  - assets/images/wiener_img/wiener_marxerfriedhof/
+  - assets/images/wiener_img/wiener_michaelerkirche/
+  - assets/images/wiener_img/wiener_postgasse/
+  - assets/images/wiener_img/wiener_rabensteig/
+  - assets/images/wiener_img/wiener_rasumovskygasse/
+  - assets/images/wiener_img/wiener_ungargasse/
   - assets/images/strauss_img/
   - assets/images/strauss_img/strauss_karlsplatz/
   - assets/images/strauss_img/strauss_landstrasserhpt/

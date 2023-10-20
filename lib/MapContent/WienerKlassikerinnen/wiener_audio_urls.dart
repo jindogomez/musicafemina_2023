@@ -18,17 +18,13 @@ class AudioPathWiener {
     '${audioPath}wiener_stmarxerfriedhof.mp3', // Wiener St. Marxer Friedhof
     '${audioPath}wiener_stmichael.mp3', // Wiener St. Michael
     '${audioPath}wiener_ungargasse46.mp3', // Wiener Ungargasse 46
+    '${audioPath}wiener_ungargasse46.mp3', // Audio fehlt Helferstorferstraße Josepha Müllner 
 ];
 
-  // Method to get the audio path based on an index.
-  // The index is 1-based, meaning that passing 1 would return the first audio path.
-  static String getAudioPath(int index) {
-    // Check if the index is within the valid range.
-    if (index > 0 && index <= _audioPaths.length) {
-      // Return the audio path at the index specified.
-      return _audioPaths[index ];
+   static String getAudioPath(int index) {
+    if (index >= 0 && index < _audioPaths.length) {
+      return _audioPaths[index];
     } else {
-      // Throw an error if the index is out of range.
       throw ArgumentError('No audio path found for the given index');
     }
   }
