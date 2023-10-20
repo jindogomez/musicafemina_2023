@@ -7,6 +7,8 @@ class ImpressumPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    double height = MediaQuery.of(context).size.height;
     return Container(
         constraints: const BoxConstraints.expand(),
         decoration: const BoxDecoration(
@@ -99,29 +101,33 @@ class ImpressumPage extends StatelessWidget {
                             const Text(
                               'die Kulturabteilung der Stadt Wien',
                             ),
-                            const SizedBox(height: 40),
+                            const SizedBox(height: 30),
                             Center(
                                 child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                SizedBox(
-                                  height: 75, // Set the desired height
-                                  child: Image.asset(
-                                    'assets/images/Stadt-Wien_Logo_pos_rgb.gif',
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                const SizedBox(
-                                    width: 16), // Spacing between images
-                                SizedBox(
-                                  height: 100, // Set the desired height
-                                  child: Image.asset(
-                                    'assets/images/mf_logo_B.png',
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ],
-                            )),
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: <Widget>[
+    Expanded(
+      child: SizedBox(
+        height: height * 0.3,
+        child: Image.asset(
+          'assets/images/Stadt-Wien_Logo_pos_rgb.gif',
+          fit: BoxFit.contain,
+        ),
+      ),
+    ),
+    const SizedBox(width: 16),
+    Expanded(
+      child: SizedBox(
+        height: height * 0.3,
+        child: Image.asset(
+          'assets/images/mf_logo_B.png',
+          fit: BoxFit.contain,
+        ),
+      ),
+    ),
+  ],
+)
+),
                           ],
                         ),
                       ),
