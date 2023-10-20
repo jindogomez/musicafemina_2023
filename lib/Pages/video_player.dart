@@ -49,7 +49,8 @@ class VideoPlayerPageState extends State<VideoPlayerPage> {
 
   Widget _buildBodyContent() {
     if (_isError) {
-      return const Text('An error occurred while loading the video');
+      return const Text('Video konnte nicht geladen werden, vergewissere dich '
+          'dass du mit dem Internet verbunden bist.',style: TextStyle(color:Colors.white,),);
     }
 
     if (_controller.value.isInitialized) {

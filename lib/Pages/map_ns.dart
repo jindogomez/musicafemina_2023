@@ -72,7 +72,7 @@ class _MapStraussState extends State<MapNs> {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            content: Text('Error fetching location: $e'),
+            content: const Text('Keine Locations gefunden, vergewisere dich, dass du eine Internetverbindung hast'),
             actions: [
               TextButton(
                 onPressed: () {
@@ -105,7 +105,7 @@ class _MapStraussState extends State<MapNs> {
           showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              content: const Text('No Coordinates found'),
+              content: const Text('Keine Locations gefunden, vergewisere dich, dass du eine Internetverbindung hast'),
               actions: [
                 TextButton(
                   onPressed: () {
@@ -123,7 +123,7 @@ class _MapStraussState extends State<MapNs> {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            content: Text('No Coordinates found: $e'),
+            content: const Text('Keine Locations gefunden, vergewisere dich, dass du eine Internetverbindung hast'),
             actions: [
               TextButton(
                 onPressed: () {

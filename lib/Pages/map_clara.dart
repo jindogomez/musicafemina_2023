@@ -53,23 +53,83 @@ class _MapClaraState extends State<MapClara> {
     _mapController = MapController();
   }
 
-  void setupLocationHelper() {
+ void setupLocationHelper() {
     LocationHelper.fetchCurrentLocation(_mapController, (newLocation) {
-      setState(() {
-        _currentLocation = newLocation;
-      });
+      if (mounted) {
+        setState(() {
+          _currentLocation = newLocation;
+        });
+      }
+    }).catchError((e) {
+      if (mounted) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            content: const Text('Kein Gps Signal, vergewisere dich, dass du dein GPS aktiviert hast.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
+      }
     });
   }
 
   Future<void> loadRouteCoordinates() async {
-    List<List<double>> coordinates = await getRouteCoordinates(waypointsClara);
-    setState(() {
-      _routePoints = coordinates
-          .map((coordinate) => LatLng(coordinate[0], coordinate[1]))
-          .toList();
-    });
-  }
+    try {
+      List<List<double>> coordinates =
+          await getRouteCoordinates(waypointsClara);
 
+      if (coordinates.isNotEmpty) {
+        if (mounted) {
+          setState(() {
+            _routePoints = coordinates
+                .map((coordinate) => LatLng(coordinate[0], coordinate[1]))
+                .toList();
+          });
+        }
+      } else {
+        if (mounted) {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              content: const Text('Keine Locations gefunden, vergewisere dich, dass du eine Internetverbindung hast.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            content: const Text('Keine Locations gefunden, vergewisere dich, dass du eine Internetverbindung hast'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
+      }
+    }
+  }
   void setupAudioPlayer() {
     audioPlayer = AudioPlayer();
     playerStateStreamSubscription =

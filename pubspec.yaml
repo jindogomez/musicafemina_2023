@@ -53,6 +53,7 @@ dependencies:
   video_player: ^2.7.2
   flutter_inappwebview: ^5.8.0
  
+flutter_map_directions: ^0.0.5
 
  
 

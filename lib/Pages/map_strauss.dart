@@ -70,7 +70,7 @@ class _MapStraussState extends State<MapStrauss> {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            content: Text('Error fetching location: $e'),
+            content: const Text('Kein Gps Signal, bitte aktiviere dein GPS'),
             actions: [
               TextButton(
                 onPressed: () {
@@ -103,7 +103,7 @@ class _MapStraussState extends State<MapStrauss> {
           showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              content: const Text('No Coordinates found'),
+              content: const Text('Keine Locations gefunden, vergewisere dich, dass du eine Internetverbindung hast'),
               actions: [
                 TextButton(
                   onPressed: () {
@@ -121,7 +121,7 @@ class _MapStraussState extends State<MapStrauss> {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            content: Text('No Coordinates found: $e'),
+            content: const Text('Keine Locations gefunden, vergewisere dich, dass du eine Internetverbindung hast'),
             actions: [
               TextButton(
                 onPressed: () {
@@ -188,7 +188,7 @@ class _MapStraussState extends State<MapStrauss> {
             return AlertDialog(
               title: const Text('Error'),
               content:
-                  Text('An error occurred while trying to play the audio: $e'),
+                  const Text('An error occurred while trying to play the audio'),
               actions: [
                 TextButton(
                   onPressed: () {
