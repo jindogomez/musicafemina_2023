@@ -103,8 +103,6 @@ class Menu extends StatelessWidget {
                             MaterialPageRoute(
                                 builder: (context) => MapBaker(
                                       videoUrl: VideoUrls().videoBaker,
-
-                                      // Pass the audio object
                                     )));
                       },
                     ),
@@ -149,8 +147,8 @@ class Menu extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => MapWiener(
-                                      videoUrl: VideoUrls().videoClara,
+                                builder: (context) => const MapWiener(
+                                    
                                     )));
                       },
                     ),
@@ -171,8 +169,8 @@ class Menu extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => MapNs(
-                                      videoUrl: VideoUrls().videoClara,
-                                    )));
+                                  videoUrl: VideoUrls().videoNs,
+                                )));
                       },
                     ),
                     const SizedBox(height: 10),
@@ -192,7 +190,7 @@ class Menu extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => MapStrauss(
-                                      videoUrl: VideoUrls().videoClara,
+                                      videoUrl: VideoUrls().videoStrauss,
                                     )));
                       },
                     ),
@@ -235,7 +233,7 @@ class Menu extends StatelessWidget {
                         icon: const Icon(
                           Icons.info,
                           size: 40.0,
-                          color: Color.fromARGB(255, 50, 46, 46),
+                          color: Color.fromARGB(255, 124, 118, 118),
                         ),
                         onPressed: () {
                           Navigator.push(

@@ -7,12 +7,13 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:musicafemina/MapContent/WienerKlassikerinnen/wiener_polylines.dart';
 import 'package:musicafemina/Style/app_style.dart';
+import 'package:musicafemina/Widgets/appbar_maps_multipl_videos.dart';
 import 'package:musicafemina/Widgets/costum_icons.dart';
 //file import
 import '../MapContent/All/waypoint_images.dart';
 import '../Services/constants_mapbox.dart';
 import '../Services/location_helper.dart';
-import '../Widgets/appbar_maps.dart';
+
 import '../Widgets/center_floatingbutton.dart';
 import '../MapContent/WienerKlassikerinnen/wiener_marker.dart';
 import '../Services/directions_service.dart';
@@ -22,11 +23,11 @@ import 'menu.dart';
 typedef UpdateCallback = void Function(void Function());
 
 class MapWiener extends StatefulWidget {
-  final String videoUrl;
+
 
   const MapWiener({
     Key? key,
-    required this.videoUrl,
+  
   }) : super(key: key);
 
   @override
@@ -240,11 +241,11 @@ class _MapBakerState extends State<MapWiener> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
-      appBar: CustomAppBar(
+      appBar: CustomAppBarMore(
         bgColor: Styles.bgColor,
         audioPlayer: audioPlayer,
         onLeadingButtonPressed: _toggleCardVisibility,
-        videoUrl: widget.videoUrl,
+
         title: 'Wiener Klassikerinnen', //ändert titel in appbar
       ),
       floatingActionButton: _isCardVisible

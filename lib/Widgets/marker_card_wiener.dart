@@ -62,12 +62,12 @@ class MarkerCard extends StatelessWidget {
                                 const SizedBox(height: 15),
                                 Text(mapMarkers[_selectedMarkerIndex!].address,
                                     style: Styles.headline),
-                            
+                             const SizedBox(height: 15),
                                 Text(
                                   mapMarkers[_selectedMarkerIndex!].title,
                                   style: Styles.textStyle1,
                                 ),
-                             
+                               const SizedBox(height: 20),
                                 AudioControls(
                                   mapMarkers: mapMarkers,
                                   selectedMarkerIndex: _selectedMarkerIndex,

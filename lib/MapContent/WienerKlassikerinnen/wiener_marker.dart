@@ -42,7 +42,7 @@ class MapMarkerWiener {
       backgroundImage: blankImage,
       imageSubtextPairs: imageSubtextPairs,
       audioClip: AudioPathWiener.getAudioPath(audioIndex),
-      title: WienerText.getText(textsIndex),
+      title: WienerText.getTitle(textsIndex),
       text: WienerText.getText(textsIndex),
       address: WienerText.getAddress(textsIndex),
       location: WayWiener.getLatLng(locationIndex),
