@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 Future<List<List<double>>> getRouteCoordinates(
@@ -31,8 +32,12 @@ try {
   waypoint.add(point['position']['longitude'].toDouble());
   pathCoordinates.add(waypoint);
 } catch (e) {
-  print('Error parsing waypoint: $e');
-  print('Point Data: ${point.toString()}'); // Log point data for debugging.
+  if (kDebugMode) {
+    print('Error parsing waypoint: $e');
+  }
+  if (kDebugMode) {
+    print('Point Data: ${point.toString()}');
+  } // Log point data for debugging.
   // Handle the exception here or print additional debug information.
 }
 

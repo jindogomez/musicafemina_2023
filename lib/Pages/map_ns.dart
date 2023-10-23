@@ -268,7 +268,7 @@ class _MapStraussState extends State<MapNs> {
               options: MapOptions(
                 minZoom: 12,
                 maxZoom: 18,
-                zoom: 12,
+                zoom: 14,
                 center: AppConstants.myLocation,
                 interactiveFlags: InteractiveFlag.all & ~InteractiveFlag.rotate,
                 onTap: (tapPosition, LatLng point) {

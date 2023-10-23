@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:musicafemina/Widgets/appbar_maps_multipl_videos_strauss.dart';
 import 'package:musicafemina/Widgets/costum_icons.dart';
 
 //file import
@@ -11,7 +12,7 @@ import '../MapContent/All/waypoint_images.dart';
 import '../Services/constants_mapbox.dart';
 import '../Services/location_helper.dart';
 import '../Style/app_style.dart';
-import '../Widgets/appbar_maps.dart';
+
 import '../Widgets/center_floatingbutton.dart';
 import '../MapContent/Strauss/strauss_marker.dart';
 import '../Services/directions_service.dart';
@@ -22,8 +23,8 @@ import 'menu.dart';
 typedef UpdateCallback = void Function(void Function());
 
 class MapStrauss extends StatefulWidget {
-  final String videoUrl;
-  const MapStrauss({Key? key, required this.videoUrl}) : super(key: key);
+
+  const MapStrauss({Key? key, }) : super(key: key);
 
   @override
   State<MapStrauss> createState() => _MapStraussState();
@@ -38,7 +39,7 @@ class _MapStraussState extends State<MapStrauss> {
   late AudioPlayer audioPlayer;
   String? lastAudioClip;
   StreamSubscription<PlayerState>? playerStateStreamSubscription;
-  late String videoUrl;
+
   final double customAppBarHeight = 100.0;
 
   @override
@@ -238,11 +239,11 @@ class _MapStraussState extends State<MapStrauss> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
-      appBar: CustomAppBar(
+      appBar:CustomAppBarMoreStrauss(
         bgColor: Styles.bgColor,
         audioPlayer: audioPlayer,
         onLeadingButtonPressed: _toggleCardVisibility,
-        videoUrl: widget.videoUrl,
+       
         title: 'Strauss Zeitgenossinnen', //ändert titel in appbar
       ),
       floatingActionButton: _isCardVisible
@@ -266,7 +267,7 @@ class _MapStraussState extends State<MapStrauss> {
               options: MapOptions(
                 minZoom: 12,
                 maxZoom: 18,
-                zoom: 12,
+                zoom: 13,
                 center: AppConstants.myLocation,
                 interactiveFlags: InteractiveFlag.all & ~InteractiveFlag.rotate,
                 onTap: (tapPosition, LatLng point) {

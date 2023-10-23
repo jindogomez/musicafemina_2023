@@ -189,8 +189,8 @@ class Menu extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => MapStrauss(
-                                      videoUrl: VideoUrls().videoStrauss,
+                                builder: (context) => const MapStrauss(
+                                    
                                     )));
                       },
                     ),

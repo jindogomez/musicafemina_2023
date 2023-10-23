@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'Pages/menu.dart';
+import 'package:musicafemina/Pages/splash_screen.dart';
 
 void main() {
   runApp(const MusicaFemina());
@@ -24,7 +24,7 @@ class MusicaFemina extends StatelessWidget {
         ),
       ),
       // loaded home menu
-      home: const Menu(paramHomepage: 'Home'),
+      home: const SplashPage(paramHomepage: 'splash_screen'),
     );
   }
 }

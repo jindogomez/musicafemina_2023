@@ -39,7 +39,7 @@ class StraussText {
     '1010, Musikverein Karlsplatz',
     '1070, Zieglergasse 25',
     '1040, Wiedner Hauptstraße 7',
-    '1030, Landstraßer Hauptstraße 97',
+    '1030, Landstraße Hauptstraße 97',
     '1020, Prater',
     
     '1190, Nussdorf Donau Schifffahrt Anlegestelle',

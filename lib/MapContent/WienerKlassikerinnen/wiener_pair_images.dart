@@ -6,21 +6,14 @@ final List<String> folders = [
   'wiener_rasumovskygasse',
   'wiener_ungargasse',
   'Wiener_postgasse', // fehlt
- 'wiener_michaelerkirche',
+  'wiener_michaelerkirche',
   'wiener_rabensteig',
+  'wiener_helferstorferstrasse', //fehlt
   'wiener_himmelpfortgasse',
-  'wiener_augustinerkirche',
   'wiener_kohlmarkt',
-'wiener_helferstorferstrasse', //fehlt
-  'wiener_florianigasse',
-  
+  'wiener_augustinerkirche',
   'wiener_karlsplatz',
-  
-
- 
-  
-  
- 
+  'wiener_florianigasse',
 ];
 
 String _generateFullPath(String folderName, String imageName) {
@@ -28,23 +21,14 @@ String _generateFullPath(String folderName, String imageName) {
 }
 
 final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
- 
-   'wiener_marxerfriedhof': [
+  'wiener_marxerfriedhof': [
     {
       'image': 'Nannette Streiche porträt.jpeg',
       'subtext': 'Nannette Streiche Porträt'
     },
   ],
   'wiener_rasumovskygasse': [
-    {
-      'image': 'Paradis Haus_Rabensteig_8.JPG',
-      'subtext': 'Paradis Haus Rabensteig 8'
-    },
-    {'image': 'Testament Paradis Kopie.jpg', 'subtext': 'Testament Paradis'},
-    {
-      'image': 'Testament Paradis Seite 3 Kopie.jpg',
-      'subtext': 'Testament Paradis ',
-    },
+    {'image': 'ParadisPalais_Mesmer.jpg', 'subtext': 'Paradis Palais Mesmer'},
   ],
   'wiener_ungargasse': [
     {
@@ -52,20 +36,25 @@ final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
       'subtext': 'Nannette Ungargasse 46'
     },
   ],
-  'wiener_postgasse': [
-    {
-      'image': 'fehlt.jpg',
-      'subtext': 'fehlt'
-    },
-  ],
 
-   'wiener_michaelerkirche': [
-    {'image': 'ParadisPalais_Mesmer.jpg', 'subtext': 'Paradis Palais Mesmer'},
+    'wiener_postgasse': [
+    {'image': 'fehlt.jpg', 'subtext': 'fehlt'},
   ],
-  'wiener_rabensteig': [
+  'wiener_michaelerkirche': [
     {'image': 'Martines 1773.jpg', 'subtext': 'Martines 1773'},
   ],
-   'wiener_himmelpfortgasse': [
+  'wiener_rabensteig': [
+    {'image': 'Paradis Haus_Rabensteig_8.JPG', 'subtext': 'Haus Rabensteig '},
+    {'image': 'Testament Paradis Kopie.jpg', 'subtext': 'Testament Paradis '},
+    {
+      'image': 'Testament Paradis Seite 3 Kopie.jpg',
+      'subtext': 'Testament Paradis Seite 3 '
+    },
+  ],
+    'wiener_helferstorferstrasse': [
+    {'image': 'fehlt.jpg', 'subtext': 'fehlt'},
+  ],
+  'wiener_himmelpfortgasse': [
     {
       'image': 'AuernhammerHimmelpfortgasse_6-Josepha.jpg',
       'subtext': 'Himmelpfortgasse 6'
@@ -75,7 +64,17 @@ final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
       'subtext': 'Erinnerungs Tafel'
     },
   ],
-
+'wiener_kohlmarkt': [
+    {'image': 'Grosses_Michaelerhaus.jpg', 'subtext': 'Michaelerhaus'},
+    {
+      'image': 'Metastasio,_Großes_Michaelerhaus,_Vienna.jpg',
+      'subtext': 'Metastasio,  Michaelerhaus'
+    },
+    {
+      'image': 'metastasiomichaelerhaus_1gt.jpg',
+      'subtext': 'Erinnerungs Tafel'
+    },
+  ],
   'wiener_augustinerkirche': [
     {'image': 'Augustinian_Church_Vienna.jpg', 'subtext': 'Augustinerkirche'},
     {
@@ -87,45 +86,22 @@ final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
       'subtext': 'Paradis Augustinerkirche'
     },
   ],
- 
-
-  'wiener_kohlmarkt': [
-    {'image': 'Grosses_Michaelerhaus.jpg', 'subtext': 'Michaelerhaus'},
-    {
-      'image': 'Metastasio,_Großes_Michaelerhaus,_Vienna.jpg',
-      'subtext': 'Metastasio,  Michaelerhaus'
-    },
-    {
-      'image': 'metastasiomichaelerhaus_1gt.jpg',
-      'subtext': 'Erinnerungs Tafel'
-    },
-  ],
-     'wiener_helferstorferstrasse': [
-    {'image': 'fehlt.jpg', 'subtext': 'fehlt'},
   
-  ],
-    
 
-    'wiener_karlsplatz': [
+  'wiener_karlsplatz': [
     {'image': 'Musikverein_um_1898.jpg', 'subtext': 'Musikverein um 1898'},
     {
       'image': 'Nannette Streicher und klavier.jpeg',
       'subtext': 'Nannette Streicher und Klavier'
     },
   ],
-
- 'wiener_florianigasse': [
+  'wiener_florianigasse': [
     {'image': 'Blahetka.jpg', 'subtext': 'Anna Maria Leopoldine Blahetka'},
     {
       'image': 'Blahetka Guntramsdorf Tafel .JPG',
       'subtext': 'Erinnerungs Tafel'
     },
   ],
-
-
-
- 
-
 };
 
 List<Map<String, String>> getImageSubtextListWithFullPath(int index) {
@@ -134,12 +110,10 @@ List<Map<String, String>> getImageSubtextListWithFullPath(int index) {
       String folder = folders[index];
       return imageSubtextsMap[folder] ?? [];
     } else {
-     
-      return []; 
+      return [];
     }
   } catch (e) {
-
-    return []; 
+    return [];
   }
 }
 

@@ -7,7 +7,7 @@ class AudioPathStrauss {
   // by combining a constant directory path with the individual audio file name.
   static const List<String> _audioPaths = [
     '${audioPath}strauss_palaiscoburg.mp3', // Coburgbastei  -> audioIndex: 1
-    '${audioPath}strauss_zieglergasse.mp3', // fehlt -> Spiegelgasse audioIndex: 2
+    '${audioPath}strauss_spiegelgasse.mp3', //Spiegelgasse audioIndex: 2
     '${audioPath}strauss_karlsplatz.mp3', // Karlsplatz  -> audioIndex: 3
     '${audioPath}strauss_zieglergasse.mp3', // Zieglergasse -> audioIndex: 4
     '${audioPath}strauss_wiedernhaupt.mp3', // Wiedner Hauptstraße  -> audioIndex: 5
@@ -24,4 +24,3 @@ class AudioPathStrauss {
     }
   }
 }
-// TODO: audio Spiegelgasse fehlt!
