@@ -285,7 +285,8 @@ class _MapBakerState extends State<MapWiener> {
               children: [
                 TileLayer(
                   /// Mapbox tile layer Stored in constants_mapbox.dart
-                  urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                urlTemplate: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+      subdomains: const ['a', 'b', 'c', 'd'],
                   userAgentPackageName: 'dev.fleaflet.flutter_map.example',
                 ),
                 PolylineLayer(
@@ -293,8 +294,8 @@ class _MapBakerState extends State<MapWiener> {
                     Polyline(
                       points: _routePoints,
                       strokeWidth: 4,
-                      color: Styles.polyColorBaker,
-                      isDotted: true,
+                      color: Styles.polyColorWiener,
+                      isDotted: false,
                     ),
                   ],
                 ),

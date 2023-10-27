@@ -7,13 +7,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:musicafemina/main.dart';
 
-import 'package:musicafemina_2023/main.dart';
+
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const MusicaFemina());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

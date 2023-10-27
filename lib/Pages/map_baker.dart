@@ -7,6 +7,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:musicafemina/Style/app_style.dart';
 import 'package:musicafemina/Widgets/costum_icons.dart';
+
 //file import
 import '../MapContent/All/waypoint_images.dart';
 import '../MapContent/Baker/baker_polylines.dart';
@@ -262,6 +263,10 @@ class _MapBakerState extends State<MapBaker> {
             ),
       body: Stack(
         children: [
+                          Container(
+      color: Colors.white,  // Set the background color to white
+    ),
+            
           Padding(
             padding: EdgeInsets.only(top: customAppBarHeight),
             child: FlutterMap(
@@ -283,17 +288,21 @@ class _MapBakerState extends State<MapBaker> {
               ),
               children: [
                 TileLayer(
-                  /// Mapbox tile layer Stored in constants_mapbox.dart
-                  urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                  userAgentPackageName: 'dev.fleaflet.flutter_map.example',
+
+                    urlTemplate: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+      subdomains: const ['a', 'b', 'c', 'd'],
                 ),
+
+
+     
+    
                 PolylineLayer(
                   polylines: [
                     Polyline(
                       points: _routePoints,
                       strokeWidth: 4,
                       color: Styles.polyColorBaker,
-                      isDotted: true,
+                      isDotted: false,
                     ),
                   ],
                 ),

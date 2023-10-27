@@ -6,8 +6,10 @@ final List<String> folders = [
   'strauss_spiegelgasse',
   'strauss_karlsplatz',
   'strauss_zieglergasse',
-  'strauss_landstrasserhpt',
+  
   'strauss_wiednerhauptstr',
+  'strauss_landstrasserhpt',
+
   'strauss_prater',
   'strauss_nussdorf',
 ];
@@ -18,23 +20,23 @@ String _generateFullPath(String folderName, String imageName) {
 
 final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
   'strauss_palaiscoburg': [
-    {'image': 'Coburgpalais.jpg', 'subtext': 'Coburgpalais'},
+    {'image': 'Coburgpalais.jpg', 'subtext': 'Coburg Palais'},
     {
       'image': 'Family_portrait_of_Prinz_Leopold_of_Saxe-Coburg-Gotha.jpg',
       'subtext': 'Familienporträt von Prinz Leopold von Sachsen'
     },
     {
       'image': 'Geiger_Konstanze_Adelheid_Therese.jpg',
-      'subtext': 'Konstanze Adelheid Therese Geiger'
+      'subtext': 'Constanze Adelheid Therese Geiger'
     },
   ],
   'strauss_spiegelgasse': [
     {
       'image': 'FranzSchubert_1826_JosephineFröhlichMitteoestnationalbib.jpg',
-      'subtext': 'Franz Schubert und Josephine Fröhlich 1826'
+      'subtext': 'Franz Schubert und Josefine Fröhlich 1826'
     },
 
-    {'image': 'Josephine_Froehlich.jpg', 'subtext': 'Josephine_Froehlich'},
+    {'image': 'Josephine_Froehlich.jpg', 'subtext': 'Josefine Fröhlich'},
 
     {
       'image': 'Moritz_Michael_Daffinger_Franz_Grillparzer.jpg',
@@ -44,7 +46,7 @@ final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
     {
       'image':
           'Waldmüller_La_soprano_Josephine_Fröhlich,_el_barítono_Johann_Michael_Vogl_y_Franz_Schubert_cantan_y_tocan_un_lied_a_tres_voc.png',
-      'subtext': 'Franz Schubert, Josephine Fröhlich, Johann Michael Vogl'
+      'subtext': 'Franz Schubert, Josefine Fröhlich, Johann Michael Vogl'
     },
 
   ],
@@ -80,15 +82,15 @@ final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
     },
     {
       'image': 'Weinlich.sophie-drinker-institut.jpg',
-      'subtext': 'Weinlich Sophie'
+      'subtext': 'Josephine Weinlich'
     },
   ],
   'strauss_wiednerhauptstr': [
     {
       'image': 'GoldenesLamm_AntiquariatJohannesMüllerSzbg.jpg',
-      'subtext': 'GoldenesLamm - Antiquariat Johannes Müller'
+      'subtext': ' Tonlithographie aus Rudolf Alt Wien'
     },
-    {'image': 'GoldenesLamm.jpg', 'subtext': 'Goldenes Lamm'},
+    {'image': 'GoldenesLamm.jpg', 'subtext': 'Zum Goldenes Lamm'},
   ],
   'strauss_landstrasserhpt': [
     {'image': 'drehersaal-bm03.jpg', 'subtext': 'Drehersaal'},

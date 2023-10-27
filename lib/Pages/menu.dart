@@ -88,7 +88,7 @@ class Menu extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                       iconColor: Colors.black,
-                      tileColor: const Color.fromARGB(115, 240, 138, 91),
+                      tileColor: Styles.polyColorBaker,
                       focusColor: Colors.blue,
                       hoverColor: Colors.red,
                       textColor: Colors.white,
@@ -96,7 +96,7 @@ class Menu extends StatelessWidget {
                         WaypointImages().bakerWaypoint,
                       ),
                       title: const Text('Josephine Baker'),
-                      subtitle: const Text('1906  - 1975'),
+     
                       onTap: () {
                         Navigator.push(
                             context,
@@ -111,12 +111,12 @@ class Menu extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                       iconColor: Colors.black,
-                      tileColor: const Color.fromARGB(111, 60, 116, 61),
+                      tileColor: Styles.polyColorClara,
                       focusColor: Colors.blue,
                       hoverColor: Colors.red,
                       textColor: Colors.white,
-                      title: const Text('Clara Wieck Schumann'),
-                      subtitle: const Text('1819 - 1896'),
+                      title: const Text('Clara Wieck Schuman'),
+             
                       leading: Image.asset(
                         WaypointImages().claraWaypoint,
                       ),
@@ -134,12 +134,12 @@ class Menu extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                       iconColor: Colors.black,
-                      tileColor: const Color.fromARGB(73, 50, 42, 200),
+                      tileColor: Styles.polyColorWiener,
                       focusColor: Colors.blue,
                       hoverColor: Colors.red,
                       textColor: Colors.white,
                       title: const Text('Wiener Klassikerinnen'),
-                      subtitle: const Text('1789 - 1919'),
+        
                       leading: Image.asset(
                         WaypointImages().wienerklassikerinnenWaypoint,
                       ),
@@ -157,12 +157,12 @@ class Menu extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                       iconColor: Colors.black,
-                      tileColor: const Color.fromARGB(99, 200, 42, 137),
+                      tileColor: Styles.polyColorNS,
                       focusColor: Colors.blue,
                       hoverColor: Colors.red,
                       textColor: Colors.white,
-                      title: const Text('Ns Verfemte'),
-                      subtitle: const Text(' 1888 - 1960'),
+                      title: const Text('NS Verfemte Komponistinnen '),
+            
                       leading: Image.asset(WaypointImages().nsWaypoint),
                       onTap: () {
                         Navigator.push(
@@ -178,12 +178,12 @@ class Menu extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                       iconColor: Colors.black,
-                      tileColor: const Color.fromARGB(102, 108, 200, 42),
+                      tileColor: Styles.polyColorStrauss,
                       focusColor: Colors.blue,
                       hoverColor: Colors.red,
                       textColor: Colors.white,
-                      title: const Text('Strauss Zeitgenossinnen'),
-                      subtitle: const Text('1825 - 1899'),
+                      title: const Text('Johann Strauss Zeitgenossinnen'),
+
                       leading: Image.asset(WaypointImages().straussWaypoint),
                       onTap: () {
                         Navigator.push(
