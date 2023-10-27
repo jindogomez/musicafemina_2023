@@ -244,11 +244,7 @@ class _MapStraussState extends State<MapStrauss> {
         audioPlayer: audioPlayer,
         onLeadingButtonPressed: _toggleCardVisibility,
        
-        title: 'Johann Strauss Zeitgenossinnen', //ändert titel in appbar
-          onMapUpdate: (MapController mapController) {
-    _mapController.move(
-            const LatLng(48.210333041716, 16.372817971454), 14.0);
-  },
+        title: 'Strauss Zeitgenossinnen', //ändert titel in appbar
       ),
       floatingActionButton: _isCardVisible
           ? null
