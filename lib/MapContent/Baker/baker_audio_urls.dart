@@ -1,5 +1,5 @@
 // Defines a constant path where all audio files are located.
-const String audioPath = 'assets/audio/baker/';
+const String audioPath = 'assets/audio/baker_audio/';
 
 // Utility class for handling audio paths.
 class AudioPathBaker {

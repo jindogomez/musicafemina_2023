@@ -244,7 +244,11 @@ class _MapStraussState extends State<MapStrauss> {
         audioPlayer: audioPlayer,
         onLeadingButtonPressed: _toggleCardVisibility,
        
-        title: 'Strauss Zeitgenossinnen', //ändert titel in appbar
+        title: 'Johann Strauss Zeitgenossinnen', //ändert titel in appbar
+          onMapUpdate: (MapController mapController) {
+    _mapController.move(
+            const LatLng(48.210333041716, 16.372817971454), 14.0);
+  },
       ),
       floatingActionButton: _isCardVisible
           ? null
@@ -281,8 +285,9 @@ class _MapStraussState extends State<MapStrauss> {
               ),
               children: [
                 TileLayer(
-                  /// Mapbox tile layer Stored in constants_mapbox.dart
-                  urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                
+             urlTemplate: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+      subdomains: const ['a', 'b', 'c', 'd'],
                   userAgentPackageName: 'dev.fleaflet.flutter_map.example',
                 ),
                 PolylineLayer(
@@ -290,8 +295,8 @@ class _MapStraussState extends State<MapStrauss> {
                     Polyline(
                       points: _routePoints,
                       strokeWidth: 4,
-                      color: Styles.polyColorBaker,
-                      isDotted: true,
+                      color: Styles.polyColorStrauss,
+                      isDotted: false,
                     ),
                   ],
                 ),

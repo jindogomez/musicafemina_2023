@@ -6,6 +6,7 @@ import 'package:musicafemina/Style/app_style.dart';
 
 import '../Pages/video_player.dart';
 
+
 class CustomAppBarMore extends StatelessWidget implements PreferredSizeWidget {
   final AudioPlayer audioPlayer;
 
@@ -24,11 +25,20 @@ class CustomAppBarMore extends StatelessWidget implements PreferredSizeWidget {
     required this.onLeadingButtonPressed,
   }) : super(key: key);
 
+
+
+
+
+
+
   @override
-  Size get preferredSize => const Size.fromHeight(80.0);
+  Size get preferredSize => const Size.fromHeight(100.0);
 
   @override
   Widget build(BuildContext context) {
+
+
+    
     return AppBar(
       centerTitle: true,
       toolbarHeight: 100,

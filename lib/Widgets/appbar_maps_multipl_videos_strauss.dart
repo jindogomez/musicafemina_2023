@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:musicafemina/MapContent/All/video_urls.dart';
@@ -8,13 +9,14 @@ import '../Pages/video_player.dart';
 
 class CustomAppBarMoreStrauss extends StatelessWidget implements PreferredSizeWidget {
   final AudioPlayer audioPlayer;
-
+final Function(MapController) onMapUpdate;
   final String title;
   final double height;
   final Color bgColor;
   final VoidCallback onLeadingButtonPressed;
+  final MapController _mapController = MapController();
 
-  const CustomAppBarMoreStrauss({
+ CustomAppBarMoreStrauss({
     Key? key,
     required this.audioPlayer,
 
@@ -22,10 +24,11 @@ class CustomAppBarMoreStrauss extends StatelessWidget implements PreferredSizeWi
     this.height = kToolbarHeight,
     required this.bgColor,
     required this.onLeadingButtonPressed,
+      required this.onMapUpdate,
   }) : super(key: key);
 
   @override
-  Size get preferredSize => const Size.fromHeight(80.0);
+  Size get preferredSize => const Size.fromHeight(90.0);
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +39,12 @@ class CustomAppBarMoreStrauss extends StatelessWidget implements PreferredSizeWi
       leading: IconButton(
         icon: const Icon(Icons.arrow_back_ios),
         color: Styles.primaryColor,
-        onPressed: onLeadingButtonPressed,
-      ),
+          onPressed: () {
+    onLeadingButtonPressed();
+    onMapUpdate(_mapController);  // Pass the MapController instance
+  },
+),
+      
   actions: [
   PopupMenuButton<String>(
      color: Colors.white,

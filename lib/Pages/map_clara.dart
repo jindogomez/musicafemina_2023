@@ -222,7 +222,7 @@ class _MapClaraState extends State<MapClara> {
         audioPlayer: audioPlayer,
         videoUrl: widget.videoUrl,
         onLeadingButtonPressed: _toggleCardVisibility,
-        title: 'Clara Wieck Schumann', //ändert titel in appbar
+        title: 'Clara Wieck Schuman', //ändert titel in appbar
       ),
       body: Stack(
         children: [
@@ -247,7 +247,8 @@ class _MapClaraState extends State<MapClara> {
               ),
               children: [
                 TileLayer(
-                  urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+  urlTemplate: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+      subdomains: const ['a', 'b', 'c', 'd'],
 
                   //"${AppConstants.mapBoxUrl}?access_token={accessToken}",
                   // additionalOptions: const {
@@ -261,7 +262,7 @@ class _MapClaraState extends State<MapClara> {
                       points: _routePoints,
                       strokeWidth: 4,
                       color: Styles.polyColorClara,
-                      isDotted: true,
+                      isDotted: false,
                     ),
                   ],
                 ),
