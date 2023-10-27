@@ -222,7 +222,7 @@ class _MapClaraState extends State<MapClara> {
         audioPlayer: audioPlayer,
         videoUrl: widget.videoUrl,
         onLeadingButtonPressed: _toggleCardVisibility,
-        title: 'Clara Wieck Schumann', //ändert titel in appbar
+        title: 'Clara Wieck Schuman', //ändert titel in appbar
       ),
       body: Stack(
         children: [

@@ -1,14 +1,14 @@
 const String basePath = 'assets/images/wiener_img';
-// TODO: nur 10 bilder -> 12.texte
+
 // folder names
 final List<String> folders = [
   'wiener_marxerfriedhof',
   'wiener_rasumovskygasse',
   'wiener_ungargasse',
-  'Wiener_postgasse', // fehlt
+  'Wiener_postgasse', 
   'wiener_michaelerkirche',
   'wiener_rabensteig',
-  'wiener_helferstorferstrasse', //fehlt
+  'wiener_helferstorferstrasse', 
   'wiener_himmelpfortgasse',
   'wiener_kohlmarkt',
   'wiener_augustinerkirche',
@@ -24,21 +24,21 @@ final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
   'wiener_marxerfriedhof': [
     {
       'image': 'Nannette Streiche porträt.jpeg',
-      'subtext': 'Nannette Streiche Porträt'
+      'subtext': 'Nannette Streicher'
     },
   ],
   'wiener_rasumovskygasse': [
-    {'image': 'ParadisPalais_Mesmer.jpg', 'subtext': 'Paradis Palais Mesmer'},
+    {'image': 'ParadisPalais_Mesmer.jpg', 'subtext': 'Palais Mesmer'},
   ],
   'wiener_ungargasse': [
     {
       'image': 'Nannette_Ungargasse_46.jpg',
-      'subtext': 'Nannette Ungargasse 46'
+      'subtext': 'Erinnerungstafel Ungarngasse 46'
     },
   ],
 
-    'wiener_postgasse': [
-    {'image': 'fehlt.jpg', 'subtext': 'fehlt'},
+    'Wiener_postgasse': [
+    {'image': 'Dr_Ignaz_Seipel_Platz1.jpg', 'subtext': 'Älterer Passauer Hof'},
   ],
   'wiener_michaelerkirche': [
     {'image': 'Martines 1773.jpg', 'subtext': 'Martines 1773'},
@@ -52,7 +52,8 @@ final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
     },
   ],
     'wiener_helferstorferstrasse': [
-    {'image': 'fehlt.jpg', 'subtext': 'fehlt'},
+    {'image': 'errinerung.png', 'subtext': 'Anzeige der Ernennung von Josepha Gollenhofer (Wiener Zeitung, 24.2.1808)'},
+     { 'image': 'hofkalender.png', 'subtext': 'Seite des Wiener Hofkalenders aus dem Jahr 1808'},
   ],
   'wiener_himmelpfortgasse': [
     {
@@ -76,14 +77,14 @@ final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
     },
   ],
   'wiener_augustinerkirche': [
-    {'image': 'Augustinian_Church_Vienna.jpg', 'subtext': 'Augustinerkirche'},
+    {'image': 'Augustinian_Church_Vienna.jpg', 'subtext': ''},
     {
       'image': 'ParadisAugustinerkirche.jpg',
-      'subtext': 'Paradis Augustinerkirche'
+      'subtext': ''
     },
     {
       'image': 'ParadisAugustinerkirche2.jpg',
-      'subtext': 'Paradis Augustinerkirche'
+      'subtext': ''
     },
   ],
   
@@ -99,7 +100,7 @@ final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
     {'image': 'Blahetka.jpg', 'subtext': 'Anna Maria Leopoldine Blahetka'},
     {
       'image': 'Blahetka Guntramsdorf Tafel .JPG',
-      'subtext': 'Erinnerungs Tafel'
+      'subtext': 'Erinnerungstafel in Guntramsdorf'
     },
   ],
 };
