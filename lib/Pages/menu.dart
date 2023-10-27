@@ -92,8 +92,11 @@ class Menu extends StatelessWidget {
                       focusColor: Colors.blue,
                       hoverColor: Colors.red,
                       textColor: Colors.white,
-                      leading: Image.asset(
-                        WaypointImages().bakerWaypoint,
+                      leading: Padding(
+                        padding: const EdgeInsets.only(top: 2.0, bottom: 2.0), 
+                        child: Image.asset(
+                          WaypointImages().bakerWaypoint,
+                        ),
                       ),
                       title: const Text('Josephine Baker'),
      
@@ -117,8 +120,11 @@ class Menu extends StatelessWidget {
                       textColor: Colors.white,
                       title: const Text('Clara Wieck Schuman'),
              
-                      leading: Image.asset(
-                        WaypointImages().claraWaypoint,
+                      leading: Padding(
+                       padding: const EdgeInsets.only(top: 2.0, bottom: 2.0), 
+                        child: Image.asset(
+                          WaypointImages().claraWaypoint,
+                        ),
                       ),
                       onTap: () {
                         Navigator.push(
@@ -140,8 +146,11 @@ class Menu extends StatelessWidget {
                       textColor: Colors.white,
                       title: const Text('Wiener Klassikerinnen'),
         
-                      leading: Image.asset(
-                        WaypointImages().wienerklassikerinnenWaypoint,
+                      leading: Padding(
+                        padding: const EdgeInsets.only(top: 2.0, bottom: 2.0), 
+                        child: Image.asset(
+                          WaypointImages().wienerklassikerinnenWaypoint,
+                        ),
                       ),
                       onTap: () {
                         Navigator.push(
@@ -163,7 +172,10 @@ class Menu extends StatelessWidget {
                       textColor: Colors.white,
                       title: const Text('NS Verfemte Komponistinnen '),
             
-                      leading: Image.asset(WaypointImages().nsWaypoint),
+                      leading: Padding(
+                        padding: const EdgeInsets.only(top: 2.0, bottom: 2.0), 
+                        child: Image.asset(WaypointImages().nsWaypoint),
+                      ),
                       onTap: () {
                         Navigator.push(
                             context,
@@ -184,7 +196,10 @@ class Menu extends StatelessWidget {
                       textColor: Colors.white,
                       title: const Text('Johann Strauss Zeitgenossinnen'),
 
-                      leading: Image.asset(WaypointImages().straussWaypoint),
+                      leading: Padding(
+                         padding: const EdgeInsets.only(top: 2.0, bottom: 2.0), 
+                        child: Image.asset(WaypointImages().straussWaypoint),
+                      ),
                       onTap: () {
                         Navigator.push(
                             context,
