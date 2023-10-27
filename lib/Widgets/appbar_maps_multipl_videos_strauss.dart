@@ -41,7 +41,7 @@ final Function(MapController) onMapUpdate;
         color: Styles.primaryColor,
           onPressed: () {
     onLeadingButtonPressed();
-    onMapUpdate(_mapController);  // Pass the MapController instance
+    onMapUpdate(_mapController); 
   },
 ),
       
