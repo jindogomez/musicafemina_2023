@@ -10,7 +10,7 @@ import '../Pages/video_player.dart';
 
 class CustomAppBarMore extends StatelessWidget implements PreferredSizeWidget {
   final AudioPlayer audioPlayer;
-
+ final Color imageFilterColor;
   final String title;
   final double height;
   final Color bgColor;
@@ -26,7 +26,8 @@ class CustomAppBarMore extends StatelessWidget implements PreferredSizeWidget {
     required this.title,
     this.height = kToolbarHeight,
     required this.bgColor,
-    required this.onLeadingButtonPressed,
+    required this.onLeadingButtonPressed, 
+    required this.imageFilterColor,
   }) : super(key: key);
 
 
@@ -111,17 +112,14 @@ class CustomAppBarMore extends StatelessWidget implements PreferredSizeWidget {
             ),  ),
         ],
       ),
-   flexibleSpace: const Image(
-          image: AssetImage('assets/images/mf_main_bg.png'), 
-          fit: BoxFit.cover,
-        ),
-         shape: Border(
-    bottom: BorderSide(
-      color: Styles.primaryColor,
-      width: 0.2
-    
-    )
-    ),
+        backgroundColor: Colors.black.withOpacity(0.5), 
+  
+  flexibleSpace: Image(
+    image:  const AssetImage('assets/images/mf_main_bg.png'),
+    fit: BoxFit.cover,
+    color: imageFilterColor,
+    colorBlendMode: BlendMode.srcOver,
+  ),
     );
   }
 }

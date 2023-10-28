@@ -101,17 +101,17 @@ final Function(MapController) onMapUpdate;
             ),  ),
         ],
       ),
-   flexibleSpace: const Image(
-          image: AssetImage('assets/images/mf_main_bg.png'), 
-          fit: BoxFit.cover,
-        ),
-         shape: Border(
-    bottom: BorderSide(
-      color: Styles.primaryColor,
-      width: 0.2
+  backgroundColor: Colors.black.withOpacity(0.5), 
+  flexibleSpace: Image(
+    image:  const AssetImage('assets/images/mf_main_bg.png'),
+    fit: BoxFit.cover,
+    color: Styles.polyColorStrauss.withOpacity(0.5), 
+    colorBlendMode: BlendMode.srcOver,
+  ),
+
     
-    )
-    ),
     );
+    
+    
   }
 }

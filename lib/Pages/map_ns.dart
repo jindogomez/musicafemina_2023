@@ -241,6 +241,8 @@ class _MapStraussState extends State<MapNs> {
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
       appBar: CustomAppBar(
+          backgroundColor: Colors.black.withOpacity(0.5),
+        imageFilterColor: Styles.polyColorNS,
         bgColor: Styles.bgColor,
         audioPlayer: audioPlayer,
         onLeadingButtonPressed: _toggleCardVisibility,

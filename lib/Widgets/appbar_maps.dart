@@ -15,8 +15,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback onLeadingButtonPressed;
   final Function(MapController) onMapUpdate;
   final MapController _mapController = MapController();
-
-CustomAppBar({
+  final Color imageFilterColor;
+  final Color backgroundColor;
+  CustomAppBar({
     Key? key,
     required this.audioPlayer,
     required this.videoUrl,
@@ -24,7 +25,8 @@ CustomAppBar({
     this.height = kToolbarHeight,
     required this.bgColor,
     required this.onLeadingButtonPressed,
-     required this.onMapUpdate,
+    required this.onMapUpdate,
+    required this.imageFilterColor, required this.backgroundColor,
   }) : super(key: key);
 
   @override
@@ -35,14 +37,13 @@ CustomAppBar({
     return AppBar(
       centerTitle: true,
       toolbarHeight: 100,
-      
       leading: IconButton(
         icon: const Icon(Icons.arrow_back_ios),
         color: Styles.primaryColor,
-          onPressed: () {
-    onLeadingButtonPressed();
-    onMapUpdate(_mapController); 
-  },
+        onPressed: () {
+          onLeadingButtonPressed();
+          onMapUpdate(_mapController);
+        },
       ),
       actions: [
         IconButton(
@@ -67,28 +68,26 @@ CustomAppBar({
               fontFamily: GoogleFonts.abel().fontFamily,
               fontWeight: FontWeight.bold,
             ),
-          
-            
           ),
-           Text('Stadtspaziergang',  style: TextStyle(
+          Text(
+            'Stadtspaziergang',
+            style: TextStyle(
               color: Colors.black,
               fontSize: 20,
               fontFamily: GoogleFonts.abel().fontFamily,
               fontWeight: FontWeight.normal,
-            ),  ),
+            ),
+          ),
         ],
       ),
-   flexibleSpace: const Image(
-          image: AssetImage('assets/images/mf_main_bg.png'), 
-          fit: BoxFit.cover,
-        ),
-         shape: Border(
-    bottom: BorderSide(
-      color: Styles.primaryColor,
-      width: 0.2
-    
-    )
-    ),
+ 
+        backgroundColor: backgroundColor,
+  flexibleSpace: Image(
+    image:  const AssetImage('assets/images/mf_main_bg.png'),
+    fit: BoxFit.cover,
+    color: imageFilterColor,
+    colorBlendMode: BlendMode.srcOver,
+  ),
     );
   }
 }

@@ -35,13 +35,19 @@ class MarkerCard extends StatelessWidget {
       child: Align(
         alignment: Alignment.center,
         child: Card(
+                          shape: RoundedRectangleBorder(
+    side: BorderSide(
+      color:Styles.polyColorWiener,
+      width: 3,
+    ),
+            ),
           margin: EdgeInsets.zero,
           child: SizedBox(
             width: width,
             height: height,
             child: _selectedMarkerIndex != null
                 ? Padding(
-                    padding: const EdgeInsets.all(0),
+                    padding: const EdgeInsets.all(1),
                     child: DecoratedBox(
                       decoration: BoxDecoration(
                         image: DecorationImage(
