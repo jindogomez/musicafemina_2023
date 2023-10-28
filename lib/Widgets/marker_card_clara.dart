@@ -61,7 +61,7 @@ class MarkerCard extends StatelessWidget {
                                       mapMarkers[_selectedMarkerIndex!]
                                               .address ??
                                           '',
-                                      style: Styles.headline),
+                                      style: Styles.textStyle1),
                        
                                   Text(
                                     mapMarkers[_selectedMarkerIndex!].title ??

@@ -19,7 +19,7 @@ class Styles {
   static TextStyle headline = TextStyle(
       fontSize: 25,
       fontFamily: GoogleFonts.abel().fontFamily,
-      color: Colors.black,
+      color: primaryColor,
       fontWeight: FontWeight.bold);
 
   static TextStyle textStyle1 = TextStyle(
