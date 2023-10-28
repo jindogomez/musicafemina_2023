@@ -247,6 +247,10 @@ class _MapBakerState extends State<MapBaker> {
         onLeadingButtonPressed: _toggleCardVisibility,
         videoUrl: widget.videoUrl,
         title: 'Josephine Baker', //ändert titel in appbar
+                  onMapUpdate: (MapController mapController) {
+    _mapController.move(
+            const LatLng(48.210333041716, 16.372817971454), 14.0);
+  },
       ),
       floatingActionButton: _isCardVisible
           ? null

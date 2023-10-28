@@ -223,6 +223,10 @@ class _MapClaraState extends State<MapClara> {
         videoUrl: widget.videoUrl,
         onLeadingButtonPressed: _toggleCardVisibility,
         title: 'Clara Wieck Schuman', //ändert titel in appbar
+                  onMapUpdate: (MapController mapController) {
+    _mapController.move(
+            const LatLng(48.210333041716, 16.372817971454), 14.0);
+  },
       ),
       body: Stack(
         children: [

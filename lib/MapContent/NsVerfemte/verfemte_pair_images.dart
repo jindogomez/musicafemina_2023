@@ -1,14 +1,18 @@
 const String basePath = 'assets/images/ns_img';
 
 final List<String> folders = [
+    'ns_kaasgraben',
   'ns_alserstrasse',
-  'ns_johannesgasse_fehlt',
-  'ns_kaasgraben',
-  'ns_oppolzergasse',
-  'ns_rahlgasse',
-  'ns_rechtewienzeile',
   'ns_strozzigasse',
+   'ns_rechtewienzeile',
+     'ns_rahlgasse',
+  'ns_johannesgasse_fehlt',
   'ns_wollzeile',
+  'ns_oppolzergasse',
+
+
+  
+
 ];
 
 String _generateFullPath(String folderName, String imageName) {
@@ -16,7 +20,31 @@ String _generateFullPath(String folderName, String imageName) {
 }
 
 final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
-  
+
+      'ns_kaasgraben': [
+    {
+      'image': '1190Kaasgrabengasse36MariaHoferYellaHertzka.jpg',
+      'subtext': '1190 Kaasgrabengasse 36 - Maria Hofer - Yella Hertzka'
+    },
+  ],
+
+    'ns_alserstrasse': [
+    {
+      'image': 'alserstraße.jpg',
+      'subtext': 'Alserstraße 9'
+    },
+  ],
+
+    'ns_strozzigasse': [
+    {'image': "NS_Strozzigasse8.jpg", 'subtext': '1080 Strozzigasse 8'},
+    {
+      'image': "Vally_Weigl_©_Georg_Fayer.jpg",
+      'subtext': 'Vally Weigl - Fotostudio Fayer Wien'
+    },
+  ],
+
+
+
   'ns_rechtewienzeile': [
     {'image': 'NS_RechteWienzeile.jpg', 'subtext': 'Rechte Wienzeile'},
     {'image': "HildaLoeweFlatter.jpg", 'subtext': 'Hilda Loewe'},
@@ -39,34 +67,23 @@ final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
     },
   ],
 
-    'ns_strozzigasse': [
-    {'image': "NS_Strozzigasse8.jpg", 'subtext': '1080 Strozzigasse 8'},
+  'ns_rahlgasse': [
     {
-      'image': "Vally_Weigl_©_Georg_Fayer.jpg",
-      'subtext': 'Vally Weigl - Fotostudio Fayer Wien'
+      'image': '1060Rahlgasse4AnitaBildMaedchengym.jpg',
+      'subtext': '1060 Rahlgasse 4 - Anita Bild - Mädchengymnasium'
+    },
+  ],
+  
+
+
+   'ns_johannesgasse_fehlt': [
+    {
+      'image': 'johannesgasse.jpg',
+      'subtext': 'Johannesgasse 4a '
     },
   ],
 
-    'ns_kaasgraben': [
-    {
-      'image': '1190Kaasgrabengasse36MariaHoferYellaHertzka.jpg',
-      'subtext': '1190 Kaasgrabengasse 36 - Maria Hofer - Yella Hertzka'
-    },
-  ],
-
-
-  'ns_alserstrasse': [
-    {
-      'image': 'LisaMariaMayer_1925_OENB.jpg',
-      'subtext': 'LisaMariaMayer - 1925 - Österreichische Nationalbibliothek'
-    },
-  ],
-
-  'ns_oppolzergasse': [
-    {'image': 'JosefineWinter.jpg', 'subtext': 'Josefine Winter'},
-  ],
-
-    'ns_wollzeile': [
+ 'ns_wollzeile': [
     {
       'image': 'Ns_Wollzeile36.jpg',
       'subtext': '1010 Wollzeile 36 - Kabarett Simpl'
@@ -86,21 +103,15 @@ final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
       'subtext': 'Camilla Frydan - Abschiedsbrief - 1920'
     },
   ],
-
- 'ns_johannesgasse_fehlt': [
-    {
-      'image': 'fehlt.jpg',
-      'subtext': 'fehlt'
-    },
+  'ns_oppolzergasse': [
+    {'image': 'JosefineWinter.jpg', 'subtext': 'Josefine Winter'},
   ],
 
-  'ns_rahlgasse': [
-    {
-      'image': '1060Rahlgasse4AnitaBildMaedchengym.jpg',
-      'subtext': '1060 Rahlgasse 4 - Anita Bild - Mädchengymnasium'
-    },
-  ],
-  
+   
+
+
+
+
 
 
  

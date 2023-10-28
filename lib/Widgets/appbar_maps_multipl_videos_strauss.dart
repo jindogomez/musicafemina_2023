@@ -28,7 +28,7 @@ final Function(MapController) onMapUpdate;
   }) : super(key: key);
 
   @override
-  Size get preferredSize => const Size.fromHeight(80.0);
+  Size get preferredSize => const Size.fromHeight(100.0);
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:musicafemina/Style/app_style.dart';
@@ -12,8 +13,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double height;
   final Color bgColor;
   final VoidCallback onLeadingButtonPressed;
+  final Function(MapController) onMapUpdate;
+  final MapController _mapController = MapController();
 
-  const CustomAppBar({
+CustomAppBar({
     Key? key,
     required this.audioPlayer,
     required this.videoUrl,
@@ -21,6 +24,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.height = kToolbarHeight,
     required this.bgColor,
     required this.onLeadingButtonPressed,
+     required this.onMapUpdate,
   }) : super(key: key);
 
   @override
@@ -35,7 +39,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: IconButton(
         icon: const Icon(Icons.arrow_back_ios),
         color: Styles.primaryColor,
-        onPressed: onLeadingButtonPressed, 
+          onPressed: () {
+    onLeadingButtonPressed();
+    onMapUpdate(_mapController); 
+  },
       ),
       actions: [
         IconButton(

@@ -107,21 +107,30 @@ class ImpressumPage extends StatelessWidget {
   mainAxisAlignment: MainAxisAlignment.center,
   children: <Widget>[
     Expanded(
+     
       child: SizedBox(
         height: height * 0.3,
-        child: Image.asset(
-          'assets/images/Stadt-Wien_Logo_pos_rgb.gif',
-          fit: BoxFit.contain,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 100.0, right: 1.0),
+          child: Image.asset(
+            'assets/images/Stadt-Wien_Logo_pos_rgb.gif',
+            
+          ),
         ),
       ),
     ),
-    const SizedBox(width: 16),
+    
     Expanded(
+     
       child: SizedBox(
+    
         height: height * 0.3,
-        child: Image.asset(
-          'assets/images/mf_logo_B.png',
-          fit: BoxFit.contain,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 1.0, right: 100.0),
+          child: Image.asset(
+            'assets/images/mf_logo_B.png',
+           fit: BoxFit.contain,
+          ),
         ),
       ),
     ),
