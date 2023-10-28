@@ -33,6 +33,8 @@ final Function(MapController) onMapUpdate;
   @override
   Widget build(BuildContext context) {
     return AppBar(
+            elevation: 1,
+shadowColor: Styles.primaryColor,
       centerTitle: true,
       toolbarHeight: 100,
       
@@ -105,7 +107,7 @@ final Function(MapController) onMapUpdate;
   flexibleSpace: Image(
     image:  const AssetImage('assets/images/mf_main_bg.png'),
     fit: BoxFit.cover,
-    color: Styles.polyColorStrauss.withOpacity(0.5), 
+    color: Styles.polyColorStrauss.withOpacity(0.1), 
     colorBlendMode: BlendMode.srcOver,
   ),
 

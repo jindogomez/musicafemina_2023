@@ -219,7 +219,7 @@ class _MapClaraState extends State<MapClara> {
           : null,
       appBar: CustomAppBar(
           backgroundColor: Colors.black.withOpacity(0.5),
-        imageFilterColor: Styles.polyColorClara,
+        imageFilterColor: Styles.polyColorClara.withOpacity(0.1),
         bgColor: const Color.fromARGB(137, 255, 255, 255),
         audioPlayer: audioPlayer,
         videoUrl: widget.videoUrl,

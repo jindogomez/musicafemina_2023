@@ -45,6 +45,8 @@ class CustomAppBarMore extends StatelessWidget implements PreferredSizeWidget {
 
     
     return AppBar(
+            elevation: 1,
+shadowColor: Styles.primaryColor,
       centerTitle: true,
       toolbarHeight: 100,
       

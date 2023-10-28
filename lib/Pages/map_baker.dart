@@ -243,7 +243,7 @@ class _MapBakerState extends State<MapBaker> {
       backgroundColor: Colors.transparent,
       appBar: CustomAppBar(
           backgroundColor: Colors.black.withOpacity(0.5),
-        imageFilterColor: Styles.polyColorBaker,
+        imageFilterColor: Styles.polyColorBaker.withOpacity(0.1),
         bgColor: Styles.bgColor,
         audioPlayer: audioPlayer,
         onLeadingButtonPressed: _toggleCardVisibility,

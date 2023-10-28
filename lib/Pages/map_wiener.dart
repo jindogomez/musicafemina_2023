@@ -242,7 +242,8 @@ class _MapBakerState extends State<MapWiener> {
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
       appBar: CustomAppBarMore(
-        imageFilterColor: Styles.polyColorWiener,
+        imageFilterColor: Styles.polyColorWiener.withOpacity(0.1),
+     
         bgColor: Styles.bgColor,
         audioPlayer: audioPlayer,
         onLeadingButtonPressed: _toggleCardVisibility,
