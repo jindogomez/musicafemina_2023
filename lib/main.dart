@@ -32,4 +32,3 @@ class MusicaFemina extends StatelessWidget {
 
 //TODO: Alle Wege Testen -> Bilder,Audio,Texte usw.
 
-//TODO: Anordnung Name -> adresse überall gleich machen
