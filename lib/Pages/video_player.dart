@@ -55,7 +55,7 @@ class VideoPlayerPageState extends State<VideoPlayerPage> {
 
     if (_controller.value.isInitialized) {
       return RotatedBox(
-        quarterTurns: 1, // Adjusted quarter turns
+        quarterTurns: 0, // Adjusted quarter turns 1 = Landscape
         child: AspectRatio(
           aspectRatio: _controller.value.aspectRatio,
           child: VideoPlayer(_controller),

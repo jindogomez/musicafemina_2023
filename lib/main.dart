@@ -29,7 +29,7 @@ class MusicaFemina extends StatelessWidget {
     );
   }
 }
-//TODO: Videos sind nicht alle richtig und anderes Icon.
+
 //TODO: Alle Wege Testen -> Bilder,Audio,Texte usw.
 //TODO: Unötigen audio löschen in Wiener audios
 //TODO: Anordnung Name -> adresse überall gleich machen

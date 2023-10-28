@@ -15,8 +15,9 @@ class VideoUrls {
       final videoStrauss3 = 'https://www.laurusedelbacher.com/mf/strauss/Musikverein.mp4';
         final videoStrauss4 = 'https://www.laurusedelbacher.com/mf/strauss/Zieglergasse.mp4';
           final videoStrauss5 = 'https://www.laurusedelbacher.com/mf/strauss/Lamm.mp4';
-            final videoStrauss6 = 'https://www.laurusedelbacher.com/mf/strauss/.mp4';
-              final videoStrauss7 = 'https://www.laurusedelbacher.com/mf/strauss/Nussdorf.mp4';
+          final videoStrauss6 = 'https://www.laurusedelbacher.com/mf/strauss/Landstraße.mp4';
+      
+             
                 final videoStrauss8 = 'https://www.laurusedelbacher.com/mf/strauss/Nussdorf.mp4';
 
 
@@ -34,8 +35,9 @@ class VideoUrls {
         'Musikverein': videoStrauss3,
         'Zieglergasse': videoStrauss4,
         'Wiedner Hauptstraße ': videoStrauss5,
-        ' Landstraße (fehlt)': videoStrauss6,
-        ' Prater(fehlt)': videoStrauss7,
+               'Landstraße Hauptstraße ': videoStrauss6,
+     
+  
            'Nussdorf Donau Schifffahrt': videoStrauss8,
       };
 }

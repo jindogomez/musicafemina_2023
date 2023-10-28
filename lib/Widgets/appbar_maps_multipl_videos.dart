@@ -78,7 +78,7 @@ class CustomAppBarMore extends StatelessWidget implements PreferredSizeWidget {
     child: 
     Row(
       children: [
-        Icon(Icons.music_video, color: Styles.primaryColor,),
+  Icon(Icons.movie_creation_outlined, color: Styles.primaryColor,),
         const SizedBox(width: 10,),
         Text(entry.key, style: Styles.textMain,),
       ],
