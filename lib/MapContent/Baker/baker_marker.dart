@@ -2,7 +2,7 @@ import 'package:analyzer_plugin/utilities/pair.dart';
 import 'package:latlong2/latlong.dart';
 
 import 'baker_text.dart';
-import 'bakar_pair_images.dart';
+import 'baker_pair_images.dart';
 import 'baker_audio_urls.dart';
 import 'baker_polylines.dart';
 
