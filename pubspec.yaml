@@ -35,22 +35,35 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.6
 
   flutter_map_tappable_polyline: ^5.0.0
   enum_to_string: ^2.0.1
 
   latlong2: ^0.9.0
 
-  location: ^4.2.0 # error wenn auf neuesten version. 4.2.0 funktioniert
-  analyzer_plugin: ^0.11.2
-  audioplayers: ^5.0.0
-  just_audio: ^0.9.34
-  google_fonts: ^5.1.0
+  location: ^5.0.3 
+  analyzer_plugin: ^0.11.3
+ 
+  just_audio: ^0.9.35
+  google_fonts: ^6.1.0
   flutter_map: ^5.0.0
-  http: ^1.0.0
+  http: ^1.1.0
   youtube_player_flutter: ^8.1.2
-  video_player: ^2.7.0
+  video_player: ^2.7.2
+  flutter_inappwebview: ^5.8.0
+ 
+flutter_map_directions: ^0.0.5
+
+ 
+
+
+
+
+
+
+
+
 
 dev_dependencies:
   flutter_test:
@@ -61,7 +74,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^2.0.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -77,71 +90,51 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
   - assets/images/
-  - assets/images/waypoints_all/
-
-  # clara
-  - assets/images/clara_img/
-  - assets/images/clara_img/clara_argentinierstrasse/
-  - assets/images/clara_img/clara_bauernmarkt/
-  - assets/images/clara_img/clara_graben/
-  - assets/images/clara_img/clara_heldenplatz/
-  - assets/images/clara_img/clara_musikvereinplatz/
-  - assets/images/clara_img/clara_tuchlauben/
-
-  - assets/audio/clara_audio/
-
-  # baker
-  - assets/images/baker_img/
-  - assets/images/baker_img/baker_favoritenstrasse/
-  - assets/images/baker_img/baker_kaerntner/
-  - assets/images/baker_img/baker_parlament/
-  - assets/images/baker_img/baker_ring/
-  - assets/images/baker_img/baker_seilerstaette/
-
-  - assets/audio/baker_audio/
-
-  # ns
   - assets/images/ns_img/
   - assets/images/ns_img/ns_alserstrasse/
-  - assets/images/ns_img/ns_johannesgasse/
+  - assets/images/ns_img/ns_johannesgasse_fehlt/
   - assets/images/ns_img/ns_kaasgraben/
   - assets/images/ns_img/ns_oppolzergasse/
   - assets/images/ns_img/ns_rahlgasse/
   - assets/images/ns_img/ns_rechtewienzeile/
   - assets/images/ns_img/ns_strozzigasse/
   - assets/images/ns_img/ns_wollzeile/
-
-  - assets/audio/ns_audio/
-
-  # wiener
   - assets/images/wiener_img/
   - assets/images/wiener_img/wiener_augustinerkirche/
-  - assets/images/wiener_img/wiener_baeckerstrasse/
   - assets/images/wiener_img/wiener_florianigasse/
-  - assets/images/wiener_img/wiener_helfersdorferstr/
+  - assets/images/wiener_img/wiener_helferstorferstrasse/
   - assets/images/wiener_img/wiener_himmelpfortgasse/
   - assets/images/wiener_img/wiener_karlsplatz/
   - assets/images/wiener_img/wiener_kohlmarkt/
   - assets/images/wiener_img/wiener_marxerfriedhof/
   - assets/images/wiener_img/wiener_michaelerkirche/
+  - assets/images/wiener_img/wiener_postgasse/
   - assets/images/wiener_img/wiener_rabensteig/
   - assets/images/wiener_img/wiener_rasumovskygasse/
   - assets/images/wiener_img/wiener_ungargasse/
-
-  - assets/audio/wiener_audio/
-
-  # strauss
   - assets/images/strauss_img/
   - assets/images/strauss_img/strauss_karlsplatz/
   - assets/images/strauss_img/strauss_landstrasserhpt/
   - assets/images/strauss_img/strauss_nussdorf/
   - assets/images/strauss_img/strauss_palaiscoburg/
   - assets/images/strauss_img/strauss_prater/
-  - assets/images/strauss_img/strauss_spiegelgasse/
   - assets/images/strauss_img/strauss_wiednerhauptstr/
   - assets/images/strauss_img/strauss_zieglergasse/
-
+  - assets/images/strauss_img/strauss_spiegelgasse/
+  - assets/images/waypoints_all/
+  - assets/images/Clara/Clara_Heldenplatz/
+  - assets/images/Clara/Clara_Musikvereinplatz/
+  - assets/images/Clara/Clara_Bauernmarkt/
+  - assets/images/Clara/Clara_Graben/
+  - assets/images/Clara/Clara_Tuchlauben/
+  - assets/images/Clara/Clara_Argentienierstraße/
+  - assets/audio/clara_audio/
+  - assets/images/Baker/
+  - assets/audio/baker_audio/
   - assets/audio/strauss_audio/
+  - assets/audio/wiener_audio/
+  - assets/audio/ns_audio/
+  
   
 
   # An image asset can refer to one or more resolution-specific "variants", see

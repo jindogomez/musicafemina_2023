@@ -16,6 +16,7 @@ import '../MapContent/Clara/clara_marker.dart';
 import '../Services/directions_service.dart';
 import '../MapContent/Clara/clara_polylines.dart';
 import '../Widgets/marker_card_clara.dart';
+import 'menu.dart';
 
 typedef UpdateCallback = void Function(void Function());
 
@@ -37,6 +38,7 @@ class _MapClaraState extends State<MapClara> {
   String? lastAudioClip;
   StreamSubscription<PlayerState>? playerStateStreamSubscription;
   late String videoUrl;
+  final double customAppBarHeight = 100.0;
 
   @override
   void initState() {
@@ -51,23 +53,83 @@ class _MapClaraState extends State<MapClara> {
     _mapController = MapController();
   }
 
-  void setupLocationHelper() {
+ void setupLocationHelper() {
     LocationHelper.fetchCurrentLocation(_mapController, (newLocation) {
-      setState(() {
-        _currentLocation = newLocation;
-      });
+      if (mounted) {
+        setState(() {
+          _currentLocation = newLocation;
+        });
+      }
+    }).catchError((e) {
+      if (mounted) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            content: const Text('Kein Gps Signal, vergewisere dich, dass du dein GPS aktiviert hast.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
+      }
     });
   }
 
   Future<void> loadRouteCoordinates() async {
-    List<List<double>> coordinates = await getRouteCoordinates(waypointsClara);
-    setState(() {
-      _routePoints = coordinates
-          .map((coordinate) => LatLng(coordinate[0], coordinate[1]))
-          .toList();
-    });
-  }
+    try {
+      List<List<double>> coordinates =
+          await getRouteCoordinates(waypointsClara);
 
+      if (coordinates.isNotEmpty) {
+        if (mounted) {
+          setState(() {
+            _routePoints = coordinates
+                .map((coordinate) => LatLng(coordinate[0], coordinate[1]))
+                .toList();
+          });
+        }
+      } else {
+        if (mounted) {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              content: const Text('Keine Locations gefunden, vergewisere dich, dass du eine Internetverbindung hast.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            content: const Text('Keine Locations gefunden, vergewisere dich, dass du eine Internetverbindung hast'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
+      }
+    }
+  }
   void setupAudioPlayer() {
     audioPlayer = AudioPlayer();
     playerStateStreamSubscription =
@@ -122,105 +184,140 @@ class _MapClaraState extends State<MapClara> {
 
   bool _isCardVisible = false;
 
+  void _toggleCardVisibility() {
+    if (_isCardVisible) {
+      setState(() {
+        _isCardVisible = false;
+      });
+    } else {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const Menu(
+                  paramHomepage: 'home',
+                )), // Your menu page class
+      );
+    }
+
+    audioPlayer.stop();
+    _mapController.move(const LatLng(48.210333041716, 16.372817971454),
+        14.0); // Centering the map
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
-      floatingActionButton: CenterFloatingActionButton(
-        location: const LatLng(48.210333041716, 16.372817971454),
-        zoom: 14.0,
-        mapController: _mapController,
-      ),
+      floatingActionButton: !_isCardVisible
+          ? CenterFloatingActionButton(
+              location: const LatLng(48.210333041716, 16.372817971454),
+              zoom: 14.0,
+              mapController: _mapController,
+              onPressed: () {},
+            )
+          : null,
       appBar: CustomAppBar(
+          backgroundColor: Colors.black.withOpacity(0.5),
+        imageFilterColor: Styles.polyColorClara.withOpacity(0.1),
         bgColor: const Color.fromARGB(137, 255, 255, 255),
         audioPlayer: audioPlayer,
         videoUrl: widget.videoUrl,
-        title: 'Clara Wieck Schumann', //ändert titel in appbar
+        onLeadingButtonPressed: _toggleCardVisibility,
+        title: 'Clara Wieck Schuman', //ändert titel in appbar
+                  onMapUpdate: (MapController mapController) {
+    _mapController.move(
+            const LatLng(48.210333041716, 16.372817971454), 14.0);
+  },
       ),
       body: Stack(
         children: [
-          FlutterMap(
-            mapController: _mapController,
-            options: MapOptions(
-              minZoom: 14,
-              maxZoom: 18,
-              zoom: 15,
-              center: AppConstants.myLocation,
-              interactiveFlags: InteractiveFlag.all & ~InteractiveFlag.rotate,
-              onTap: (tapPosition, LatLng point) {
-                if (_isCardVisible) {
-                  setState(() {
-                    _isCardVisible = false;
-                    audioPlayer.stop();
-                  });
-                }
-              },
-            ),
-            children: [
-              TileLayer(
-                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+          Padding(
+            padding: EdgeInsets.only(top: customAppBarHeight),
+            child: FlutterMap(
+              mapController: _mapController,
+              options: MapOptions(
+                minZoom: 14,
+                maxZoom: 18,
+                zoom: 15,
+                center: AppConstants.myLocation,
+                interactiveFlags: InteractiveFlag.all & ~InteractiveFlag.rotate,
+                onTap: (tapPosition, LatLng point) {
+                  if (_isCardVisible) {
+                    setState(() {
+                      _isCardVisible = false;
+                      audioPlayer.stop();
+                    });
+                  }
+                },
+              ),
+              children: [
+                TileLayer(
+  urlTemplate: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+      subdomains: const ['a', 'b', 'c', 'd'],
 
-                //"${AppConstants.mapBoxUrl}?access_token={accessToken}",
-                // additionalOptions: const {
-                //'id': AppConstants.id,
-                // 'accessToken': AppConstants.mapBoxAccessToken,
-                // },
-              ),
-              PolylineLayer(
-                polylines: [
-                  Polyline(
-                    points: _routePoints,
-                    strokeWidth: 4,
-                    color: Styles.polyColorClara,
-                    isDotted: true,
-                  ),
-                ],
-              ),
-              MarkerLayer(
-                markers: [
-                  if (_currentLocation != null)
-                    Marker(
-                      height: 80,
-                      width: 80,
-                      point: _currentLocation!,
-                      builder: (_) {
-                        return const Icon(
-                          Icons.my_location,
-                        );
-                      },
+                  //"${AppConstants.mapBoxUrl}?access_token={accessToken}",
+                  // additionalOptions: const {
+                  //'id': AppConstants.id,
+                  // 'accessToken': AppConstants.mapBoxAccessToken,
+                  // },
+                ),
+                PolylineLayer(
+                  polylines: [
+                    Polyline(
+                      points: _routePoints,
+                      strokeWidth: 4,
+                      color: Styles.polyColorClara,
+                      isDotted: false,
                     ),
-                  for (int i = 0; i < mapMarkers.length; i++)
-                    Marker(
-                      height: 60,
-                      width: 60,
-                      point: mapMarkers[i].location ?? AppConstants.myLocation,
-                      builder: (_) {
-                        return GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _isCardVisible = true;
-                              _selectedMarkerIndex = i;
-                              audioPlayer.stop();
-                            });
-                          },
-                          child: Image.asset(
-                            WaypointImages().claraWaypoint,
-                          ),
-                        );
-                      },
-                    ),
-                ],
-              ),
-              MarkerCard(
-                _isCardVisible,
-                _selectedMarkerIndex,
-                audioPlayer,
-                isPlaying,
-                playPauseAudio,
-                restartAudio,
-              ),
-            ],
+                  ],
+                ),
+                MarkerLayer(
+                  markers: [
+                    if (_currentLocation != null)
+                      Marker(
+                        height: 80,
+                        width: 80,
+                        point: _currentLocation!,
+                        builder: (_) {
+                          return const Icon(
+                            Icons.my_location,
+                          );
+                        },
+                      ),
+                    for (int i = 0; i < mapMarkers.length; i++)
+                      Marker(
+                        height: 60,
+                        width: 60,
+                        point:
+                            mapMarkers[i].location ?? AppConstants.myLocation,
+                        builder: (_) {
+                          return GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _isCardVisible = true;
+                                _selectedMarkerIndex = i;
+                                audioPlayer.stop();
+                              });
+                            },
+                            child: Image.asset(
+                              WaypointImages().claraWaypoint,
+                            ),
+                          );
+                        },
+                      ),
+                  ],
+                ),
+                MarkerCard(
+                  _isCardVisible,
+                  _selectedMarkerIndex,
+                  audioPlayer,
+                  isPlaying,
+                  playPauseAudio,
+                  restartAudio,
+                ),
+              ],
+            ),
           ),
         ],
       ),

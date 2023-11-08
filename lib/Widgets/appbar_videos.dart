@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:musicafemina/Style/app_style.dart';
 
 class CustomAppBarVideos extends StatelessWidget
     implements PreferredSizeWidget {
-  final YoutubePlayerController controller;
   final String title;
   final double height;
 
-  final VoidCallback exitFullScreen;
-
   const CustomAppBarVideos({
     super.key,
-    required this.controller,
     required this.title,
-    required this.exitFullScreen,
     this.height = kToolbarHeight,
   });
 
@@ -28,10 +23,9 @@ class CustomAppBarVideos extends StatelessWidget
       centerTitle: true,
       toolbarHeight: 80,
       leading: BackButton(
+        color: Styles.primaryColor,
         onPressed: () {
           Navigator.of(context).pop();
-          controller.pause();
-          exitFullScreen();
         },
       ),
       title: Text(

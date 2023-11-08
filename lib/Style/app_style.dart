@@ -11,13 +11,15 @@ class Styles {
   static TextStyle textStyle = TextStyle(
       fontSize: 12, color: Colors.grey.shade700, fontWeight: FontWeight.w500);
 //colors for polylines
-  static Color polyColorBaker = const Color.fromARGB(255, 171, 0, 0);
-  static Color polyColorClara = const Color.fromARGB(255, 171, 0, 0);
-
+  static Color polyColorBaker = const Color.fromARGB(115, 240, 138, 91);
+  static Color polyColorClara = const Color.fromARGB(111, 60, 116, 61);
+  static Color polyColorStrauss = const Color.fromARGB(102, 108, 200, 42);
+    static Color polyColorNS = const Color.fromARGB(99, 200, 42, 137);
+        static Color polyColorWiener = const Color.fromARGB(73, 50, 42, 200);
   static TextStyle headline = TextStyle(
       fontSize: 25,
       fontFamily: GoogleFonts.abel().fontFamily,
-      color: const Color.fromARGB(255, 171, 0, 0),
+      color: primaryColor,
       fontWeight: FontWeight.bold);
 
   static TextStyle textStyle1 = TextStyle(

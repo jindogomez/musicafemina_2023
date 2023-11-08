@@ -28,7 +28,7 @@ class _SplashPageState extends State<SplashPage> {
     _controller = VideoPlayerController.asset("assets/images/splash.mp4");
     _controller.initialize().then((_) {
       _controller.setLooping(true);
-      Timer(const Duration(milliseconds: 100), () {
+      Timer(const Duration(milliseconds: 1000), () {
         setState(() {
           _controller.play();
           _visible = true;
@@ -36,7 +36,7 @@ class _SplashPageState extends State<SplashPage> {
       });
     });
 
-    Future.delayed(const Duration(seconds: 4), () {
+    Future.delayed(const Duration(seconds: 5), () {
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(

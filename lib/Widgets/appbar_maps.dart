@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:musicafemina/Style/app_style.dart';
 
 import '../Pages/video_player.dart';
-import '../Pages/menu.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final AudioPlayer audioPlayer;
@@ -12,37 +12,39 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final double height;
   final Color bgColor;
-
-  const CustomAppBar({
+  final VoidCallback onLeadingButtonPressed;
+  final Function(MapController) onMapUpdate;
+  final MapController _mapController = MapController();
+  final Color imageFilterColor;
+  final Color backgroundColor;
+  CustomAppBar({
     Key? key,
     required this.audioPlayer,
     required this.videoUrl,
     required this.title,
     this.height = kToolbarHeight,
     required this.bgColor,
+    required this.onLeadingButtonPressed,
+    required this.onMapUpdate,
+    required this.imageFilterColor, required this.backgroundColor,
   }) : super(key: key);
 
   @override
-  Size get preferredSize => const Size.fromHeight(80.0);
+  Size get preferredSize => const Size.fromHeight(100.0);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: bgColor,
-      elevation: 0.0,
+      elevation: 1,
+shadowColor: Styles.primaryColor,
       centerTitle: true,
       toolbarHeight: 100,
       leading: IconButton(
         icon: const Icon(Icons.arrow_back_ios),
         color: Styles.primaryColor,
         onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const Menu(
-                        paramHomepage: '',
-                      )));
-          audioPlayer.stop();
+          onLeadingButtonPressed();
+          onMapUpdate(_mapController);
         },
       ),
       actions: [
@@ -58,15 +60,36 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             },
             icon: const Icon(Icons.video_collection)),
       ],
-      title: Text(
-        title,
-        style: TextStyle(
-          color: Styles.primaryColor,
-          fontSize: 20,
-          fontFamily: GoogleFonts.abel().fontFamily,
-          fontWeight: FontWeight.bold,
-        ),
+      title: Column(
+        children: [
+          Text(
+            title,
+            style: TextStyle(
+              color: Styles.primaryColor,
+              fontSize: 22,
+              fontFamily: GoogleFonts.abel().fontFamily,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Text(
+            'Stadtspaziergang',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              fontFamily: GoogleFonts.abel().fontFamily,
+              fontWeight: FontWeight.normal,
+            ),
+          ),
+        ],
       ),
+ 
+        backgroundColor: backgroundColor,
+  flexibleSpace: Image(
+    image:  const AssetImage('assets/images/mf_main_bg.png'),
+    fit: BoxFit.cover,
+    color: imageFilterColor,
+    colorBlendMode: BlendMode.srcOver,
+  ),
     );
   }
 }

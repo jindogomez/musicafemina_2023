@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'Pages/splash_screen.dart';
+import 'package:flutter/services.dart';
+import 'package:musicafemina/Pages/menu.dart';
+
 
 void main() {
   runApp(const MusicaFemina());
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+  ));
 }
 
 class MusicaFemina extends StatelessWidget {
@@ -20,7 +25,10 @@ class MusicaFemina extends StatelessWidget {
         ),
       ),
       // loaded home menu
-      home: const SplashPage(paramHomepage: 'Home'),
+      home: const Menu(paramHomepage: 'menu'),
     );
   }
 }
+
+//TODO: Alle Wege Testen -> Bilder,Audio,Texte usw.
+

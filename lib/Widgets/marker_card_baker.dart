@@ -23,27 +23,33 @@ class MarkerCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
     return Visibility(
       visible: _isCardVisible,
       child: Align(
         alignment: Alignment.center,
         child: Card(
-          shape: RoundedRectangleBorder(
-            side: BorderSide(color: Styles.primaryColor, width: 0.7),
-            borderRadius: BorderRadius.circular(15.0),
-          ),
+
+            shape: RoundedRectangleBorder(
+    side: BorderSide(
+      color:Styles.polyColorBaker,
+      width: 3,
+    ),
+            ),
+          margin: EdgeInsets.zero,
           child: SizedBox(
-            height: 500,
+            width: width,
+            height: height,
             child: _selectedMarkerIndex != null
                 ? Padding(
-                    padding: const EdgeInsets.all(2),
+                    padding: const EdgeInsets.all(1),
                     child: DecoratedBox(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
+                          
                           image: DecorationImage(
                             image: AssetImage(mapMarkers[_selectedMarkerIndex!]
-                                    .backgroundImage ??
-                                ''),
+                                .backgroundImage),
                             fit: BoxFit.cover,
                             alignment: Alignment.topCenter,
                           ),
@@ -53,22 +59,19 @@ class MarkerCard extends StatelessWidget {
                           child: SingleChildScrollView(
                             scrollDirection: Axis.vertical,
                             child: Padding(
-                              padding: const EdgeInsets.all(10.0),
+                              padding: const EdgeInsets.all(15),
                               child: Column(
                                 children: [
                                   const SizedBox(height: 15),
                                   Text(
-                                      mapMarkers[_selectedMarkerIndex!]
-                                              .address ??
-                                          '',
-                                      style: Styles.headline),
-                                  const SizedBox(height: 2),
+                                      mapMarkers[_selectedMarkerIndex!].address,
+                                      style: Styles.textStyle1),
+                                
                                   Text(
-                                    mapMarkers[_selectedMarkerIndex!].title ??
-                                        '',
+                                    mapMarkers[_selectedMarkerIndex!].title,
                                     style: Styles.textStyle1,
                                   ),
-                                  const SizedBox(height: 20),
+                     
                                   AudioControls(
                                     mapMarkers: mapMarkers,
                                     selectedMarkerIndex: _selectedMarkerIndex,
@@ -79,8 +82,7 @@ class MarkerCard extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 20),
                                   Text(
-                                    mapMarkers[_selectedMarkerIndex!].text ??
-                                        '',
+                                    mapMarkers[_selectedMarkerIndex!].text,
                                     style: Styles.textMain,
                                   ),
                                   const SizedBox(height: 15),

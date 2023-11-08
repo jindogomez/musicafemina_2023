@@ -1,25 +1,24 @@
-/// TODO:
 import 'package:analyzer_plugin/utilities/pair.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:musicafemina/MapContent/Baker/baker_polylines.dart';
 
-const String path = 'assets/images/Baker/';
-const String pathaudio = 'assets/audio/baker/';
+import 'baker_text.dart';
+import 'bakar_pair_images.dart';
+import 'baker_audio_urls.dart';
+import 'baker_polylines.dart';
+
+const String blankImage = 'assets/images/blank.png';
 
 class MapMarkerBaker {
-  //Bilder und Bild Untertitel für die Cards -> Pair (Bild, Untertitel)
   final List<Pair<String, String>> imageSubtextPairs;
-  final String? backgroundImage;
-  final String? audioClip;
-  final String? title;
-  final String? address;
-  final String? text;
-  final LatLng? location;
+  final String backgroundImage;
+  final String title;
+  final String address;
+  final String text;
+  final LatLng location;
+  final String audioClip;
   final LatLng? music;
 
-  static double latX = WayBaker.coor1;
-
-  MapMarkerBaker({
+  MapMarkerBaker._({
     required this.backgroundImage,
     required this.imageSubtextPairs,
     required this.audioClip,
@@ -27,29 +26,36 @@ class MapMarkerBaker {
     required this.text,
     required this.address,
     required this.location,
-    required this.music,
+    this.music,
   });
+
+  factory MapMarkerBaker.create({
+    required int textsIndex,
+    required int locationIndex,
+    required List<Pair<String, String>> imageSubtextPairs,
+    required int audioIndex,
+    LatLng? music,
+  }) {
+    return MapMarkerBaker._(
+      backgroundImage: blankImage,
+      imageSubtextPairs: imageSubtextPairs,
+      audioClip: AudioPathBaker.getAudioPath(audioIndex),
+      title: BakerText.getTitle(textsIndex),
+      text: BakerText.getText(textsIndex),
+      address: BakerText.getAddress(textsIndex),
+      location: WayBaker.getLatLng(locationIndex),
+      music: music,
+    );
+  }
 }
 
-final mapMarkers = [
-  //Parlament
-  MapMarkerBaker(
-      title: 'Josephine Baker',
-      backgroundImage:
-          'assets/images/baker_img/baker_parlament/mf_baker_02_header.png',
-      address: 'Kärntner Durchgang',
-      location: const LatLng(48.2071834219, 16.371258207246),
-      text:
-          'Strohkoffer, heute der Keller unter der American Loos Bar: Alfred Schmeller, der Kunsthistoriker, fand für den Artclub ein neues Lokal im Kärntnerdurchgang, den Keller unter der American Bar, die Alfred Loos im Jahre 1908 entworfen hatte. Dieser KünstlerInnen-Treffpunkt, der seinen Namen nach den mit Strohmatten ausgelegten Wänden hatte, bestand von 1951 bis 1953. Als 1952 das „Porgy and Bess-Ensemble“ in Wien gastierte – bekanntlich hatte George Gershwin seine Oper black singers reserviert – war der Strohkoffer das einzige Lokal in Wien, wo die Gäste willkommen waren – darunter Leontyne Price und Cab Calloway.',
-      imageSubtextPairs: [
-        Pair('assets/images/baker_img/baker_kaerntner/kaerntnerst_baker1.jpg',
-            ''),
-        Pair(
-            'assets/images/baker_img/baker_kaerntner/kaerntnerst_baker_tanz.jpg',
-            ''),
-        Pair('assets/images/baker_img/baker_kaerntner/kaerntnerst_baker_2.jpg',
-            ''),
-      ],
-      audioClip: 'assets/audio/baker_audio/baker_strohkoffer.mp3',
-      music: null),
-];
+final mapMarkers = List<MapMarkerBaker>.generate(
+  5,
+  (index) => MapMarkerBaker.create(
+    textsIndex: index + 1,
+    locationIndex: index + 1,
+    imageSubtextPairs:
+        createImageSubtextPairs(getImageSubtextListBaker(index + 1)),
+    audioIndex: index + 1,
+  ),
+);
