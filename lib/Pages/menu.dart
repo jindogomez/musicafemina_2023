@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:musicafemina/MapContent/All/waypoint_images.dart';
+import 'package:musicafemina/Pages/map_demokratie.dart';
 import 'package:musicafemina/Pages/map_ns.dart';
 import 'package:musicafemina/Pages/map_strauss.dart';
 import 'package:musicafemina/Pages/map_wiener.dart';
@@ -90,7 +91,7 @@ class Menu extends StatelessWidget {
                       iconColor: Colors.black,
                       tileColor: Styles.polyColorBaker,
                       focusColor: Colors.blue,
-                      hoverColor: Colors.red,
+            hoverColor: Styles.primaryColor,
                       textColor: Colors.white,
                       leading: Padding(
                         padding: const EdgeInsets.only(top: 2.0, bottom: 2.0), 
@@ -116,9 +117,9 @@ class Menu extends StatelessWidget {
                       iconColor: Colors.black,
                       tileColor: Styles.polyColorClara,
                       focusColor: Colors.blue,
-                      hoverColor: Colors.red,
+                     hoverColor: Styles.primaryColor,
                       textColor: Colors.white,
-                      title: const Text('Clara Wieck Schuman'),
+                      title: const Text('Clara Wieck Schumann'),
              
                       leading: Padding(
                        padding: const EdgeInsets.only(top: 2.0, bottom: 2.0), 
@@ -142,7 +143,7 @@ class Menu extends StatelessWidget {
                       iconColor: Colors.black,
                       tileColor: Styles.polyColorWiener,
                       focusColor: Colors.blue,
-                      hoverColor: Colors.red,
+                     hoverColor: Styles.primaryColor,
                       textColor: Colors.white,
                       title: const Text('Wiener Klassikerinnen'),
         
@@ -168,7 +169,7 @@ class Menu extends StatelessWidget {
                       iconColor: Colors.black,
                       tileColor: Styles.polyColorNS,
                       focusColor: Colors.blue,
-                      hoverColor: Colors.red,
+                     hoverColor: Styles.primaryColor,
                       textColor: Colors.white,
                       title: const Text('NS Verfemte Komponistinnen '),
             
@@ -192,7 +193,7 @@ class Menu extends StatelessWidget {
                       iconColor: Colors.black,
                       tileColor: Styles.polyColorStrauss,
                       focusColor: Colors.blue,
-                      hoverColor: Colors.red,
+                      hoverColor: Styles.primaryColor,
                       textColor: Colors.white,
                       title: const Text('Johann Strauss Zeitgenossinnen'),
 
@@ -209,11 +210,38 @@ class Menu extends StatelessWidget {
                                     )));
                       },
                     ),
+
+                     const SizedBox(height: 10),
+                    ListTile(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      iconColor: Colors.black,
+                      tileColor: Styles.polyColorDemokratie, 
+                      focusColor: Colors.blue,
+                      hoverColor: Styles.primaryColor,
+                      textColor: Colors.white,
+                      title: const Text('Orte der Demokratie'),
+
+                      leading: Padding(
+                         padding: const EdgeInsets.only(top: 2.0, bottom: 2.0), 
+                        child: Image.asset(WaypointImages().demokratieWaypoint),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const MapDemokratie(
+                                    
+                                    )));
+                      },
+                    ),
                   ],
                 ),
               ),
             ),
           ),
+
+          
           bottomNavigationBar: Stack(
             children: [
               // workaround für transparente navbar

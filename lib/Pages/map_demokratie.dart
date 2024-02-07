@@ -1,40 +1,36 @@
 import 'dart:async';
-
 import 'package:flutter_map/plugin_api.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:musicafemina/Style/app_style.dart';
+import 'package:musicafemina/Widgets/appbar_maps_multipl_videos_strauss.dart';
 import 'package:musicafemina/Widgets/costum_icons.dart';
 
 //file import
 import '../MapContent/All/waypoint_images.dart';
-import '../MapContent/Baker/baker_polylines.dart';
 import '../Services/constants_mapbox.dart';
 import '../Services/location_helper.dart';
-import '../Widgets/appbar_maps.dart';
+import '../Style/app_style.dart';
+
 import '../Widgets/center_floatingbutton.dart';
-import '../MapContent/Baker/baker_marker.dart';
+import '../MapContent/Strauss/strauss_marker.dart';
 import '../Services/directions_service.dart';
-import '../Widgets/marker_card_baker.dart';
+import '../MapContent/Strauss/strauss_polylines.dart';
+import '../Widgets/marker_card_strauss.dart';
 import 'menu.dart';
 
 typedef UpdateCallback = void Function(void Function());
 
-class MapBaker extends StatefulWidget {
-  final String videoUrl;
+class MapDemokratie extends StatefulWidget {
 
-  const MapBaker({
-    Key? key,
-    required this.videoUrl,
-  }) : super(key: key);
+  const MapDemokratie({Key? key, }) : super(key: key);
 
   @override
-  State<MapBaker> createState() => _MapBakerState();
+  State<MapDemokratie> createState() => _MapDemokratieState();
 }
 
-class _MapBakerState extends State<MapBaker> {
+class _MapDemokratieState extends State<MapDemokratie> {
   MapController _mapController = MapController();
   List<LatLng> latlngList = [];
   List<LatLng> _routePoints = [];
@@ -43,7 +39,9 @@ class _MapBakerState extends State<MapBaker> {
   late AudioPlayer audioPlayer;
   String? lastAudioClip;
   StreamSubscription<PlayerState>? playerStateStreamSubscription;
+
   final double customAppBarHeight = 100.0;
+
   @override
   void initState() {
     super.initState();
@@ -73,7 +71,7 @@ class _MapBakerState extends State<MapBaker> {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            content: const Text('Kein Gps Signal, vergewisere dich, dass du dein GPS aktiviert hast.'),
+            content: const Text('Kein Gps Signal, bitte aktiviere dein GPS'),
             actions: [
               TextButton(
                 onPressed: () {
@@ -91,7 +89,7 @@ class _MapBakerState extends State<MapBaker> {
   Future<void> loadRouteCoordinates() async {
     try {
       List<List<double>> coordinates =
-          await getRouteCoordinates(WayBaker.waypointsBaker);
+          await getRouteCoordinates(WayStrauss.waypointsStrauss);
 
       if (coordinates.isNotEmpty) {
         if (mounted) {
@@ -106,7 +104,7 @@ class _MapBakerState extends State<MapBaker> {
           showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              content: const Text('Keine Locations gefunden, vergewisere dich, dass du eine Internetverbindung hast.'),
+              content: const Text('Keine Locations gefunden, vergewisere dich, dass du eine Internetverbindung hast'),
               actions: [
                 TextButton(
                   onPressed: () {
@@ -191,7 +189,7 @@ class _MapBakerState extends State<MapBaker> {
             return AlertDialog(
               title: const Text('Error'),
               content:
-                  Text('An error occurred while trying to play the audio: $e'),
+                  const Text('An error occurred while trying to play the audio'),
               actions: [
                 TextButton(
                   onPressed: () {
@@ -241,18 +239,17 @@ class _MapBakerState extends State<MapBaker> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
-      appBar: CustomAppBar(
-          backgroundColor: Colors.black.withOpacity(0.5),
-        imageFilterColor: Styles.polyColorBaker.withOpacity(0.1),
+      
+      appBar:CustomAppBarMoreStrauss(
         bgColor: Styles.bgColor,
         audioPlayer: audioPlayer,
         onLeadingButtonPressed: _toggleCardVisibility,
-        videoUrl: widget.videoUrl,
-        title: 'Josephine Baker', //ändert titel in appbar
-                  onMapUpdate: (MapController mapController) {
+       imageFilterColor: Styles.polyColorDemokratie.withOpacity(0.1),
+        title: 'Orte der Demokratie', //ändert titel in appbar
+          onMapUpdate: (MapController mapController) {
     _mapController.move(
             const LatLng(48.210333041716, 16.372817971454), 14.0);
-  },
+  }, 
       ),
       floatingActionButton: _isCardVisible
           ? null
@@ -262,25 +259,20 @@ class _MapBakerState extends State<MapBaker> {
               mapController: _mapController,
               onPressed: () {
                 setState(() {
-                  _isCardVisible =
-                      true; // Or any other action you want to perform
+                  _isCardVisible = true;
                 });
               },
             ),
       body: Stack(
         children: [
-                          Container(
-      color: Colors.white,  // Set the background color to white
-    ),
-            
           Padding(
             padding: EdgeInsets.only(top: customAppBarHeight),
             child: FlutterMap(
               mapController: _mapController,
               options: MapOptions(
-                minZoom: 14,
+                minZoom: 12,
                 maxZoom: 18,
-                zoom: 15,
+                zoom: 13,
                 center: AppConstants.myLocation,
                 interactiveFlags: InteractiveFlag.all & ~InteractiveFlag.rotate,
                 onTap: (tapPosition, LatLng point) {
@@ -294,21 +286,17 @@ class _MapBakerState extends State<MapBaker> {
               ),
               children: [
                 TileLayer(
-
-                    urlTemplate: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-                      userAgentPackageName: 'dev',
+                
+             urlTemplate: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
       subdomains: const ['a', 'b', 'c', 'd'],
+                  userAgentPackageName: 'dev.fleaflet.flutter_map.example',
                 ),
-
-
-     
-    
                 PolylineLayer(
                   polylines: [
                     Polyline(
                       points: _routePoints,
                       strokeWidth: 4,
-                      color: Styles.polyColorBaker,
+                      color: Styles.polyColorStrauss,
                       isDotted: false,
                     ),
                   ],
@@ -332,7 +320,7 @@ class _MapBakerState extends State<MapBaker> {
                         point: mapMarkers[i].location,
                         builder: (_) => CustomIcon(
                           location: mapMarkers[i].location,
-                          imageAsset: WaypointImages().bakerWaypoint,
+                          imageAsset: WaypointImages().straussWaypoint,
                           onTap: () {
                             setState(() {
                               _isCardVisible = true;

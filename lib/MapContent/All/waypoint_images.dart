@@ -7,4 +7,6 @@ class WaypointImages {
       'assets/images/waypoints_all/waypoint_nsverfemte.png';
   final String straussWaypoint =
       'assets/images/waypoints_all/waypoint_strauss.png';
+        final String demokratieWaypoint =
+      'assets/images/waypoints_all/waypoint_demokratie.png';
 }

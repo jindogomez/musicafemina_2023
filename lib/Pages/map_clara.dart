@@ -224,7 +224,7 @@ class _MapClaraState extends State<MapClara> {
         audioPlayer: audioPlayer,
         videoUrl: widget.videoUrl,
         onLeadingButtonPressed: _toggleCardVisibility,
-        title: 'Clara Wieck Schuman', //ändert titel in appbar
+        title: 'Clara Wieck Schumann', //ändert titel in appbar
                   onMapUpdate: (MapController mapController) {
     _mapController.move(
             const LatLng(48.210333041716, 16.372817971454), 14.0);
@@ -254,6 +254,7 @@ class _MapClaraState extends State<MapClara> {
               children: [
                 TileLayer(
   urlTemplate: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+    userAgentPackageName: 'dev',
       subdomains: const ['a', 'b', 'c', 'd'],
 
                   //"${AppConstants.mapBoxUrl}?access_token={accessToken}",
