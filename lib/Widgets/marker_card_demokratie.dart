@@ -3,10 +3,14 @@
 import 'package:analyzer_plugin/utilities/pair.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:musicafemina/MapContent/Strauss/strauss_marker.dart';
+import 'package:musicafemina/MapContent/Demokratie/demokratie_marker.dart';
 
-import 'audio_button_strauss.dart';
+
+
+
+
 import '../Style/app_style.dart';
+import 'audio_button_demokratie.dart';
 
 class MarkerCard extends StatelessWidget {
   final bool _isCardVisible;
@@ -35,7 +39,7 @@ class MarkerCard extends StatelessWidget {
         child: Card(
                           shape: RoundedRectangleBorder(
     side: BorderSide(
-      color:Styles.polyColorStrauss,
+      color:Styles.polyColorDemokratie,
       width: 3,
     ),
             ),

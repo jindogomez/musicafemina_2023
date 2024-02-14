@@ -87,14 +87,14 @@ class Menu extends StatelessWidget {
                     const SizedBox(height: 0),
                     ListTile(
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
+                          borderRadius: BorderRadius.circular(50)),
                       iconColor: Colors.black,
                       tileColor: Styles.polyColorBaker,
                       focusColor: Colors.blue,
             hoverColor: Styles.primaryColor,
                       textColor: Colors.white,
                       leading: Padding(
-                        padding: const EdgeInsets.only(top: 2.0, bottom: 2.0), 
+                        padding: const EdgeInsets.only(top: 2.0, bottom: 2.0,  ), 
                         child: Image.asset(
                           WaypointImages().bakerWaypoint,
                         ),
@@ -113,7 +113,7 @@ class Menu extends StatelessWidget {
                     const SizedBox(height: 10),
                     ListTile(
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
+                          borderRadius: BorderRadius.circular(50)),
                       iconColor: Colors.black,
                       tileColor: Styles.polyColorClara,
                       focusColor: Colors.blue,
@@ -139,7 +139,7 @@ class Menu extends StatelessWidget {
                     const SizedBox(height: 10),
                     ListTile(
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
+                          borderRadius: BorderRadius.circular(50)),
                       iconColor: Colors.black,
                       tileColor: Styles.polyColorWiener,
                       focusColor: Colors.blue,
@@ -165,7 +165,7 @@ class Menu extends StatelessWidget {
                     const SizedBox(height: 10),
                     ListTile(
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
+                          borderRadius: BorderRadius.circular(50)),
                       iconColor: Colors.black,
                       tileColor: Styles.polyColorNS,
                       focusColor: Colors.blue,
@@ -189,7 +189,7 @@ class Menu extends StatelessWidget {
                     const SizedBox(height: 10),
                     ListTile(
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
+                          borderRadius: BorderRadius.circular(50)),
                       iconColor: Colors.black,
                       tileColor: Styles.polyColorStrauss,
                       focusColor: Colors.blue,
@@ -198,13 +198,13 @@ class Menu extends StatelessWidget {
                       title: const Text('Johann Strauss Zeitgenossinnen'),
 
                       leading: Padding(
-                         padding: const EdgeInsets.only(top: 2.0, bottom: 2.0), 
+                         padding: const EdgeInsets.only(top: 4.0, bottom: 4.0), 
                         child: Image.asset(WaypointImages().straussWaypoint),
                       ),
-                      onTap: () {
+                    onTap: () {
                         Navigator.push(
                             context,
-                            MaterialPageRoute(
+                            MaterialPageRoute( 
                                 builder: (context) => const MapStrauss(
                                     
                                     )));
@@ -214,7 +214,7 @@ class Menu extends StatelessWidget {
                      const SizedBox(height: 10),
                     ListTile(
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
+                          borderRadius: BorderRadius.circular(50)),
                       iconColor: Colors.black,
                       tileColor: Styles.polyColorDemokratie, 
                       focusColor: Colors.blue,
@@ -226,12 +226,12 @@ class Menu extends StatelessWidget {
                          padding: const EdgeInsets.only(top: 2.0, bottom: 2.0), 
                         child: Image.asset(WaypointImages().demokratieWaypoint),
                       ),
-                      onTap: () {
+                    onTap: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const MapDemokratie(
-                                    
+                                builder: (context) => MapDemokratie(
+                                  videoUrl: VideoUrls().videoDemokratie,
                                     )));
                       },
                     ),

@@ -4,28 +4,31 @@ import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:musicafemina/Widgets/appbar_maps_multipl_videos_strauss.dart';
+import 'package:musicafemina/Widgets/appbar_maps.dart';
+
 import 'package:musicafemina/Widgets/costum_icons.dart';
+import 'package:musicafemina/Widgets/marker_card_demokratie.dart';
 
 //file import
 import '../MapContent/All/waypoint_images.dart';
+import '../MapContent/Demokratie/demokratie_marker.dart';
+import '../MapContent/Demokratie/demokratie_polylines.dart';
 import '../Services/constants_mapbox.dart';
 import '../Services/location_helper.dart';
 import '../Style/app_style.dart';
 
 import '../Widgets/center_floatingbutton.dart';
-import '../MapContent/Strauss/strauss_marker.dart';
+
 import '../Services/directions_service.dart';
-import '../MapContent/Strauss/strauss_polylines.dart';
-import '../Widgets/marker_card_strauss.dart';
+
 import 'menu.dart';
 
 typedef UpdateCallback = void Function(void Function());
 
 class MapDemokratie extends StatefulWidget {
+    final String videoUrl;
 
-  const MapDemokratie({Key? key, }) : super(key: key);
-
+  const MapDemokratie({Key? key, required this.videoUrl}) : super(key: key);
   @override
   State<MapDemokratie> createState() => _MapDemokratieState();
 }
@@ -89,7 +92,7 @@ class _MapDemokratieState extends State<MapDemokratie> {
   Future<void> loadRouteCoordinates() async {
     try {
       List<List<double>> coordinates =
-          await getRouteCoordinates(WayStrauss.waypointsStrauss);
+          await getRouteCoordinates(WayDemokratie.waypointsDemokratie);
 
       if (coordinates.isNotEmpty) {
         if (mounted) {
@@ -240,11 +243,13 @@ class _MapDemokratieState extends State<MapDemokratie> {
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
       
-      appBar:CustomAppBarMoreStrauss(
-        bgColor: Styles.bgColor,
+     appBar: CustomAppBar(
+          backgroundColor: Colors.black.withOpacity(0.5),
+        imageFilterColor: Styles.polyColorDemokratie.withOpacity(0.3),
+        bgColor: const Color.fromARGB(137, 255, 255, 255),
         audioPlayer: audioPlayer,
+        videoUrl: widget.videoUrl,
         onLeadingButtonPressed: _toggleCardVisibility,
-       imageFilterColor: Styles.polyColorDemokratie.withOpacity(0.1),
         title: 'Orte der Demokratie', //ändert titel in appbar
           onMapUpdate: (MapController mapController) {
     _mapController.move(
@@ -296,7 +301,7 @@ class _MapDemokratieState extends State<MapDemokratie> {
                     Polyline(
                       points: _routePoints,
                       strokeWidth: 4,
-                      color: Styles.polyColorStrauss,
+                      color: Styles.polyColorDemokratie,
                       isDotted: false,
                     ),
                   ],
@@ -320,7 +325,7 @@ class _MapDemokratieState extends State<MapDemokratie> {
                         point: mapMarkers[i].location,
                         builder: (_) => CustomIcon(
                           location: mapMarkers[i].location,
-                          imageAsset: WaypointImages().straussWaypoint,
+                          imageAsset: WaypointImages().demokratieWaypoint,
                           onTap: () {
                             setState(() {
                               _isCardVisible = true;
@@ -334,7 +339,7 @@ class _MapDemokratieState extends State<MapDemokratie> {
                   ],
                 ),
 
-                //Design von den Karten stored in marker_card_baker.dart
+                //Design von den Karten stored in marker_card_XXXX.dart
                 MarkerCard(
                   _isCardVisible,
                   _selectedMarkerIndex,

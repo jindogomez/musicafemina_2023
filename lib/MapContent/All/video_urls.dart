@@ -2,7 +2,7 @@ class VideoUrls {
   final videoClara = 'https://www.laurusedelbacher.com/mf/ClaraSchumann.mp4';
   final videoBaker = 'https://www.laurusedelbacher.com/mf/JosephineBaker.mp4';
   final videoNs = 'https://www.laurusedelbacher.com/mf/Die_Verfemten.mp4';
-
+final videoDemokratie = 'https://www.laurusedelbacher.com/mf/Die_Verfemten.mp4';
   final videoWiener1 =
       'https://www.laurusedelbacher.com/mf/WienerK_Maria_Theresia_Paradis.mp4';
 
