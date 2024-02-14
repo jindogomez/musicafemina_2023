@@ -94,7 +94,7 @@ class Menu extends StatelessWidget {
             hoverColor: Styles.primaryColor,
                       textColor: Colors.white,
                       leading: Padding(
-                        padding: const EdgeInsets.only(top: 2.0, bottom: 2.0,  ), 
+                        padding: const EdgeInsets.only(top: 4.0, bottom: 4.0,  ), 
                         child: Image.asset(
                           WaypointImages().bakerWaypoint,
                         ),
@@ -122,7 +122,7 @@ class Menu extends StatelessWidget {
                       title: const Text('Clara Wieck Schumann'),
              
                       leading: Padding(
-                       padding: const EdgeInsets.only(top: 2.0, bottom: 2.0), 
+                       padding: const EdgeInsets.only(top: 4.0, bottom: 4.0), 
                         child: Image.asset(
                           WaypointImages().claraWaypoint,
                         ),
@@ -148,7 +148,7 @@ class Menu extends StatelessWidget {
                       title: const Text('Wiener Klassikerinnen'),
         
                       leading: Padding(
-                        padding: const EdgeInsets.only(top: 2.0, bottom: 2.0), 
+                        padding: const EdgeInsets.only(top: 4.0, bottom: 4.0), 
                         child: Image.asset(
                           WaypointImages().wienerklassikerinnenWaypoint,
                         ),
@@ -174,7 +174,7 @@ class Menu extends StatelessWidget {
                       title: const Text('NS Verfemte Komponistinnen '),
             
                       leading: Padding(
-                        padding: const EdgeInsets.only(top: 2.0, bottom: 2.0), 
+                        padding: const EdgeInsets.only(top: 4.0, bottom: 4.0), 
                         child: Image.asset(WaypointImages().nsWaypoint),
                       ),
                       onTap: () {
@@ -223,7 +223,7 @@ class Menu extends StatelessWidget {
                       title: const Text('Orte der Demokratie'),
 
                       leading: Padding(
-                         padding: const EdgeInsets.only(top: 2.0, bottom: 2.0), 
+                         padding: const EdgeInsets.only(top: 4.0, bottom: 4.0), 
                         child: Image.asset(WaypointImages().demokratieWaypoint),
                       ),
                     onTap: () {
