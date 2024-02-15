@@ -2,14 +2,16 @@ const String basePath = 'assets/images/orte_der_demokratie';
 
 // folder names
 final List<String> folders = [
-  'Berta Zuckerkandl_Strudlhofstiege',
+
  'Yella_Hertzka _Kelsen Institut',
-  'Eugenie_Schwarzwald_Wallner Strasse_9',
+   'Berta Zuckerkandl_Strudlhofstiege',
+   'Berta_Zuckerkandl_Salon_Oppolzergasse_6',
   'Wiener_Frauenklub _Tuchlaueben_11',
+  'Eugenie_Schwarzwald_Wallner Strasse_9',
   'Grete_Rehor_Park',
   'Konzerthaus_Ethel_Smyth',
   'Musikverein_Friedenskongress',
-  'Berta_Zuckerkandl_Salon_Oppolzergasse_6',
+
 ];
 
 String _generateFullPath(String folderName, String imageName) {
@@ -17,7 +19,21 @@ String _generateFullPath(String folderName, String imageName) {
 }
 
 final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
-  'Berta Zuckerkandl_Strudlhofstiege': [
+
+  'Yella_Hertzka _Kelsen Institut': [
+    {
+      'image': 'Cottage-LyzeumKopie.jpg',
+      'subtext': 'Cottage Lyzeum'
+    },
+
+    {'image': 'Yella_Hertzka.jpg', 'subtext': 'Yella Hertzka'},
+
+   
+
+  ],
+
+
+    'Berta Zuckerkandl_Strudlhofstiege': [
     {'image': 'Berta und Emil Kopie.jpg', 'subtext': 'Berta und Emil'},
     {
       'image': 'Berta_Zuckerkandl Kopie.jpg',
@@ -32,17 +48,6 @@ final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
       'image': 'Carl_Moll.jpeg',
       'subtext': 'Carl Moll'
     },
-  ],
-  'Yella_Hertzka _Kelsen Institut': [
-    {
-      'image': 'Cottage-LyzeumKopie.jpg',
-      'subtext': 'Cottage Lyzeum'
-    },
-
-    {'image': 'Yella_Hertzka.jpg', 'subtext': 'Yella Hertzka'},
-
-   
-
   ],
   'Eugenie_Schwarzwald_Wallner Strasse_9': [
     {
@@ -105,9 +110,9 @@ final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
     {'image': '1Oppolzergasse_7.jpg', 'subtext': 'Oppolzergasse 6'},
     {
       'image': 'Bibliothek.jpg',
-      'subtext': 'Bibliothek'
+      'subtext': 'Sallon (Copyright mit "Stadt Wien)“'
     },
-    {'image': 'Café_Landtmann_Gedenktafel_Zuckerkandl_ViennaKopie.jpg', 'subtext': 'Café Landtmann'},
+    {'image': 'Café_Landtmann_Gedenktafel_Zuckerkandl_ViennaKopie.jpg', 'subtext': 'Gedenktafel Bertha Zuckerkandl'},
   ],
 };
 List<Map<String, String>> getImageSubtextListWithFullPath(int index) {
