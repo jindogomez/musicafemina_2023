@@ -231,7 +231,7 @@ class _MapBakerState extends State<MapWiener> {
           ),
         );
         _mapController.move(
-            const LatLng(48.210333041716, 16.372817971454), 14.0);
+            const LatLng(48.210333041716, 16.372817971454), 14.0); // zoom und focus ändern
       }
     });
   }
@@ -251,19 +251,19 @@ class _MapBakerState extends State<MapWiener> {
         title: 'Wiener Klassikerinnen', //ändert titel in appbar
                   onMapUpdate: (MapController mapController) {
     _mapController.move(
-            const LatLng(48.210333041716, 16.372817971454), 14.0);
+            const LatLng(48.210333041716, 16.372817971454), 14.0); // zoom und focus ändern
   },
       ),
       floatingActionButton: _isCardVisible
           ? null
           : CenterFloatingActionButton(
-              location: const LatLng(48.210333041716, 16.372817971454),
+              location: const LatLng(48.210333041716, 16.372817971454), // zoom und focus ändern
               zoom: 14.0,
               mapController: _mapController,
               onPressed: () {
                 setState(() {
                   _isCardVisible =
-                      true; // Or any other action you want to perform
+                      true; 
                 });
               },
             ),
