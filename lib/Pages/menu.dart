@@ -218,7 +218,7 @@ class Menu extends StatelessWidget {
                       focusColor: Colors.blue,
                       hoverColor: Styles.primaryColor,
                       textColor: Colors.white,
-                      title: const Text('Orte der Demokratie'),
+                      title: const Text('Feministische Orte der Demokratie'),
                       contentPadding: const EdgeInsets.symmetric(horizontal: 4),
                       leading: Padding(
                         padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
@@ -240,7 +240,7 @@ class Menu extends StatelessWidget {
           ),
           bottomNavigationBar: Stack(
             children: [
-              // workaround für transparente navbar
+              // workaround für transparente ynavbar
               BottomNavigationBar(
                 items: const [
                   BottomNavigationBarItem(

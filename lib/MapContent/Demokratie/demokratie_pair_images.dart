@@ -34,19 +34,19 @@ final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
 
 
     'Berta Zuckerkandl_Strudlhofstiege': [
-    {'image': 'Berta und Emil Kopie.jpg', 'subtext': 'Berta und Emil'},
+    {'image': 'Berta und Emil Kopie.jpg', 'subtext': 'Bertha Zuckerkandl mit ihrem Enkel Emil'},
     {
       'image': 'Berta_Zuckerkandl Kopie.jpg',
-      'subtext': 'Berta Zuckerkandl'
+      'subtext': 'Bertha Zuckerkandl'
     },
     {
       'image': 'Bertha_Zuckerkandl_von_Vilma_Elisabeth_von_Parlaghy_Brochfeld.jpg',
-      'subtext': 'Bertha Zuckerkandl, Vilma Elisabeth, Parlaghy Brochfeld'
+      'subtext': 'Bertha Zuckerkandl gemalt von Vilma Elisabeth von Parlaghy Brochfeld '
     },
 
      {
       'image': 'Carl_Moll.jpeg',
-      'subtext': 'Carl Moll'
+      'subtext': 'Weißes Interieur von Carl Moll / Speisezimmer der Bertha Zuckerkandl '
     },
   ],
   'Eugenie_Schwarzwald_Wallner Strasse_9': [
@@ -58,7 +58,7 @@ final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
     },
     {
       'image': 'AlbanBerg.jpg',
-      'subtext': 'Alban Berg'
+      'subtext': 'Eugenie Schwarzwald im Kreise ihrer Dozenten: links Alban Berg und Egon Wellesz , hinter ihr Helen Berg, rechts Hermann Schwarzwald '
     },
     {
       'image': 'ESPorträOttoKokoschka.jpg',
@@ -67,7 +67,7 @@ final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
     
     {
       'image': 'Privat-Mädchen-Lyzeums.jpg',
-      'subtext': 'Eugenie Schwarzwald als Direktorin ihres Privat Mädchen Lyzeums'
+      'subtext': 'Eugenie Schwarzwald als Direktorin ihres Privat-Mädchenlyzeum'
     },
   ],
   'Wiener_Frauenklub _Tuchlaueben_11': [
@@ -84,7 +84,7 @@ final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
   'Grete_Rehor_Park': [
     {
       'image': 'Grete_Rehor_ Kopie.jpg',
-      'subtext': ' Tonlithographie aus Rudolf Alt Wien'
+      'subtext': ' Grete Rehor'
     },
     {'image': 'Gruppenfoto.jpg', 'subtext': 'Gruppenfoto der Regierung Klaus I nach Regierungsumbildung, Fritz Kern, Wien, 19.1.1968. ÖNB, Bildarchiv und Grafiksammlung.'},
   ],
@@ -110,7 +110,7 @@ final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
     {'image': '1Oppolzergasse_7.jpg', 'subtext': 'Oppolzergasse 6'},
     {
       'image': 'Bibliothek.jpg',
-      'subtext': 'Sallon (Copyright mit "Stadt Wien)“'
+      'subtext': 'Salon (Copyright mit "Stadt Wien)“'
     },
     {'image': 'Café_Landtmann_Gedenktafel_Zuckerkandl_ViennaKopie.jpg', 'subtext': 'Gedenktafel Bertha Zuckerkandl'},
   ],
