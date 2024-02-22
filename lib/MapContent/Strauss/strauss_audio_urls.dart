@@ -3,8 +3,7 @@ const String audioPath = 'assets/audio/strauss_audio/';
 
 // Utility class for handling audio paths.
 class AudioPathStrauss {
-  // A private, constant list of audio file paths. Each path is constructed
-  // by combining a constant directory path with the individual audio file name.
+
   static const List<String> _audioPaths = [
     '${audioPath}strauss_palaiscoburg.mp3', // Coburgbastei  -> audioIndex: 1
     '${audioPath}strauss_spiegelgasse.mp3', //Spiegelgasse audioIndex: 2

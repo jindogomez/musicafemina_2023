@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:musicafemina/MapContent/All/waypoint_images.dart';
+import 'package:musicafemina/Pages/map_demokratie.dart';
 import 'package:musicafemina/Pages/map_ns.dart';
 import 'package:musicafemina/Pages/map_strauss.dart';
 import 'package:musicafemina/Pages/map_wiener.dart';
@@ -86,20 +87,23 @@ class Menu extends StatelessWidget {
                     const SizedBox(height: 0),
                     ListTile(
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
+                          borderRadius: BorderRadius.circular(50)),
                       iconColor: Colors.black,
                       tileColor: Styles.polyColorBaker,
                       focusColor: Colors.blue,
-                      hoverColor: Colors.red,
+                      hoverColor: Styles.primaryColor,
                       textColor: Colors.white,
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 4),
                       leading: Padding(
-                        padding: const EdgeInsets.only(top: 2.0, bottom: 2.0), 
+                        padding: const EdgeInsets.only(
+                          top: 4.0,
+                          bottom: 4.0,
+                        ),
                         child: Image.asset(
                           WaypointImages().bakerWaypoint,
                         ),
                       ),
                       title: const Text('Josephine Baker'),
-     
                       onTap: () {
                         Navigator.push(
                             context,
@@ -112,16 +116,16 @@ class Menu extends StatelessWidget {
                     const SizedBox(height: 10),
                     ListTile(
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
+                          borderRadius: BorderRadius.circular(50)),
                       iconColor: Colors.black,
                       tileColor: Styles.polyColorClara,
                       focusColor: Colors.blue,
-                      hoverColor: Colors.red,
+                      hoverColor: Styles.primaryColor,
                       textColor: Colors.white,
-                      title: const Text('Clara Wieck Schuman'),
-             
+                      title: const Text('Clara Wieck Schumann'),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 4),
                       leading: Padding(
-                       padding: const EdgeInsets.only(top: 2.0, bottom: 2.0), 
+                        padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
                         child: Image.asset(
                           WaypointImages().claraWaypoint,
                         ),
@@ -138,16 +142,16 @@ class Menu extends StatelessWidget {
                     const SizedBox(height: 10),
                     ListTile(
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
+                          borderRadius: BorderRadius.circular(50)),
                       iconColor: Colors.black,
                       tileColor: Styles.polyColorWiener,
                       focusColor: Colors.blue,
-                      hoverColor: Colors.red,
+                      hoverColor: Styles.primaryColor,
                       textColor: Colors.white,
                       title: const Text('Wiener Klassikerinnen'),
-        
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 4),
                       leading: Padding(
-                        padding: const EdgeInsets.only(top: 2.0, bottom: 2.0), 
+                        padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
                         child: Image.asset(
                           WaypointImages().wienerklassikerinnenWaypoint,
                         ),
@@ -156,24 +160,22 @@ class Menu extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const MapWiener(
-                                    
-                                    )));
+                                builder: (context) => const MapWiener()));
                       },
                     ),
                     const SizedBox(height: 10),
                     ListTile(
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
+                          borderRadius: BorderRadius.circular(50)),
                       iconColor: Colors.black,
                       tileColor: Styles.polyColorNS,
                       focusColor: Colors.blue,
-                      hoverColor: Colors.red,
+                      hoverColor: Styles.primaryColor,
                       textColor: Colors.white,
                       title: const Text('NS Verfemte Komponistinnen '),
-            
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 4),
                       leading: Padding(
-                        padding: const EdgeInsets.only(top: 2.0, bottom: 2.0), 
+                        padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
                         child: Image.asset(WaypointImages().nsWaypoint),
                       ),
                       onTap: () {
@@ -181,31 +183,53 @@ class Menu extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => MapNs(
-                                  videoUrl: VideoUrls().videoNs,
-                                )));
+                                      videoUrl: VideoUrls().videoNs,
+                                    )));
                       },
                     ),
                     const SizedBox(height: 10),
                     ListTile(
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
+                          borderRadius: BorderRadius.circular(50)),
                       iconColor: Colors.black,
                       tileColor: Styles.polyColorStrauss,
                       focusColor: Colors.blue,
-                      hoverColor: Colors.red,
+                      hoverColor: Styles.primaryColor,
                       textColor: Colors.white,
                       title: const Text('Johann Strauss Zeitgenossinnen'),
-
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 4),
                       leading: Padding(
-                         padding: const EdgeInsets.only(top: 2.0, bottom: 2.0), 
+                        padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
                         child: Image.asset(WaypointImages().straussWaypoint),
                       ),
                       onTap: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const MapStrauss(
-                                    
+                                builder: (context) => const MapStrauss()));
+                      },
+                    ),
+                    const SizedBox(height: 10),
+                    ListTile(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50)),
+                      iconColor: Colors.black,
+                      tileColor: Styles.polyColorDemokratie,
+                      focusColor: Colors.blue,
+                      hoverColor: Styles.primaryColor,
+                      textColor: Colors.white,
+                      title: const Text('Feministische Orte der Demokratie'),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 4),
+                      leading: Padding(
+                        padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+                        child: Image.asset(WaypointImages().demokratieWaypoint),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MapDemokratie(
+                                      videoUrl: VideoUrls().videoDemokratie,
                                     )));
                       },
                     ),
@@ -216,7 +240,7 @@ class Menu extends StatelessWidget {
           ),
           bottomNavigationBar: Stack(
             children: [
-              // workaround für transparente navbar
+              // workaround für transparente ynavbar
               BottomNavigationBar(
                 items: const [
                   BottomNavigationBarItem(

@@ -6,6 +6,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:musicafemina/MapContent/NsVerfemte/verfemte_marker.dart';
 import 'package:musicafemina/MapContent/NsVerfemte/verfemte_polylines.dart';
+import 'package:musicafemina/Pages/impressum.dart';
 import 'package:musicafemina/Widgets/costum_icons.dart';
 import 'package:musicafemina/Widgets/marker_card_ns.dart';
 
@@ -265,6 +266,56 @@ class _MapStraussState extends State<MapNs> {
                 });
               },
             ),
+               bottomNavigationBar: Stack(
+            children: [
+              // workaround für transparente ynavbar
+              BottomNavigationBar(
+                items: const [
+                  BottomNavigationBarItem(
+                      icon: SizedBox(width: 24, height: 24), label: ''),
+                  BottomNavigationBarItem(
+                      icon: SizedBox(width: 24, height: 24), label: ''),
+                ],
+                backgroundColor: Styles.polyColorNS.withOpacity(0.1),
+                elevation: 0.0, // schatten unter navbar
+              ),
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 5,
+                child: SizedBox(
+                  height: 50, // höhe navbar bottum
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      SizedBox(
+                        // logo wien
+                        child: Image.asset(
+                          'assets/images/Stadt-Wien_Logo_pos_rgb.gif',
+                          width: 80.0,
+                          height: 80.0,
+                        ),
+                      ),
+                      IconButton(
+                        icon: const Icon(
+                          Icons.info,
+                          size: 40.0,
+                     
+                          color: Color.fromARGB(255, 124, 118, 118),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ImpressumPage()));
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
       body: Stack(
         children: [
           Padding(

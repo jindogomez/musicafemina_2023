@@ -16,6 +16,7 @@ class Styles {
   static Color polyColorStrauss = const Color.fromARGB(102, 108, 200, 42);
     static Color polyColorNS = const Color.fromARGB(99, 200, 42, 137);
         static Color polyColorWiener = const Color.fromARGB(73, 50, 42, 200);
+          static Color polyColorDemokratie = const Color.fromARGB(118, 51, 153, 249);
   static TextStyle headline = TextStyle(
       fontSize: 25,
       fontFamily: GoogleFonts.abel().fontFamily,

@@ -15,16 +15,18 @@ final Function(MapController) onMapUpdate;
   final Color bgColor;
   final VoidCallback onLeadingButtonPressed;
   final MapController _mapController = MapController();
+  
+ final Color imageFilterColor;
 
  CustomAppBarMoreStrauss({
     Key? key,
     required this.audioPlayer,
-
+    required this.imageFilterColor,
     required this.title,
     this.height = kToolbarHeight,
     required this.bgColor,
     required this.onLeadingButtonPressed,
-      required this.onMapUpdate,
+      required this.onMapUpdate, 
   }) : super(key: key);
 
   @override

@@ -121,12 +121,22 @@ flutter:
   - assets/images/strauss_img/strauss_wiednerhauptstr/
   - assets/images/strauss_img/strauss_zieglergasse/
   - assets/images/strauss_img/strauss_spiegelgasse/
+  - assets/images/orte_der_demokratie/Berta Zuckerkandl_Strudlhofstiege/
+  - assets/images/orte_der_demokratie/Berta_Zuckerkandl_Salon_Oppolzergasse_6/
+  - assets/images/orte_der_demokratie/Eugenie_Schwarzwald_Wallner Strasse_9/
+  - assets/images/orte_der_demokratie/Grete_Rehor_Park/
+  - assets/images/orte_der_demokratie/Konzerthaus_Ethel_Smyth/
+  - assets/images/orte_der_demokratie/Musikverein_Friedenskongress/
+  - assets/images/orte_der_demokratie/Wiener_Frauenklub _Tuchlaueben_11/
+  - assets/images/orte_der_demokratie/Yella_Hertzka _Kelsen Institut/
   - assets/images/waypoints_all/
   - assets/audio/clara_audio/
   - assets/audio/baker_audio/
   - assets/audio/strauss_audio/
   - assets/audio/wiener_audio/
   - assets/audio/ns_audio/
+  - assets/audio/demokratie_audio/
+
   
   
 
