@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:musicafemina/Services/music_manegar.dart';
 import 'package:musicafemina/Style/app_style.dart';
 
 import '../Pages/video_player.dart';
@@ -17,6 +18,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final MapController _mapController = MapController();
   final Color imageFilterColor;
   final Color backgroundColor;
+   final AudioManager audioManager = AudioManager();
   CustomAppBar({
     Key? key,
     required this.audioPlayer,
@@ -26,6 +28,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.bgColor,
     required this.onLeadingButtonPressed,
     required this.onMapUpdate,
+
     required this.imageFilterColor, required this.backgroundColor,
   }) : super(key: key);
 
@@ -50,13 +53,15 @@ shadowColor: Styles.primaryColor,
       actions: [
         IconButton(
             color: Styles.primaryColor,
-            onPressed: () {
+            onPressed: () async {
               Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => VideoPlayerPage(videoUrl: videoUrl),
                   ));
               audioPlayer.stop();
+                   
+  await  audioManager.stopAll(); 
             },
             icon: const Icon(Icons.video_collection)),
       ],

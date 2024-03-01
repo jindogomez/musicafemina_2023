@@ -5,6 +5,8 @@ import 'package:just_audio/just_audio.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:musicafemina/Pages/impressum.dart';
+import 'package:musicafemina/Services/music_manegar.dart';
+
 
 import 'package:musicafemina/Widgets/appbar_maps.dart';
 
@@ -44,7 +46,7 @@ class _MapDemokratieState extends State<MapDemokratie> {
   late AudioPlayer audioPlayer;
   String? lastAudioClip;
   StreamSubscription<PlayerState>? playerStateStreamSubscription;
-
+  final AudioManager _audioManager = AudioManager();
   final double customAppBarHeight = 100.0;
 
   @override
@@ -163,52 +165,39 @@ class _MapDemokratieState extends State<MapDemokratie> {
   final ValueNotifier<bool> isPlaying = ValueNotifier<bool>(false);
 
   /// Play or pause audio
-  void playPauseAudio(String? audioClip, UpdateCallback updateUI) async {
-    if (audioClip == null) {
-      throw ArgumentError('Audio clip cannot be found');
-    }
+void playPauseAudio(String? audioClip, UpdateCallback updateUI) async {
+  if (audioClip == null) {
+    throw ArgumentError('Audio clip cannot be found');
+  }
 
-    try {
-      if (audioPlayer.playing) {
-        await audioPlayer.pause();
-        if (mounted) {
-          updateUI(() => isPlaying.value = false);
-        }
-      } else {
-        if (lastAudioClip != audioClip ||
-            audioPlayer.processingState == ProcessingState.completed) {
-          await audioPlayer.stop();
-          await audioPlayer.setAsset(audioClip);
-          lastAudioClip = audioClip;
-        }
-        await audioPlayer.play();
-        if (mounted) {
-          updateUI(() => isPlaying.value = true);
-        }
-      }
-    } catch (e) {
-      if (mounted) {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: const Text('Error'),
-              content:
-                  const Text('An error occurred while trying to play the audio'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text('OK'),
-                ),
-              ],
-            );
-          },
-        );
-      }
+  try {
+    if (_audioManager.isMusicPlaying.value) {
+      _audioManager.pauseMusic();
+      updateUI(() => isPlaying.value = false);
+    } else {
+      await _audioManager.playMusic(audioClip);
+      updateUI(() => isPlaying.value = true);
+    }
+  } catch (e) {
+    if (mounted) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Error'),
+            content: Text('An error occurred while trying to play the audio: $e'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: const Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
     }
   }
+}
 
   /// Restart audio
   Future<void> restartAudio(String? audioClip) async {
@@ -221,23 +210,30 @@ class _MapDemokratieState extends State<MapDemokratie> {
   bool _isCardVisible = false;
 
   void _toggleCardVisibility() async {
-    await audioPlayer.stop();
-    await audioPlayer.seek(Duration.zero);
-    setState(() {
-      if (_isCardVisible) {
-        _isCardVisible = false;
-      } else {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const Menu(paramHomepage: 'home'),
-          ),
-        );
-        _mapController.move(
-            const LatLng(48.210333041716, 16.372817971454), 14.0);
-      }
-    });
-  }
+
+await _audioManager.stopAll();
+
+
+
+  await audioPlayer.seek(Duration.zero);
+
+  setState(() {
+    _isCardVisible = !_isCardVisible;
+    if (!_isCardVisible) {
+      
+    } else {
+     
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const Menu(paramHomepage: 'home'),
+        ),
+      );
+      _mapController.move(const LatLng(48.210333041716, 16.372817971454), 14.0);
+    }
+  });
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -252,7 +248,7 @@ class _MapDemokratieState extends State<MapDemokratie> {
         audioPlayer: audioPlayer,
         videoUrl: widget.videoUrl,
         onLeadingButtonPressed: _toggleCardVisibility,
-        title: 'Feministische Orte der Demokratie', //ändert titel in appbar
+        title: 'Orte der Demokratie', //ändert titel in appbar
         
           onMapUpdate: (MapController mapController) {
     _mapController.move(
@@ -339,6 +335,7 @@ class _MapDemokratieState extends State<MapDemokratie> {
                     setState(() {
                       _isCardVisible = false;
                       audioPlayer.stop();
+                        _audioManager.stopAll();
                     });
                   }
                 },
@@ -386,6 +383,7 @@ class _MapDemokratieState extends State<MapDemokratie> {
                               _selectedMarkerIndex = i;
                               audioPlayer.stop();
                               audioPlayer.seek(Duration.zero);
+                               _audioManager.stopAll();
                             });
                           },
                         ),
@@ -416,12 +414,14 @@ class _MapDemokratieState extends State<MapDemokratie> {
     );
   }
 
-  //close AudioPlayer and StreamSubscription when leaving the page
+
   @override
-  void dispose() {
-    // Cancel your stream subscription or any other ongoing operation here
-    audioPlayer.dispose();
-    playerStateStreamSubscription?.cancel();
-    super.dispose();
-  }
+
+void dispose() {
+  _audioManager.dispose();
+  audioPlayer.dispose();
+
+  playerStateStreamSubscription?.cancel();
+  super.dispose();
+}
 }

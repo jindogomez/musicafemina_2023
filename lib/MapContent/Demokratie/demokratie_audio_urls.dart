@@ -1,5 +1,6 @@
 const String audioPath = 'assets/audio/demokratie_audio/';
 
+
 // handling audio paths
 class AudioPathDemokratie {
   static const List<String> _audioPaths = [
