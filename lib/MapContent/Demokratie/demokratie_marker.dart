@@ -1,12 +1,9 @@
 import 'package:analyzer_plugin/utilities/pair.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:musicafemina/MapContent/Demokratie/Demokratie_audio_urls.dart';
-
 import 'package:musicafemina/MapContent/Demokratie/demokratie_pair_images.dart';
 import 'package:musicafemina/MapContent/Demokratie/demokratie_polylines.dart';
 import 'package:musicafemina/MapContent/Demokratie/demokratie_text.dart';
-
-
 
 const String blankImage = 'assets/images/blank.png';
 
@@ -19,6 +16,7 @@ class MapMarkerDemokratie {
   final LatLng location;
   final String audioClip;
   final LatLng? music;
+  final int videoIndex;
 
   MapMarkerDemokratie._({
     required this.backgroundImage,
@@ -29,6 +27,7 @@ class MapMarkerDemokratie {
     required this.address,
     required this.location,
     this.music,
+    required this.videoIndex,
   });
 
   factory MapMarkerDemokratie.create({
@@ -37,6 +36,7 @@ class MapMarkerDemokratie {
     required List<Pair<String, String>> imageSubtextPairs,
     required int audioIndex,
     LatLng? music,
+    required int videoIndex,
   }) {
     return MapMarkerDemokratie._(
       backgroundImage: blankImage,
@@ -45,8 +45,9 @@ class MapMarkerDemokratie {
       title: DemokratieText.getTitle(textsIndex),
       text: DemokratieText.getText(textsIndex),
       address: DemokratieText.getAddress(textsIndex),
-      location: WayDemokratie .getLatLng(locationIndex),
+      location: WayDemokratie.getLatLng(locationIndex),
       music: music,
+      videoIndex: videoIndex,
     );
   }
 }
@@ -59,7 +60,6 @@ List<Pair<String, String>> convertMapListToPairList(
 }
 
 // Usage:
-
 final mapMarkers = List<MapMarkerDemokratie>.generate(
   8,
   (index) => MapMarkerDemokratie.create(
@@ -67,5 +67,7 @@ final mapMarkers = List<MapMarkerDemokratie>.generate(
     locationIndex: index,
     imageSubtextPairs: convertMapListToPairList(getImageSubtextListWithFullPath(index)),
     audioIndex: index,
+    videoIndex: index,
   ),
+  
 );

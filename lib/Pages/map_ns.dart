@@ -18,7 +18,7 @@ import '../Style/app_style.dart';
 import '../Widgets/appbar_maps.dart';
 import '../Widgets/center_floatingbutton.dart';
 
-import '../Services/directions_service.dart';
+
 
 import 'menu.dart';
 
@@ -35,7 +35,7 @@ class MapNs extends StatefulWidget {
 class _MapStraussState extends State<MapNs> {
   MapController _mapController = MapController();
   List<LatLng> latlngList = [];
-  List<LatLng> _routePoints = [];
+
   LatLng? _currentLocation;
   int? _selectedMarkerIndex;
   late AudioPlayer audioPlayer;
@@ -43,17 +43,19 @@ class _MapStraussState extends State<MapNs> {
   StreamSubscription<PlayerState>? playerStateStreamSubscription;
   late String videoUrl;
   final double customAppBarHeight = 100.0;
+    List<LatLng> route = [];
 
   @override
   void initState() {
     super.initState();
     _initializeComponents();
+     _fetchCompleteRoute(); 
   }
 
   void _initializeComponents() {
     _initializeMapController();
     setupLocationHelper();
-    loadRouteCoordinates();
+   
     setupAudioPlayer();
   }
 
@@ -88,56 +90,7 @@ class _MapStraussState extends State<MapNs> {
     });
   }
 
-  Future<void> loadRouteCoordinates() async {
-    try {
-      List<List<double>> coordinates =
-          await getRouteCoordinates(WayVerfehmte.waypointsVerfemte);
-
-      if (coordinates.isNotEmpty) {
-        if (mounted) {
-          setState(() {
-            _routePoints = coordinates
-                .map((coordinate) => LatLng(coordinate[0], coordinate[1]))
-                .toList();
-          });
-        }
-      } else {
-        if (mounted) {
-          showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              content: const Text('Keine Locations gefunden, vergewisere dich, dass du eine Internetverbindung hast'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text('OK'),
-                ),
-              ],
-            ),
-          );
-        }
-      }
-    } catch (e) {
-      if (mounted) {
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            content: const Text('Keine Locations gefunden, vergewisere dich, dass du eine Internetverbindung hast'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('OK'),
-              ),
-            ],
-          ),
-        );
-      }
-    }
-  }
+  
 
   void setupAudioPlayer() {
     audioPlayer = AudioPlayer();
@@ -235,6 +188,18 @@ class _MapStraussState extends State<MapNs> {
       }
     });
   }
+  void _fetchCompleteRoute() {
+    if (WayVerfehmte.routeSegments.isNotEmpty) {
+      List<LatLng> completeRoute = [];
+      for (int i = 0; i < WayVerfehmte.routeSegments.length; i++) {
+        List<LatLng> segment = WayVerfehmte.getRouteSegment(i);
+        completeRoute.addAll(segment);
+      }
+      setState(() {
+        route = completeRoute;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -297,11 +262,10 @@ class _MapStraussState extends State<MapNs> {
                         ),
                       ),
                       IconButton(
-                        icon: const Icon(
-                          Icons.info,
+                         icon: const Icon(
+                          Icons.info_outlined,
                           size: 40.0,
-                     
-                          color: Color.fromARGB(255, 124, 118, 118),
+                          color: Color.fromARGB(255, 171, 0, 0),
                         ),
                         onPressed: () {
                           Navigator.push(
@@ -317,8 +281,13 @@ class _MapStraussState extends State<MapNs> {
             ],
           ),
       body: Stack(
-        children: [
-          Padding(
+  children: [
+    Container(
+      color: Colors.white, // Sets a white background for the stack
+    ),
+    Opacity(
+      opacity: 0.8, 
+      child: Padding(
             padding: EdgeInsets.only(top: customAppBarHeight),
             child: FlutterMap(
               mapController: _mapController,
@@ -337,66 +306,63 @@ class _MapStraussState extends State<MapNs> {
                   }
                 },
               ),
-              children: [
-                TileLayer(
-                  /// Mapbox tile layer Stored in constants_mapbox.dart
-                   urlTemplate: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-      subdomains: const ['a', 'b', 'c', 'd'],
-                  userAgentPackageName: 'dev.fleaflet.flutter_map.example',
-                ),
-                PolylineLayer(
-                  polylines: [
-                    Polyline(
-                      points: _routePoints,
-                      strokeWidth: 4,
-                      color: Styles.polyColorNS,
-                      isDotted: false,
-                    ),
-                  ],
-                ),
-                MarkerLayer(
-                  markers: [
-                    if (_currentLocation != null)
-                      Marker(
-                        height: 80,
-                        width: 80,
-                        point: _currentLocation!,
-                        builder: (_) => Icon(
-                          Icons.my_location,
-                          color: Styles.primaryColor,
-                        ),
+           children: [
+                  TileLayer(
+                    urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                    subdomains: const ['a', 'b', 'c'],
+                  ),
+                  PolylineLayer(
+                    polylines: [
+                      Polyline(
+                        points: route,
+                        strokeWidth: 6,
+                        color: Styles.polyColorNS,
+                        isDotted: false,
                       ),
-                    for (int i = 0; i < mapMarkers.length; i++)
-                      Marker(
-                        height: 60,
-                        width: 60,
-                        point: mapMarkers[i].location,
-                        builder: (_) => CustomIcon(
-                          location: mapMarkers[i].location,
-                          imageAsset: WaypointImages().nsWaypoint,
-                          onTap: () {
-                            setState(() {
-                              _isCardVisible = true;
-                              _selectedMarkerIndex = i;
-                              audioPlayer.stop();
-                              audioPlayer.seek(Duration.zero);
-                            });
-                          },
+                    ],
+                  ),
+                  MarkerLayer(
+                    markers: [
+                      if (_currentLocation != null)
+                        Marker(
+                          height: 80,
+                          width: 80,
+                          point: _currentLocation!,
+                          builder: (_) => Icon(
+                            Icons.my_location,
+                            color: Styles.primaryColor,
+                          ),
                         ),
-                      ),
-                  ],
-                ),
-
-                //Design von den Karten stored in marker_card_baker.dart
-                MarkerCard(
-                  _isCardVisible,
-                  _selectedMarkerIndex,
-                  audioPlayer,
-                  isPlaying,
-                  playPauseAudio,
-                  restartAudio,
-                ),
-              ],
+                      for (int i = 0; i < mapMarkers.length; i++)
+                        Marker(
+                          height: 60,
+                          width: 60,
+                          point: mapMarkers[i].location,
+                          builder: (_) => CustomIcon(
+                            location: mapMarkers[i].location,
+                            imageAsset: WaypointImages().nsWaypoint,
+                            onTap: () {
+                              setState(() {
+                                _isCardVisible = true;
+                                _selectedMarkerIndex = i;
+                                audioPlayer.stop();
+                                audioPlayer.seek(Duration.zero);
+                              });
+                            },
+                          ),
+                        ),
+                    ],
+                  ),
+                  MarkerCard(
+                    _isCardVisible,
+                    _selectedMarkerIndex,
+                    audioPlayer,
+                    isPlaying,
+                    playPauseAudio,
+                    restartAudio,
+                  ),
+                ],
+              ),
             ),
           ),
         ],
@@ -404,10 +370,8 @@ class _MapStraussState extends State<MapNs> {
     );
   }
 
-  //close AudioPlayer and StreamSubscription when leaving the page
   @override
   void dispose() {
-    // Cancel your stream subscription or any other ongoing operation here
     audioPlayer.dispose();
     playerStateStreamSubscription?.cancel();
     super.dispose();

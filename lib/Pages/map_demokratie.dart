@@ -1,64 +1,76 @@
 import 'dart:async';
-import 'package:flutter_map/plugin_api.dart';
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:musicafemina/MapContent/All/waypoint_images.dart';
+import 'package:musicafemina/MapContent/Demokratie/demokratie_marker.dart';
+import 'package:musicafemina/MapContent/Demokratie/demokratie_polylines.dart';
 import 'package:musicafemina/Pages/impressum.dart';
-import 'package:musicafemina/Services/music_manegar.dart';
-
-
-import 'package:musicafemina/Widgets/appbar_maps.dart';
-
+import 'package:musicafemina/Services/constants_mapbox.dart';
+import 'package:musicafemina/Services/location_helper.dart';
+import 'package:musicafemina/Style/app_style.dart';
+import 'package:musicafemina/Widgets/appbar_demokratie.dart';
+import 'package:musicafemina/Widgets/center_floatingbutton.dart';
 import 'package:musicafemina/Widgets/costum_icons.dart';
 import 'package:musicafemina/Widgets/marker_card_demokratie.dart';
-
-//file import
-import '../MapContent/All/waypoint_images.dart';
-import '../MapContent/Demokratie/demokratie_marker.dart';
-import '../MapContent/Demokratie/demokratie_polylines.dart';
-import '../Services/constants_mapbox.dart';
-import '../Services/location_helper.dart';
-import '../Style/app_style.dart';
-
-import '../Widgets/center_floatingbutton.dart';
-
-import '../Services/directions_service.dart';
-
-import 'menu.dart';
 
 typedef UpdateCallback = void Function(void Function());
 
 class MapDemokratie extends StatefulWidget {
-    final String videoUrl;
+  final Map<String, String> videoUrls;
 
-  const MapDemokratie({Key? key, required this.videoUrl}) : super(key: key);
+  const MapDemokratie({Key? key, required this.videoUrls}) : super(key: key);
+
   @override
   State<MapDemokratie> createState() => _MapDemokratieState();
 }
 
-class _MapDemokratieState extends State<MapDemokratie> {
+class _MapDemokratieState extends State<MapDemokratie> with WidgetsBindingObserver {
   MapController _mapController = MapController();
   List<LatLng> latlngList = [];
-  List<LatLng> _routePoints = [];
+  List<LatLng> route = [];
   LatLng? _currentLocation;
   int? _selectedMarkerIndex;
   late AudioPlayer audioPlayer;
   String? lastAudioClip;
   StreamSubscription<PlayerState>? playerStateStreamSubscription;
-  final AudioManager _audioManager = AudioManager();
+
   final double customAppBarHeight = 100.0;
+
+  bool _isCardVisible = false;
+
+  final GlobalKey<MarkerCardState> _markerCardKey = GlobalKey(); // Add this line
 
   @override
   void initState() {
     super.initState();
     _initializeComponents();
+    _fetchCompleteRoute();
+    WidgetsBinding.instance.addObserver(this); // Add this line
+  }
+
+  @override
+  void dispose() {
+    audioPlayer.dispose();
+    playerStateStreamSubscription?.cancel();
+    WidgetsBinding.instance.removeObserver(this); // Add this line
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      // Call initializeVideoAgain when coming back to the app
+      if (_markerCardKey.currentState != null) {
+        _markerCardKey.currentState!.initializeVideoAgain();
+      }
+    }
   }
 
   void _initializeComponents() {
     _initializeMapController();
     setupLocationHelper();
-    loadRouteCoordinates();
     setupAudioPlayer();
   }
 
@@ -93,54 +105,17 @@ class _MapDemokratieState extends State<MapDemokratie> {
     });
   }
 
-  Future<void> loadRouteCoordinates() async {
-    try {
-      List<List<double>> coordinates =
-          await getRouteCoordinates(WayDemokratie.waypointsDemokratie);
-
-      if (coordinates.isNotEmpty) {
-        if (mounted) {
-          setState(() {
-            _routePoints = coordinates
-                .map((coordinate) => LatLng(coordinate[0], coordinate[1]))
-                .toList();
-          });
-        }
-      } else {
-        if (mounted) {
-          showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              content: const Text('Keine Locations gefunden, vergewisere dich, dass du eine Internetverbindung hast'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text('OK'),
-                ),
-              ],
-            ),
-          );
-        }
+  // Updated _fetchCompleteRoute method using hard-coded segments
+  void _fetchCompleteRoute() {
+    if (WayDemokratie.routeSegments.isNotEmpty) {
+      List<LatLng> completeRoute = [];
+      for (int i = 0; i < WayDemokratie.routeSegments.length; i++) {
+        List<LatLng> segment = WayDemokratie.getRouteSegment(i);
+        completeRoute.addAll(segment);
       }
-    } catch (e) {
-      if (mounted) {
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            content: const Text('Keine Locations gefunden, vergewisere dich, dass du eine Internetverbindung hast'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('OK'),
-              ),
-            ],
-          ),
-        );
-      }
+      setState(() {
+        route = completeRoute;
+      });
     }
   }
 
@@ -164,42 +139,53 @@ class _MapDemokratieState extends State<MapDemokratie> {
 
   final ValueNotifier<bool> isPlaying = ValueNotifier<bool>(false);
 
-  /// Play or pause audio
-void playPauseAudio(String? audioClip, UpdateCallback updateUI) async {
-  if (audioClip == null) {
-    throw ArgumentError('Audio clip cannot be found');
+  void playPauseAudio(String? audioClip, UpdateCallback updateUI) async {
+    if (audioClip == null) {
+      throw ArgumentError('Audio clip cannot be found');
+    }
+
+    try {
+      if (audioPlayer.playing) {
+        await audioPlayer.pause();
+        if (mounted) {
+          updateUI(() => isPlaying.value = false);
+        }
+      } else {
+        if (lastAudioClip != audioClip ||
+            audioPlayer.processingState == ProcessingState.completed) {
+          await audioPlayer.stop();
+          await audioPlayer.setAsset(audioClip);
+          lastAudioClip = audioClip;
+        }
+        await audioPlayer.play();
+        if (mounted) {
+          updateUI(() => isPlaying.value = true);
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Error'),
+              content: const Text(
+                  'An error occurred while trying to play the audio'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    }
   }
 
-  try {
-    if (_audioManager.isMusicPlaying.value) {
-      _audioManager.pauseMusic();
-      updateUI(() => isPlaying.value = false);
-    } else {
-      await _audioManager.playMusic(audioClip);
-      updateUI(() => isPlaying.value = true);
-    }
-  } catch (e) {
-    if (mounted) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Error'),
-            content: Text('An error occurred while trying to play the audio: $e'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
-    }
-  }
-}
-
-  /// Restart audio
   Future<void> restartAudio(String? audioClip) async {
     await audioPlayer.stop();
     await audioPlayer.setAsset(audioClip!);
@@ -207,53 +193,41 @@ void playPauseAudio(String? audioClip, UpdateCallback updateUI) async {
     isPlaying.value = true;
   }
 
-  bool _isCardVisible = false;
+  void _toggleCardVisibility() {
+    setState(() {
+      _isCardVisible = !_isCardVisible;
+    });
+    audioPlayer.stop();
+  }
 
-  void _toggleCardVisibility() async {
-
-await _audioManager.stopAll();
-
-
-
-  await audioPlayer.seek(Duration.zero);
-
-  setState(() {
-    _isCardVisible = !_isCardVisible;
-    if (!_isCardVisible) {
-      
-    } else {
-     
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const Menu(paramHomepage: 'home'),
-        ),
-      );
-      _mapController.move(const LatLng(48.210333041716, 16.372817971454), 14.0);
+  void disposeAudio() {
+    audioPlayer.stop();
+    if (_markerCardKey.currentState != null) {
+      _markerCardKey.currentState!.disposeVideo(); // Add this line
     }
-  });
-}
-
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
-      
-     appBar: CustomAppBar(
-          backgroundColor: Colors.black.withOpacity(0.5),
-        imageFilterColor: Styles.polyColorDemokratie.withOpacity(0.3),
-        bgColor: const Color.fromARGB(137, 255, 255, 255),
+      appBar: CustomAppBar(
         audioPlayer: audioPlayer,
-        videoUrl: widget.videoUrl,
-        onLeadingButtonPressed: _toggleCardVisibility,
-        title: 'Orte der Demokratie', //ändert titel in appbar
-        
-          onMapUpdate: (MapController mapController) {
-    _mapController.move(
-            const LatLng(48.210333041716, 16.372817971454), 14.0);
-  }, 
+        imageFilterColor: Styles.polyColorDemokratie,
+        title: 'Orte der Demokratie',
+        bgColor: Colors.black.withOpacity(0.5),
+        onLeadingButtonPressed: () {
+          Navigator.pop(context);
+        },
+        onMapUpdate: (MapController mapController) {
+          _mapController.move(
+              const LatLng(48.210333041716, 16.372817971454), 14.0);
+        },
+        videoUrls: widget.videoUrls,
+        isCardVisible: _isCardVisible,
+        toggleCardVisibility: _toggleCardVisibility,
+        disposeAudio: disposeAudio, // Pass the disposeAudio function
       ),
       floatingActionButton: _isCardVisible
           ? null
@@ -267,57 +241,54 @@ await _audioManager.stopAll();
                 });
               },
             ),
-
-              bottomNavigationBar: Stack(
-            children: [
-              // workaround für transparente ynavbar
-              BottomNavigationBar(
-                items: const [
-                  BottomNavigationBarItem(
-                      icon: SizedBox(width: 24, height: 24), label: ''),
-                  BottomNavigationBarItem(
-                      icon: SizedBox(width: 24, height: 24), label: ''),
-                ],
-                backgroundColor: Styles.polyColorDemokratie.withOpacity(0.3),
-                elevation: 0.0, // schatten unter navbar
-              ),
-              Positioned(
-                left: 0,
-                right: 0,
-                bottom: 5,
-                child: SizedBox(
-                  height: 50, // höhe navbar bottum
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      SizedBox(
-                        // logo wien
-                        child: Image.asset(
-                          'assets/images/Stadt-Wien_Logo_pos_rgb.gif',
-                          width: 80.0,
-                          height: 80.0,
-                        ),
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.info,
-                          size: 40.0,
-                     
-                          color: Color.fromARGB(255, 124, 118, 118),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const ImpressumPage()));
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+      bottomNavigationBar: Stack(
+        children: [
+          BottomNavigationBar(
+            items: const [
+              BottomNavigationBarItem(
+                  icon: SizedBox(width: 24, height: 24), label: ''),
+              BottomNavigationBarItem(
+                  icon: SizedBox(width: 24, height: 24), label: ''),
             ],
+            backgroundColor: Styles.polyColorDemokratie.withOpacity(0.3),
+            elevation: 0.0,
           ),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 5,
+            child: SizedBox(
+              height: 50,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  SizedBox(
+                    child: Image.asset(
+                      'assets/images/Stadt-Wien_Logo_pos_rgb.gif',
+                      width: 80.0,
+                      height: 80.0,
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(
+                      Icons.info_outline,
+                      size: 40.0,
+                      color: Colors.black,
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ImpressumPage()),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
       body: Stack(
         children: [
           Padding(
@@ -335,22 +306,20 @@ await _audioManager.stopAll();
                     setState(() {
                       _isCardVisible = false;
                       audioPlayer.stop();
-                        _audioManager.stopAll();
                     });
                   }
                 },
               ),
               children: [
                 TileLayer(
-                
-             urlTemplate: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-      subdomains: const ['a', 'b', 'c', 'd'],
-                  userAgentPackageName: 'dev.fleaflet.flutter_map.example',
+                  urlTemplate:
+                      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                  subdomains: const ['a', 'b', 'c'],
                 ),
                 PolylineLayer(
                   polylines: [
                     Polyline(
-                      points: _routePoints,
+                      points: route,
                       strokeWidth: 4,
                       color: Styles.polyColorDemokratie,
                       isDotted: false,
@@ -383,16 +352,14 @@ await _audioManager.stopAll();
                               _selectedMarkerIndex = i;
                               audioPlayer.stop();
                               audioPlayer.seek(Duration.zero);
-                               _audioManager.stopAll();
                             });
                           },
                         ),
                       ),
                   ],
                 ),
-
-                //Design von den Karten stored in marker_card_XXXX.dart
                 MarkerCard(
+                  key: _markerCardKey, // Add this line
                   _isCardVisible,
                   _selectedMarkerIndex,
                   audioPlayer,
@@ -400,28 +367,11 @@ await _audioManager.stopAll();
                   playPauseAudio,
                   restartAudio,
                 ),
-                
               ],
             ),
           ),
-          
-          
         ],
-        
-         
       ),
-      
     );
   }
-
-
-  @override
-
-void dispose() {
-  _audioManager.dispose();
-  audioPlayer.dispose();
-
-  playerStateStreamSubscription?.cancel();
-  super.dispose();
-}
 }

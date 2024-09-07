@@ -1,33 +1,351 @@
 import 'package:latlong2/latlong.dart';
 
 class WayDemokratie {
-  static final List<List<double>> waypointsDemokratie = [
-    [48.235175513148526, 16.348223436012745], // 1190 Wien, Gymnasiumstraße 79
-    [48.22120561042527, 16.35964193421379],   //1090 Wien, Strudlhofstiege / Liechtensteinstrasse 51
-    [48.211713384562835, 16.36158114791012],   // 1010 Wien, Oppolzergasse 6
-    [48.210463651103844, 16.37006667895808],  //1010 Wien, Graben Tuchlauben 11 / Trattnerhof 
-    [48.2098915123575, 16.36617614007206],    // 1010 Wien, Wallner Straße 9
-    [48.20815339481049, 16.359193625541174],  // 1010 Wien, Dr. Karl Renner-Ring 1
-    [48.206766245902024, 16.359805117949467], // 1030 Wien, Lothringerstrasse 20 
-    [48.2006207657804, 16.370454507477337],   // 1010 Wien, Karlsplatz 
- 
+  // Fixed route waypoints
+  static final List<LatLng> routeCoordinates = [
+    const LatLng(48.235175513148526, 16.348223436012745), // 1190 Wien, Gymnasiumstraße 79
+    const LatLng(48.22120561042527, 16.35964193421379),  // 1090 Wien, Strudlhofstiege / Liechtensteinstrasse 51
+    const LatLng(48.211713384562835, 16.36158114791012), // 1010 Wien, Oppolzergasse 6
+    const LatLng(48.210463651103844, 16.37006667895808), // 1010 Wien, Graben Tuchlauben 11 / Trattnerhof 
+    const LatLng(48.2098915123575, 16.36617614007206),   // 1010 Wien, Wallner Straße 9
+    const LatLng(48.20815339481049, 16.359193625541174), // 1010 Wien, Dr. Karl Renner-Ring 1
+    const LatLng(48.206766245902024, 16.359805117949467),// 1030 Wien, Lothringerstrasse 20 
+    const LatLng(48.2006207657804, 16.370454507477337),  // 1010 Wien, Karlsplatz 
   ];
 
+  // Hard-coded route segments based on previously fetched data
+  static final List<List<LatLng>> routeSegments = [
+    // Segment 1
+    [
+      const LatLng(48.235124, 16.348581),
+      const LatLng(48.23493, 16.348518),
+      const LatLng(48.234918, 16.349543),
+      const LatLng(48.234912, 16.350325),
+      const LatLng(48.234917, 16.35061),
+      const LatLng(48.234883, 16.350641),
+      const LatLng(48.234172, 16.351371),
+      const LatLng(48.233762, 16.352008),
+      const LatLng(48.233689, 16.352102),
+      const LatLng(48.233661, 16.352141),
+      const LatLng(48.233559, 16.352316),
+      const LatLng(48.233374, 16.352809),
+      const LatLng(48.233289, 16.353),
+      const LatLng(48.233204, 16.353091),
+      const LatLng(48.233143, 16.353147),
+      const LatLng(48.232861, 16.353324),
+      const LatLng(48.23275, 16.353371),
+      const LatLng(48.232599, 16.353385),
+      const LatLng(48.232501, 16.353436),
+      const LatLng(48.232178, 16.3536),
+      const LatLng(48.232156, 16.353568),
+      const LatLng(48.232142, 16.353588),
+      const LatLng(48.232126, 16.353614),
+      const LatLng(48.232089, 16.353666),
+      const LatLng(48.232037, 16.353742),
+      const LatLng(48.232013, 16.353767),
+      const LatLng(48.231831, 16.353909),
+      const LatLng(48.231763, 16.353955),
+      const LatLng(48.231698, 16.353887),
+      const LatLng(48.231666, 16.353909),
+      const LatLng(48.231654, 16.353909),
+      const LatLng(48.231611, 16.353947),
+      const LatLng(48.23156, 16.35399),
+      const LatLng(48.231546, 16.354004),
+      const LatLng(48.231559, 16.354051),
+      const LatLng(48.231488, 16.354186),
+      const LatLng(48.231457, 16.354194),
+      const LatLng(48.230462, 16.354249),
+      const LatLng(48.230196, 16.354263),
+      const LatLng(48.229111, 16.354483),
+      const LatLng(48.229043, 16.354498),
+      const LatLng(48.228491, 16.354619),
+      const LatLng(48.228157, 16.354692),
+      const LatLng(48.228089, 16.354709),
+      const LatLng(48.228072, 16.354714),
+      const LatLng(48.228057, 16.354719),
+      const LatLng(48.227327, 16.354949),
+      const LatLng(48.22659, 16.355151),
+      const LatLng(48.225969, 16.355113),
+      const LatLng(48.22583, 16.355075),
+      const LatLng(48.22582, 16.355124),
+      const LatLng(48.225795, 16.355239),
+      const LatLng(48.225788, 16.355274),
+      const LatLng(48.225783, 16.355296),
+      const LatLng(48.225775, 16.355333),
+      const LatLng(48.225663, 16.355282),
+      const LatLng(48.225266, 16.355002),
+      const LatLng(48.22514, 16.355752),
+      const LatLng(48.225111, 16.355824),
+      const LatLng(48.225071, 16.35585),
+      const LatLng(48.225085, 16.356223),
+      const LatLng(48.225075, 16.356435),
+      const LatLng(48.225067, 16.356502),
+      const LatLng(48.225054, 16.356578),
+      const LatLng(48.225012, 16.356879),
+      const LatLng(48.224968, 16.356857),
+      const LatLng(48.224871, 16.356811),
+      const LatLng(48.224812, 16.35678),
+      const LatLng(48.224779, 16.356896),
+      const LatLng(48.224774, 16.35694),
+      const LatLng(48.224764, 16.357025),
+      const LatLng(48.224758, 16.357099),
+      const LatLng(48.224648, 16.357154),
+      const LatLng(48.224228, 16.357376),
+      const LatLng(48.223551, 16.35773),
+      const LatLng(48.223206, 16.357912),
+      const LatLng(48.22311, 16.357985),
+      const LatLng(48.222266, 16.358772),
+      const LatLng(48.221948, 16.359064),
+      const LatLng(48.221788, 16.359216),
+      const LatLng(48.22164, 16.35936),
+      const LatLng(48.221245, 16.359735),
+    ],
+    // Segment 2
+    [
+      const LatLng(48.221245, 16.359735),
+      const LatLng(48.221112, 16.35986),
+      const LatLng(48.220864, 16.360095),
+      const LatLng(48.220797, 16.360161),
+      const LatLng(48.220762, 16.360196),
+      const LatLng(48.220665, 16.360246),
+      const LatLng(48.219954, 16.360594),
+      const LatLng(48.219555, 16.360769),
+      const LatLng(48.21918, 16.360956),
+      const LatLng(48.218615, 16.359659),
+      const LatLng(48.21767, 16.360501),
+      const LatLng(48.217644, 16.360524),
+      const LatLng(48.216931, 16.361197),
+      const LatLng(48.216357, 16.361745),
+      const LatLng(48.215845, 16.362292),
+      const LatLng(48.215767, 16.362403),
+      const LatLng(48.215677, 16.362531),
+      const LatLng(48.215167, 16.36307),
+      const LatLng(48.215129, 16.363111),
+      const LatLng(48.21467, 16.363571),
+      const LatLng(48.214607, 16.363638),
+      const LatLng(48.214525, 16.363726),
+      const LatLng(48.214437, 16.36382),
+      const LatLng(48.214132, 16.363158),
+      const LatLng(48.214022, 16.36291),
+      const LatLng(48.213871, 16.362815),
+      const LatLng(48.213799, 16.36266),
+      const LatLng(48.213703, 16.362456),
+      const LatLng(48.21361, 16.362256),
+      const LatLng(48.213457, 16.361927),
+      const LatLng(48.213393, 16.361838),
+      const LatLng(48.213291, 16.361774),
+      const LatLng(48.212694, 16.36159),
+      const LatLng(48.212445, 16.361519),
+      const LatLng(48.211748, 16.361314),
+    ],
+    // Segment 3
+    [
+      const LatLng(48.211748, 16.361314),
+      const LatLng(48.211331, 16.361191),
+      const LatLng(48.211285, 16.361555),
+      const LatLng(48.211166, 16.36169),
+      const LatLng(48.211058, 16.361794),
+      const LatLng(48.211516, 16.362891),
+      const LatLng(48.21166, 16.363244),
+      const LatLng(48.211987, 16.364111),
+      const LatLng(48.211979, 16.364188),
+      const LatLng(48.211934, 16.364268),
+      const LatLng(48.211787, 16.36445),
+      const LatLng(48.211826, 16.364597),
+      const LatLng(48.211657, 16.365404),
+      const LatLng(48.211511, 16.36578),
+      const LatLng(48.21147, 16.365871),
+      const LatLng(48.211265, 16.366344),
+      const LatLng(48.211131, 16.366675),
+      const LatLng(48.211013, 16.366968),
+      const LatLng(48.210937, 16.367113),
+      const LatLng(48.210629, 16.367612),
+      const LatLng(48.210616, 16.367643),
+      const LatLng(48.21061, 16.367672),
+      const LatLng(48.210612, 16.367717),
+      const LatLng(48.210483, 16.367716),
+      const LatLng(48.210422, 16.367764),
+      const LatLng(48.21035, 16.367938),
+      const LatLng(48.20997, 16.36862),
+      const LatLng(48.209694, 16.368852),
+      const LatLng(48.210059, 16.369756),
+      const LatLng(48.210116, 16.369914),
+      const LatLng(48.210167, 16.37012),
+      const LatLng(48.210396, 16.369889),
+      const LatLng(48.210466, 16.369896),
+      const LatLng(48.210518, 16.369949),
+    ],
+    // Segment 4
+    [
+      const LatLng(48.210518, 16.369949),
+      const LatLng(48.210466, 16.369896),
+      const LatLng(48.210396, 16.369889),
+      const LatLng(48.210167, 16.37012),
+      const LatLng(48.210116, 16.369914),
+      const LatLng(48.210059, 16.369756),
+      const LatLng(48.209694, 16.368852),
+      const LatLng(48.209613, 16.368681),
+      const LatLng(48.209572, 16.368638),
+      const LatLng(48.20961, 16.368577),
+      const LatLng(48.210006, 16.367944),
+      const LatLng(48.209989, 16.367917),
+      const LatLng(48.209996, 16.367911),
+      const LatLng(48.210227, 16.367533),
+      const LatLng(48.210234, 16.367519),
+      const LatLng(48.210119, 16.367347),
+      const LatLng(48.210051, 16.367048),
+      const LatLng(48.2098, 16.366699),
+      const LatLng(48.209757, 16.366639),
+      const LatLng(48.209797, 16.366586),
+      const LatLng(48.209984, 16.366326),
+    ],
+    // Segment 5
+    [
+      const LatLng(48.209984, 16.366326),
+      const LatLng(48.210163, 16.366078),
+      const LatLng(48.209959, 16.365539),
+      const LatLng(48.210154, 16.365392),
+      const LatLng(48.21041, 16.365206),
+      const LatLng(48.209981, 16.364103),
+      const LatLng(48.209955, 16.364003),
+      const LatLng(48.209708, 16.363197),
+      const LatLng(48.210139, 16.362903),
+      const LatLng(48.210079, 16.362716),
+      const LatLng(48.209873, 16.362078),
+      const LatLng(48.209822, 16.361966),
+      const LatLng(48.209762, 16.361831),
+      const LatLng(48.209604, 16.361486),
+      const LatLng(48.209551, 16.361371),
+      const LatLng(48.209401, 16.361303),
+      const LatLng(48.209372, 16.36129),
+      const LatLng(48.209347, 16.361212),
+      const LatLng(48.209194, 16.361169),
+      const LatLng(48.209214, 16.361023),
+      const LatLng(48.209197, 16.360933),
+      const LatLng(48.209121, 16.36079),
+      const LatLng(48.209024, 16.360716),
+      const LatLng(48.208557, 16.360576),
+      const LatLng(48.208565, 16.360447),
+      const LatLng(48.208574, 16.360354),
+      const LatLng(48.208426, 16.360309),
+      const LatLng(48.208437, 16.360228),
+      const LatLng(48.208446, 16.360164),
+      const LatLng(48.208458, 16.360074),
+      const LatLng(48.208493, 16.359814),
+      const LatLng(48.208323, 16.359771),
+      const LatLng(48.208335, 16.359629),
+      const LatLng(48.208322, 16.359465),
+      const LatLng(48.208292, 16.359394),
+      const LatLng(48.208234, 16.359349),
+      const LatLng(48.208137, 16.35932),
+    ],
+    // Segment 6
+    [
+      const LatLng(48.208137, 16.35932),
+      const LatLng(48.207749, 16.359205),
+      const LatLng(48.207697, 16.359203),
+      const LatLng(48.207647, 16.359228),
+      const LatLng(48.207607, 16.359277),
+      const LatLng(48.207538, 16.359546),
+      const LatLng(48.207202, 16.359474),
+      const LatLng(48.206974, 16.359393),
+      const LatLng(48.206955, 16.359449),
+      const LatLng(48.206938, 16.359484),
+      const LatLng(48.20697, 16.359546),
+      const LatLng(48.206958, 16.359584),
+      const LatLng(48.206943, 16.359557),
+      const LatLng(48.206892, 16.359625),
+      const LatLng(48.206762, 16.359797),
+    ],
+    // Segment 7
+    [
+      const LatLng(48.206762, 16.359797),
+      const LatLng(48.206655, 16.359939),
+      const LatLng(48.206642, 16.359915),
+      const LatLng(48.206626, 16.359886),
+      const LatLng(48.206548, 16.359991),
+      const LatLng(48.206531, 16.359961),
+      const LatLng(48.206501, 16.35992),
+      const LatLng(48.206484, 16.359935),
+      const LatLng(48.206438, 16.359942),
+      const LatLng(48.206312, 16.360065),
+      const LatLng(48.206326, 16.360088),
+      const LatLng(48.2063, 16.360206),
+      const LatLng(48.206169, 16.360386),
+      const LatLng(48.205479, 16.361282),
+      const LatLng(48.205175, 16.361712),
+      const LatLng(48.205104, 16.361809),
+      const LatLng(48.20503, 16.361905),
+      const LatLng(48.204707, 16.362335),
+      const LatLng(48.204439, 16.362701),
+      const LatLng(48.20434, 16.362791),
+      const LatLng(48.203878, 16.363409),
+      const LatLng(48.203821, 16.363516),
+      const LatLng(48.203753, 16.363624),
+      const LatLng(48.203558, 16.363877),
+      const LatLng(48.203415, 16.364059),
+      const LatLng(48.203377, 16.364165),
+      const LatLng(48.203355, 16.364265),
+      const LatLng(48.20313, 16.365274),
+      const LatLng(48.203058, 16.365593),
+      const LatLng(48.20301, 16.365804),
+      const LatLng(48.202954, 16.366061),
+      const LatLng(48.202936, 16.366132),
+      const LatLng(48.202922, 16.366187),
+      const LatLng(48.202568, 16.367696),
+      const LatLng(48.202542, 16.36781),
+      const LatLng(48.202523, 16.367894),
+      const LatLng(48.202442, 16.367874),
+      const LatLng(48.202476, 16.367936),
+      const LatLng(48.202487, 16.368002),
+      const LatLng(48.202491, 16.368062),
+      const LatLng(48.202491, 16.368162),
+      const LatLng(48.202456, 16.368421),
+      const LatLng(48.202423, 16.368565),
+      const LatLng(48.202365, 16.368832),
+      const LatLng(48.202327, 16.369005),
+      const LatLng(48.202284, 16.369097),
+      const LatLng(48.202221, 16.369288),
+      const LatLng(48.202186, 16.369337),
+      const LatLng(48.20215, 16.36935),
+      const LatLng(48.20211, 16.369349),
+      const LatLng(48.201741, 16.369163),
+      const LatLng(48.201671, 16.369131),
+      const LatLng(48.201453, 16.369024),
+      const LatLng(48.201155, 16.368911),
+      const LatLng(48.201131, 16.369007),
+      const LatLng(48.201086, 16.369193),
+      const LatLng(48.200995, 16.36948),
+      const LatLng(48.200699, 16.370356),
+      const LatLng(48.200671, 16.370472),
+      const LatLng(48.200644, 16.370486),
+    ],
+  ];
 
+  // Get the route segment between two waypoints
+  static List<LatLng> getRouteSegment(int startIndex) {
+    if (startIndex >= 0 && startIndex < routeSegments.length) {
+      return routeSegments[startIndex];
+    } else {
+      throw Exception('No predefined route segment found');
+    }
+  }
+
+  // Get the full predefined route by concatenating all segments
+  static List<LatLng> getFullRoute() {
+    List<LatLng> fullRoute = [];
+    for (int i = 0; i < routeSegments.length; i++) {
+      fullRoute.addAll(getRouteSegment(i));
+    }
+    return fullRoute;
+  }
+
+  // Method to get a specific LatLng from routeCoordinates
   static LatLng getLatLng(int index) {
-    try {
-      if (index >= 0 && index < waypointsDemokratie.length) {
-     
-        return LatLng(waypointsDemokratie[index][0], waypointsDemokratie[index][1]);
-      } else {
-     
-        throw Exception(
-            'Lese Fehler: $index'); 
-      }
-    } catch (e) {
-
-      throw Exception(
-          'Fehler: $e'); 
+    if (index >= 0 && index < routeCoordinates.length) {
+      return routeCoordinates[index];
+    } else {
+      throw Exception('Index out of bounds');
     }
   }
 }

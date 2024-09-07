@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:musicafemina/Pages/menu.dart';
-
+import 'package:musicafemina/Pages/loading_screen.dart';
+// Ensure this import is correct
 
 void main() {
+   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MusicaFemina());
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
@@ -20,15 +21,10 @@ class MusicaFemina extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         appBarTheme: const AppBarTheme(
-          iconTheme: IconThemeData(
-              color: Color.fromARGB(255, 255, 255, 255), size: 40),
+          iconTheme: IconThemeData(color: Color.fromARGB(255, 255, 255, 255), size: 40),
         ),
       ),
-      // loaded home menu
-      home: const Menu(paramHomepage: 'menu'),
+      home: const SplashScreen(), // Directly show SplashScreen
     );
   }
 }
-
-//TODO: Alle Wege Testen -> Bilder,Audio,Texte usw.
-

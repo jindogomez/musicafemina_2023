@@ -13,6 +13,7 @@ class AudioControls extends StatefulWidget {
   final Future<void> Function(String?) restartAudio;
   final AudioPlayer audioPlayer;
   final ValueNotifier<bool> isPlaying;
+
   const AudioControls({
     Key? key,
     required this.mapMarkers,
@@ -26,12 +27,13 @@ class AudioControls extends StatefulWidget {
   @override
   State<AudioControls> createState() => _AudioControlsState();
 }
+
 class _AudioControlsState extends State<AudioControls> {
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        width:110,
+        width: 110,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(5)),
           color: const Color.fromARGB(255, 207, 185, 185),
@@ -43,11 +45,8 @@ class _AudioControlsState extends State<AudioControls> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-               const SizedBox(
-              width: 5,
-            ),
-            
-            /// Play/Pause Button
+            const SizedBox(width: 5),
+            // Play/Pause Button
             ValueListenableBuilder(
               valueListenable: widget.isPlaying,
               builder: (BuildContext context, bool isPlaying, Widget? child) {
@@ -63,25 +62,27 @@ class _AudioControlsState extends State<AudioControls> {
                       iconSize: 22,
                       splashColor: Colors.white,
                       highlightColor: Colors.white,
-                      onPressed: () {
-                        widget.playPauseAudio(
-                          widget.mapMarkers[widget.selectedMarkerIndex!]
-                              .audioClip,
-                          (update) => setState(update),
-                        );
-                      },
+                      onPressed: widget.selectedMarkerIndex != null
+                          ? () {
+                              widget.playPauseAudio(
+                                widget.mapMarkers[widget.selectedMarkerIndex!].audioClip,
+                                (update) {
+                                  if (mounted) {
+                                    setState(update);
+                                  }
+                                },
+                              );
+                            }
+                          : null,
                     ),
                   ),
                 );
               },
             ),
-            const SizedBox(
-              width: 5,
-            ),
+            const SizedBox(width: 5),
             Padding(
               padding: const EdgeInsets.all(5.0),
               child: CircleAvatar(
-                
                 backgroundColor: Styles.bgColor,
                 radius: 22,
                 child: IconButton(
@@ -89,10 +90,13 @@ class _AudioControlsState extends State<AudioControls> {
                   iconSize: 22,
                   splashColor: Colors.white,
                   highlightColor: Colors.white,
-                  onPressed: () async {
-                    await widget.restartAudio(
-                        widget.mapMarkers[widget.selectedMarkerIndex!].audioClip);
-                  },
+                  onPressed: widget.selectedMarkerIndex != null
+                      ? () async {
+                          await widget.restartAudio(
+                            widget.mapMarkers[widget.selectedMarkerIndex!].audioClip,
+                          );
+                        }
+                      : null,
                 ),
               ),
             ),

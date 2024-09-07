@@ -14,7 +14,7 @@ import '../Style/app_style.dart';
 import '../Widgets/appbar_maps.dart';
 import '../Widgets/center_floatingbutton.dart';
 import '../MapContent/Clara/clara_marker.dart';
-import '../Services/directions_service.dart';
+
 import '../MapContent/Clara/clara_polylines.dart';
 import '../Widgets/marker_card_clara.dart';
 import 'menu.dart';
@@ -32,7 +32,7 @@ class MapClara extends StatefulWidget {
 class _MapClaraState extends State<MapClara> {
   MapController _mapController = MapController();
   List<LatLng> latlngList = [];
-  List<LatLng> _routePoints = [];
+  List<LatLng> route  = [];
   LatLng? _currentLocation;
   int? _selectedMarkerIndex;
   late AudioPlayer audioPlayer;
@@ -46,7 +46,7 @@ class _MapClaraState extends State<MapClara> {
     super.initState();
     initializeMapController();
     setupLocationHelper();
-    loadRouteCoordinates();
+   _fetchCompleteRoute();
     setupAudioPlayer();
   }
 
@@ -80,57 +80,22 @@ class _MapClaraState extends State<MapClara> {
       }
     });
   }
-
-  Future<void> loadRouteCoordinates() async {
-    try {
-      List<List<double>> coordinates =
-          await getRouteCoordinates(waypointsClara);
-
-      if (coordinates.isNotEmpty) {
-        if (mounted) {
-          setState(() {
-            _routePoints = coordinates
-                .map((coordinate) => LatLng(coordinate[0], coordinate[1]))
-                .toList();
-          });
-        }
-      } else {
-        if (mounted) {
-          showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              content: const Text('Keine Locations gefunden, vergewisere dich, dass du eine Internetverbindung hast.'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text('OK'),
-                ),
-              ],
-            ),
-          );
-        }
-      }
-    } catch (e) {
-      if (mounted) {
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            content: const Text('Keine Locations gefunden, vergewisere dich, dass du eine Internetverbindung hast'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('OK'),
-              ),
-            ],
-          ),
-        );
-      }
+  void _fetchCompleteRoute() {
+  if (WayClara.routeSegments.isNotEmpty) {
+    List<LatLng> completeRoute = [];
+    for (int i = 0; i < WayClara.routeSegments.length; i++) {
+      List<LatLng> segment = WayClara.getRouteSegment(i);
+      completeRoute.addAll(segment);
     }
+    setState(() {
+      route = completeRoute;
+    });
   }
+}
+
+
+   
+
   void setupAudioPlayer() {
     audioPlayer = AudioPlayer();
     playerStateStreamSubscription =
@@ -263,10 +228,9 @@ class _MapClaraState extends State<MapClara> {
                       ),
                       IconButton(
                         icon: const Icon(
-                          Icons.info,
+                          Icons.info_outlined,
                           size: 40.0,
-                     
-                          color: Color.fromARGB(255, 124, 118, 118),
+                          color: Color.fromARGB(255, 171, 0, 0),
                         ),
                         onPressed: () {
                           Navigator.push(
@@ -281,9 +245,14 @@ class _MapClaraState extends State<MapClara> {
               ),
             ],
           ),
-      body: Stack(
-        children: [
-          Padding(
+     body: Stack(
+  children: [
+    Container(
+      color: Colors.white, // Sets a white background for the stack
+    ),
+    Opacity(
+      opacity: 0.8, 
+      child: Padding(
             padding: EdgeInsets.only(top: customAppBarHeight),
             child: FlutterMap(
               mapController: _mapController,
@@ -304,9 +273,9 @@ class _MapClaraState extends State<MapClara> {
               ),
               children: [
                 TileLayer(
-  urlTemplate: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-    userAgentPackageName: 'dev',
-      subdomains: const ['a', 'b', 'c', 'd'],
+    urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+           subdomains: const ['a', 'b', 'c'],
+           
 
                   //"${AppConstants.mapBoxUrl}?access_token={accessToken}",
                   // additionalOptions: const {
@@ -317,8 +286,8 @@ class _MapClaraState extends State<MapClara> {
                 PolylineLayer(
                   polylines: [
                     Polyline(
-                      points: _routePoints,
-                      strokeWidth: 4,
+                      points: route,
+                      strokeWidth: 6,
                       color: Styles.polyColorClara,
                       isDotted: false,
                     ),
@@ -371,6 +340,7 @@ class _MapClaraState extends State<MapClara> {
               ],
             ),
           ),
+    ),
         ],
       ),
     );

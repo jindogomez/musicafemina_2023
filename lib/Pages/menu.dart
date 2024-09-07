@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:musicafemina/MapContent/All/waypoint_images.dart';
 import 'package:musicafemina/Pages/map_demokratie.dart';
+
 import 'package:musicafemina/Pages/map_ns.dart';
 import 'package:musicafemina/Pages/map_strauss.dart';
 import 'package:musicafemina/Pages/map_wiener.dart';
@@ -227,10 +228,10 @@ class Menu extends StatelessWidget {
                       onTap: () {
                         Navigator.push(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => MapDemokratie(
-                                      videoUrl: VideoUrls().videoDemokratie,
-                                    )));
+                         MaterialPageRoute(
+                                   builder: (context) => MapDemokratie(
+                            videoUrls: VideoUrls().namedDemokratieUrls,
+                          ),));
                       },
                     ),
                   ],
@@ -269,10 +270,12 @@ class Menu extends StatelessWidget {
                         ),
                       ),
                       IconButton(
+                            
                         icon: const Icon(
-                          Icons.info,
+                          Icons.info_outlined,
                           size: 40.0,
-                          color: Color.fromARGB(255, 124, 118, 118),
+                          color: Color.fromARGB(255, 171, 0, 0),
+                      
                         ),
                         onPressed: () {
                           Navigator.push(

@@ -1,9 +1,13 @@
 import 'package:analyzer_plugin/utilities/pair.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:musicafemina/MapContent/NsVerfemte/verfemte_audio_urls.dart';
-import 'package:musicafemina/MapContent/NsVerfemte/verfemte_pair_images.dart';
+
 import 'package:musicafemina/MapContent/NsVerfemte/verfemte_polylines.dart';
 import 'package:musicafemina/MapContent/NsVerfemte/verfemte_text.dart';
+
+import 'verfemte_pair_images.dart';
+
+
 
 
 const String blankImage = 'assets/images/blank.png';
@@ -58,8 +62,9 @@ List<Pair<String, String>> convertMapListToPairList(
 
 // Usage:
 
+ 
 final mapMarkers = List<MapMarkerVerfemte>.generate(
-  8,
+ WayVerfehmte.routeCoordinates.length,
   (index) => MapMarkerVerfemte.create(
     textsIndex: index,
     locationIndex: index,

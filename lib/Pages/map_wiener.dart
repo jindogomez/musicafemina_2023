@@ -17,7 +17,7 @@ import '../Services/location_helper.dart';
 
 import '../Widgets/center_floatingbutton.dart';
 import '../MapContent/WienerKlassikerinnen/wiener_marker.dart';
-import '../Services/directions_service.dart';
+
 import '../Widgets/marker_card_wiener.dart';
 import 'menu.dart';
 
@@ -38,7 +38,7 @@ class MapWiener extends StatefulWidget {
 class _MapBakerState extends State<MapWiener> {
   MapController _mapController = MapController();
   List<LatLng> latlngList = [];
-  List<LatLng> _routePoints = [];
+  List<LatLng> route = [];
   LatLng? _currentLocation;
   int? _selectedMarkerIndex;
   late AudioPlayer audioPlayer;
@@ -49,12 +49,13 @@ class _MapBakerState extends State<MapWiener> {
   void initState() {
     super.initState();
     _initializeComponents();
+     _fetchCompleteRoute();
   }
 
   void _initializeComponents() {
     _initializeMapController();
     setupLocationHelper();
-    loadRouteCoordinates();
+
     setupAudioPlayer();
   }
 
@@ -89,54 +90,16 @@ class _MapBakerState extends State<MapWiener> {
     });
   }
 
-  Future<void> loadRouteCoordinates() async {
-    try {
-      List<List<double>> coordinates =
-          await getRouteCoordinates(WayWiener.waypointsWiener);
-
-      if (coordinates.isNotEmpty) {
-        if (mounted) {
-          setState(() {
-            _routePoints = coordinates
-                .map((coordinate) => LatLng(coordinate[0], coordinate[1]))
-                .toList();
-          });
-        }
-      } else {
-        if (mounted) {
-          showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              content: const Text('Keine Locations gefunden, vergewisere dich, dass du eine Internetverbindung hast'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text('OK'),
-                ),
-              ],
-            ),
-          );
-        }
+  void _fetchCompleteRoute() {
+    if (WayWiener.routeSegments.isNotEmpty) {
+      List<LatLng> completeRoute = [];
+      for (int i = 0; i < WayWiener.routeSegments.length; i++) {
+        List<LatLng> segment = WayWiener.getRouteSegment(i);
+        completeRoute.addAll(segment);
       }
-    } catch (e) {
-      if (mounted) {
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            content: const Text('Keine Locations gefunden, vergewisere dich, dass du eine Internetverbindung hast'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('OK'),
-              ),
-            ],
-          ),
-        );
-      }
+      setState(() {
+        route = completeRoute;
+      });
     }
   }
 
@@ -268,9 +231,14 @@ class _MapBakerState extends State<MapWiener> {
                 });
               },
             ),
-      body: Stack(
-        children: [
-          Padding(
+    body: Stack(
+  children: [
+    Container(
+      color: Colors.white, // Sets a white background for the stack
+    ),
+    Opacity(
+      opacity: 0.8, 
+      child: Padding(
             padding: EdgeInsets.only(top: customAppBarHeight),
             child: FlutterMap(
               mapController: _mapController,
@@ -292,15 +260,15 @@ class _MapBakerState extends State<MapWiener> {
               children: [
                 TileLayer(
                   /// Mapbox tile layer Stored in constants_mapbox.dart
-                urlTemplate: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-      subdomains: const ['a', 'b', 'c', 'd'],
-                  userAgentPackageName: 'dev.fleaflet.flutter_map.example',
+                 urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+           subdomains: const ['a', 'b', 'c'],
+        
                 ),
                 PolylineLayer(
                   polylines: [
                     Polyline(
-                      points: _routePoints,
-                      strokeWidth: 4,
+                      points: route,
+                      strokeWidth: 6,  
                       color: Styles.polyColorWiener,
                       isDotted: false,
                     ),
@@ -339,7 +307,7 @@ class _MapBakerState extends State<MapWiener> {
                   ],
                 ),
 
-                //Design von den Karten stored in marker_card_baker.dart
+                //Design von den Karten stored in marker_card_xxxx.dart
                 MarkerCard(
                   _isCardVisible,
                   _selectedMarkerIndex,
@@ -351,6 +319,7 @@ class _MapBakerState extends State<MapWiener> {
               ],
             ),
           ),
+    ),
         ],
       ),
         bottomNavigationBar: Stack(
@@ -384,10 +353,10 @@ class _MapBakerState extends State<MapWiener> {
                         ),
                       ),
                       IconButton(
-                        icon: const Icon(
-                          Icons.info,
+                         icon: const Icon(
+                          Icons.info_outlined,
                           size: 40.0,
-                          color: Color.fromARGB(255, 124, 118, 118),
+                          color: Color.fromARGB(255, 171, 0, 0),
                         ),
                         onPressed: () {
                           Navigator.push(

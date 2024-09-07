@@ -2,7 +2,6 @@ import 'package:analyzer_plugin/utilities/pair.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:musicafemina/MapContent/Strauss/strauss_audio_urls.dart';
 import 'package:musicafemina/MapContent/Strauss/strauss_pair_images.dart';
-
 import 'package:musicafemina/MapContent/Strauss/strauss_polylines.dart';
 import 'package:musicafemina/MapContent/Strauss/strauss_text.dart';
 
@@ -17,6 +16,7 @@ class MapMarkerStrauss {
   final LatLng location;
   final String audioClip;
   final LatLng? music;
+  final int videoIndex; // Ensure this is non-nullable
 
   MapMarkerStrauss._({
     required this.backgroundImage,
@@ -26,6 +26,7 @@ class MapMarkerStrauss {
     required this.text,
     required this.address,
     required this.location,
+    required this.videoIndex,
     this.music,
   });
 
@@ -34,6 +35,7 @@ class MapMarkerStrauss {
     required int locationIndex,
     required List<Pair<String, String>> imageSubtextPairs,
     required int audioIndex,
+    required int videoIndex,
     LatLng? music,
   }) {
     return MapMarkerStrauss._(
@@ -45,10 +47,12 @@ class MapMarkerStrauss {
       address: StraussText.getAddress(textsIndex),
       location: WayStrauss.getLatLng(locationIndex),
       music: music,
+      videoIndex: videoIndex,
     );
   }
 }
 
+// Define the convertMapListToPairList method
 List<Pair<String, String>> convertMapListToPairList(
     List<Map<String, String>> mapList) {
   return mapList
@@ -57,7 +61,6 @@ List<Pair<String, String>> convertMapListToPairList(
 }
 
 // Usage:
-
 final mapMarkers = List<MapMarkerStrauss>.generate(
   8,
   (index) => MapMarkerStrauss.create(
@@ -65,5 +68,7 @@ final mapMarkers = List<MapMarkerStrauss>.generate(
     locationIndex: index,
     imageSubtextPairs: convertMapListToPairList(getImageSubtextListWithFullPath(index)),
     audioIndex: index,
+    videoIndex: index,
   ),
+  
 );

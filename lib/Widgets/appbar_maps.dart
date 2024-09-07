@@ -18,7 +18,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final MapController _mapController = MapController();
   final Color imageFilterColor;
   final Color backgroundColor;
-   final AudioManager audioManager = AudioManager();
+  final AudioManager audioManager = AudioManager();
+
   CustomAppBar({
     Key? key,
     required this.audioPlayer,
@@ -28,8 +29,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.bgColor,
     required this.onLeadingButtonPressed,
     required this.onMapUpdate,
-
-    required this.imageFilterColor, required this.backgroundColor,
+    required this.imageFilterColor,
+    required this.backgroundColor,
   }) : super(key: key);
 
   @override
@@ -39,7 +40,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 1,
-shadowColor: Styles.primaryColor,
+      shadowColor: Styles.primaryColor,
       centerTitle: true,
       toolbarHeight: 100,
       leading: IconButton(
@@ -51,19 +52,34 @@ shadowColor: Styles.primaryColor,
         },
       ),
       actions: [
-        IconButton(
-            color: Styles.primaryColor,
-            onPressed: () async {
-              Navigator.push(
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton(
+              color: Styles.primaryColor,
+              onPressed: () async {
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => VideoPlayerPage(videoUrl: videoUrl),
-                  ));
-              audioPlayer.stop();
-                   
-  await  audioManager.stopAll(); 
-            },
-            icon: const Icon(Icons.video_collection)),
+                  ),
+                );
+                audioPlayer.stop();
+                await audioManager.stopAll();
+              },
+              icon: const Icon(Icons.video_collection),
+            ),
+             Text(
+              'Videos',
+                style: TextStyle(
+              color: Styles.primaryColor,
+              fontSize: 12,
+              fontFamily: GoogleFonts.abel().fontFamily,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          ],
+        ),
       ],
       title: Column(
         children: [
@@ -87,14 +103,13 @@ shadowColor: Styles.primaryColor,
           ),
         ],
       ),
- 
-        backgroundColor: backgroundColor,
-  flexibleSpace: Image(
-    image:  const AssetImage('assets/images/mf_main_bg.png'),
-    fit: BoxFit.cover,
-    color: imageFilterColor,
-    colorBlendMode: BlendMode.srcOver,
-  ),
+      backgroundColor: backgroundColor,
+      flexibleSpace: Image(
+        image: const AssetImage('assets/images/mf_main_bg.png'),
+        fit: BoxFit.cover,
+        color: imageFilterColor,
+        colorBlendMode: BlendMode.srcOver,
+      ),
     );
   }
 }

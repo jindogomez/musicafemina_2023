@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
+
 import 'package:musicafemina/Style/app_style.dart';
+
 import '../Pages/video_player.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -46,13 +48,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: IconButton(
         icon: const Icon(Icons.arrow_back_ios),
         color: Styles.primaryColor,
-       onPressed: () {
-          if (isCardVisible) {
-            toggleCardVisibility();
-          } else {
-            onLeadingButtonPressed();
-          }
-        },
+        onPressed: isCardVisible ? toggleCardVisibility : onLeadingButtonPressed,
       ),
       actions: [
         PopupMenuButton<String>(
@@ -73,14 +69,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ],
           ),
-          onSelected: (String url) async {
-            disposeAudio(); // Dispose of the audio and video before navigating
+          onSelected: (String url) {
+            disposeAudio(); // Add this line to dispose the audio
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => VideoPlayerPage(videoUrl: url),
               ),
             );
+            audioPlayer.stop();
           },
           itemBuilder: (BuildContext context) {
             return videoUrls.entries.map((entry) {

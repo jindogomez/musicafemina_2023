@@ -117,13 +117,20 @@ final Map<String, List<Map<String, String>>> rawImageSubtextsMap = {
  
 };
 
-List<Map<String, String>> getImageSubtextListWithFullPath(int index) {
-  if (index < 0 || index >= folders.length) {
-    throw ArgumentError('Invalid index: $index');
-  }
 
-  String folder = folders[index];
-  return imageSubtextsMap[folder] ?? [];
+List<Map<String, String>> getImageSubtextListWithFullPath(int index) {
+  try {
+    if (index >= 0 && index < folders.length) {
+      String folder = folders[index];
+      return imageSubtextsMap[folder] ?? [];
+    } else {
+     
+      return []; // Return an empty list or throw an exception, based on your needs
+    }
+  } catch (e) {
+
+    return []; // Return an empty list or throw an exception, based on your needs
+  }
 }
 
 final Map<String, List<Map<String, String>>> imageSubtextsMap =

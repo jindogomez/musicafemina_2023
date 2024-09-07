@@ -1,13 +1,14 @@
 import 'package:analyzer_plugin/utilities/pair.dart';
 import 'package:latlong2/latlong.dart';
+
 import 'package:musicafemina/MapContent/Baker/baker_pair_images.dart';
+import 'package:musicafemina/MapContent/Baker/baker_polylines.dart';
 
 import 'baker_text.dart';
-
 import 'baker_audio_urls.dart';
-import 'baker_polylines.dart';
 
 const String blankImage = 'assets/images/blank.png';
+const String imagePath = 'assets/images/Baker/';
 
 class MapMarkerBaker {
   final List<Pair<String, String>> imageSubtextPairs;
@@ -50,13 +51,15 @@ class MapMarkerBaker {
   }
 }
 
+
+
+
 final mapMarkers = List<MapMarkerBaker>.generate(
-  5,
+  WayBaker.routeCoordinates.length,
   (index) => MapMarkerBaker.create(
-    textsIndex: index + 1,
-    locationIndex: index + 1,
-    imageSubtextPairs:
-        createImageSubtextPairs(getImageSubtextListBaker(index + 1)),
-    audioIndex: index + 1,
+    textsIndex: index,
+    locationIndex: index,
+    imageSubtextPairs: createImageSubtextPairs(getImageSubtextListBaker(index)),
+    audioIndex: index,
   ),
 );

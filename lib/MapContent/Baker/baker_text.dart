@@ -24,26 +24,39 @@ class BakerText {
   ];
 
   static String getTitle(int index) {
-    if (index > 0 && index <= titles.length) {
-      return titles[index - 1];
-    } else {
-      return 'Index not found';
+    try {
+      if (index >= 0 && index < titles.length) {
+        // Corrected index check
+        return titles[index];
+      } else {
+        return 'Index not found';
+      }
+    } catch (e) {
+      return 'Error occurred';
     }
   }
 
   static String getAddress(int index) {
-    if (index > 0 && index <= addresses.length) {
-      return addresses[index - 1];
-    } else {
-      return 'Index not found';
+    try {
+      if (index >= 0 && index < addresses.length) {
+        return addresses[index];
+      } else {
+        return 'Index not found';
+      }
+    } catch (e) {
+      return 'Error occurred';
     }
   }
 
   static String getText(int index) {
-    if (index > 0 && index <= texts.length) {
-      return texts[index - 1];
-    } else {
-      return 'Index not found';
+    try {
+      if (index >= 0 && index < texts.length) {
+        return texts[index];
+      } else {
+        return 'Index not found';
+      }
+    } catch (e) {
+      return 'Error occurred';
     }
   }
 }

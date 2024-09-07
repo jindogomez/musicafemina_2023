@@ -1,58 +1,73 @@
 import 'dart:async';
-import 'package:flutter_map/plugin_api.dart';
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:musicafemina/MapContent/All/video_urls.dart';
 import 'package:musicafemina/Pages/impressum.dart';
+import 'package:musicafemina/Services/constants_mapbox.dart';
 import 'package:musicafemina/Widgets/appbar_maps_multipl_videos_strauss.dart';
 import 'package:musicafemina/Widgets/costum_icons.dart';
-
-//file import
+import 'package:musicafemina/Widgets/marker_card_strauss.dart';
 import '../MapContent/All/waypoint_images.dart';
-import '../Services/constants_mapbox.dart';
 import '../Services/location_helper.dart';
 import '../Style/app_style.dart';
-
 import '../Widgets/center_floatingbutton.dart';
 import '../MapContent/Strauss/strauss_marker.dart';
-import '../Services/directions_service.dart';
 import '../MapContent/Strauss/strauss_polylines.dart';
-import '../Widgets/marker_card_strauss.dart';
 import 'menu.dart';
 
 typedef UpdateCallback = void Function(void Function());
 
 class MapStrauss extends StatefulWidget {
-
-  const MapStrauss({Key? key, }) : super(key: key);
+  const MapStrauss({Key? key}) : super(key: key);
 
   @override
   State<MapStrauss> createState() => _MapStraussState();
 }
 
-class _MapStraussState extends State<MapStrauss> {
+class _MapStraussState extends State<MapStrauss> with WidgetsBindingObserver {
   MapController _mapController = MapController();
-  List<LatLng> latlngList = [];
-  List<LatLng> _routePoints = [];
   LatLng? _currentLocation;
   int? _selectedMarkerIndex;
   late AudioPlayer audioPlayer;
   String? lastAudioClip;
   StreamSubscription<PlayerState>? playerStateStreamSubscription;
-
   final double customAppBarHeight = 100.0;
+  List<LatLng> route = [];
+
+  bool _isCardVisible = false;
+
+  final GlobalKey<MarkerCardState> _markerCardKey = GlobalKey();
 
   @override
   void initState() {
     super.initState();
     _initializeComponents();
+    _fetchCompleteRoute(); 
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    audioPlayer.dispose();
+    playerStateStreamSubscription?.cancel();
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      if (_markerCardKey.currentState != null) {
+        _markerCardKey.currentState!.initializeVideoAgain();
+      }
+    }
   }
 
   void _initializeComponents() {
     _initializeMapController();
     setupLocationHelper();
-    loadRouteCoordinates();
     setupAudioPlayer();
   }
 
@@ -72,12 +87,10 @@ class _MapStraussState extends State<MapStrauss> {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            content: const Text('Kein Gps Signal, bitte aktiviere dein GPS'),
+            content: const Text('Kein GPS-Signal, bitte aktiviere dein GPS'),
             actions: [
               TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
+                onPressed: () => Navigator.of(context).pop(),
                 child: const Text('OK'),
               ),
             ],
@@ -87,68 +100,14 @@ class _MapStraussState extends State<MapStrauss> {
     });
   }
 
-  Future<void> loadRouteCoordinates() async {
-    try {
-      List<List<double>> coordinates =
-          await getRouteCoordinates(WayStrauss.waypointsStrauss);
-
-      if (coordinates.isNotEmpty) {
-        if (mounted) {
-          setState(() {
-            _routePoints = coordinates
-                .map((coordinate) => LatLng(coordinate[0], coordinate[1]))
-                .toList();
-          });
-        }
-      } else {
-        if (mounted) {
-          showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              content: const Text('Keine Locations gefunden, vergewisere dich, dass du eine Internetverbindung hast'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text('OK'),
-                ),
-              ],
-            ),
-          );
-        }
-      }
-    } catch (e) {
-      if (mounted) {
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            content: const Text('Keine Locations gefunden, vergewisere dich, dass du eine Internetverbindung hast'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('OK'),
-              ),
-            ],
-          ),
-        );
-      }
-    }
-  }
-
   void setupAudioPlayer() {
     audioPlayer = AudioPlayer();
-    playerStateStreamSubscription =
-        audioPlayer.playerStateStream.listen((state) {
+    playerStateStreamSubscription = audioPlayer.playerStateStream.listen((state) {
       if (mounted) {
         setState(() {
-          if (state.processingState == ProcessingState.completed ||
-              state.processingState == ProcessingState.idle) {
+          if (state.processingState == ProcessingState.completed || state.processingState == ProcessingState.idle) {
             isPlaying.value = false;
-          } else if (state.processingState == ProcessingState.ready &&
-              state.playing) {
+          } else if (state.processingState == ProcessingState.ready && state.playing) {
             isPlaying.value = true;
           }
         });
@@ -158,7 +117,6 @@ class _MapStraussState extends State<MapStrauss> {
 
   final ValueNotifier<bool> isPlaying = ValueNotifier<bool>(false);
 
-  /// Play or pause audio
   void playPauseAudio(String? audioClip, UpdateCallback updateUI) async {
     if (audioClip == null) {
       throw ArgumentError('Audio clip cannot be found');
@@ -171,42 +129,35 @@ class _MapStraussState extends State<MapStrauss> {
           updateUI(() => isPlaying.value = false);
         }
       } else {
-        if (lastAudioClip != audioClip ||
-            audioPlayer.processingState == ProcessingState.completed) {
+        if (lastAudioClip != audioClip || audioPlayer.processingState == ProcessingState.completed) {
           await audioPlayer.stop();
           await audioPlayer.setAsset(audioClip);
-          lastAudioClip = audioClip;
         }
         await audioPlayer.play();
         if (mounted) {
           updateUI(() => isPlaying.value = true);
         }
       }
+      lastAudioClip = audioClip;
     } catch (e) {
+      
       if (mounted) {
         showDialog(
           context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: const Text('Error'),
-              content:
-                  const Text('An error occurred while trying to play the audio'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text('OK'),
-                ),
-              ],
-            );
-          },
+          builder: (context) => AlertDialog(
+            content: Text('Ein Fehler ist aufgetreten: ${e.toString()}'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: const Text('OK'),
+              ),
+            ],
+          ),
         );
       }
     }
   }
 
-  /// Restart audio
   Future<void> restartAudio(String? audioClip) async {
     await audioPlayer.stop();
     await audioPlayer.setAsset(audioClip!);
@@ -214,25 +165,39 @@ class _MapStraussState extends State<MapStrauss> {
     isPlaying.value = true;
   }
 
-  bool _isCardVisible = false;
-
-  void _toggleCardVisibility() async {
-    await audioPlayer.stop();
-    await audioPlayer.seek(Duration.zero);
-    setState(() {
-      if (_isCardVisible) {
+  void _handleBackButtonPressed() {
+    if (_isCardVisible) {
+      setState(() {
         _isCardVisible = false;
-      } else {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const Menu(paramHomepage: 'home'),
-          ),
-        );
-        _mapController.move(
-            const LatLng(48.210333041716, 16.372817971454), 14.0);
+      });
+    } else {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const Menu(paramHomepage: 'home'),
+        ),
+      );
+    }
+  }
+
+  void disposeAudio() {
+    audioPlayer.stop();
+    if (_markerCardKey.currentState != null) {
+      _markerCardKey.currentState!.disposeVideo();
+    }
+  }
+
+  void _fetchCompleteRoute() {
+    if (WayStrauss.routeSegments.isNotEmpty) {
+      List<LatLng> completeRoute = [];
+      for (int i = 0; i < WayStrauss.routeSegments.length; i++) {
+        List<LatLng> segment = WayStrauss.getRouteSegment(i);
+        completeRoute.addAll(segment);
       }
-    });
+      setState(() {
+        route = completeRoute;
+      });
+    }
   }
 
   @override
@@ -240,16 +205,23 @@ class _MapStraussState extends State<MapStrauss> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
-      appBar:CustomAppBarMoreStrauss(
+      appBar: CustomAppBar(
         bgColor: Styles.bgColor,
         audioPlayer: audioPlayer,
-        onLeadingButtonPressed: _toggleCardVisibility,
-       imageFilterColor: Styles.polyColorStrauss.withOpacity(0.1),
-        title: 'Strauss Zeitgenossinnen', //ändert titel in appbar
-          onMapUpdate: (MapController mapController) {
-    _mapController.move(
-            const LatLng(48.210333041716, 16.372817971454), 14.0);
-  }, 
+        onLeadingButtonPressed: _handleBackButtonPressed,
+        imageFilterColor: Styles.polyColorStrauss.withOpacity(0.1),
+        title: 'Strauss Zeitgenossinnen',
+        onMapUpdate: (MapController mapController) {
+          _mapController.move(const LatLng(48.210333041716, 16.372817971454), 14.0);
+        },
+        videoUrls: VideoUrls().namedStraussUrls,
+        isCardVisible: _isCardVisible,
+        toggleCardVisibility: () {
+          setState(() {
+            _isCardVisible = !_isCardVisible;
+          });
+        },
+        disposeAudio: disposeAudio, 
       ),
       floatingActionButton: _isCardVisible
           ? null
@@ -263,150 +235,139 @@ class _MapStraussState extends State<MapStrauss> {
                 });
               },
             ),
-               bottomNavigationBar: Stack(
-            children: [
-              // workaround für transparente ynavbar
-              BottomNavigationBar(
-                items: const [
-                  BottomNavigationBarItem(
-                      icon: SizedBox(width: 24, height: 24), label: ''),
-                  BottomNavigationBarItem(
-                      icon: SizedBox(width: 24, height: 24), label: ''),
+      bottomNavigationBar: Stack(
+        children: [
+          BottomNavigationBar(
+            items: const [
+              BottomNavigationBarItem(icon: SizedBox(width: 24, height: 24), label: ''),
+              BottomNavigationBarItem(icon: SizedBox(width: 24, height: 24), label: ''),
+            ],
+            backgroundColor: Styles.polyColorStrauss.withOpacity(0.1),
+            elevation: 0.0,
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 5,
+            child: SizedBox(
+              height: 50,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  SizedBox(
+                    child: Image.asset(
+                      'assets/images/Stadt-Wien_Logo_pos_rgb.gif',
+                      width: 80.0,
+                      height: 80.0,
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(
+                      Icons.info_outlined,
+                      size: 40.0,
+                      color: Color.fromARGB(255, 171, 0, 0),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const ImpressumPage()),
+                      );
+                    },
+                  ),
                 ],
-                backgroundColor: Styles.polyColorStrauss.withOpacity(0.1),
-                elevation: 0.0, // schatten unter navbar
               ),
-              Positioned(
-                left: 0,
-                right: 0,
-                bottom: 5,
-                child: SizedBox(
-                  height: 50, // höhe navbar bottum
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      SizedBox(
-                        // logo wien
-                        child: Image.asset(
-                          'assets/images/Stadt-Wien_Logo_pos_rgb.gif',
-                          width: 80.0,
-                          height: 80.0,
-                        ),
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.info,
-                          size: 40.0,
-                     
-                          color: Color.fromARGB(255, 124, 118, 118),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const ImpressumPage()));
-                        },
+            ),
+          ),
+        ],
+      ),
+      body: Stack(
+        children: [
+          Container(
+            color: Colors.white,
+          ),
+          Opacity(
+            opacity: 0.8,
+            child: Padding(
+              padding: EdgeInsets.only(top: customAppBarHeight),
+              child: FlutterMap(
+                mapController: _mapController,
+                options: MapOptions(
+                  minZoom: 12,
+                  maxZoom: 18,
+                  zoom: 13,
+                  center: route.isNotEmpty ? route.first : AppConstants.myLocation,
+                  interactiveFlags: InteractiveFlag.all & ~InteractiveFlag.rotate,
+                  onTap: (tapPosition, LatLng point) {
+                    if (_isCardVisible) {
+                      setState(() {
+                        _isCardVisible = false;
+                        audioPlayer.stop();
+                      });
+                    }
+                  },
+                ),
+                children: [
+                  TileLayer(
+                    urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                    subdomains: const ['a', 'b', 'c'],
+                  ),
+                  PolylineLayer(
+                    polylines: [
+                      Polyline(
+                        points: route,
+                        strokeWidth: 6,
+                        color: Styles.polyColorStrauss,
+                        isDotted: false,
                       ),
                     ],
                   ),
-                ),
-              ),
-            ],
-          ),
-      body: Stack(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(top: customAppBarHeight),
-            child: FlutterMap(
-              mapController: _mapController,
-              options: MapOptions(
-                minZoom: 12,
-                maxZoom: 18,
-                zoom: 13,
-                center: AppConstants.myLocation,
-                interactiveFlags: InteractiveFlag.all & ~InteractiveFlag.rotate,
-                onTap: (tapPosition, LatLng point) {
-                  if (_isCardVisible) {
-                    setState(() {
-                      _isCardVisible = false;
-                      audioPlayer.stop();
-                    });
-                  }
-                },
-              ),
-              children: [
-                TileLayer(
-                
-             urlTemplate: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-      subdomains: const ['a', 'b', 'c', 'd'],
-                  userAgentPackageName: 'dev.fleaflet.flutter_map.example',
-                ),
-                PolylineLayer(
-                  polylines: [
-                    Polyline(
-                      points: _routePoints,
-                      strokeWidth: 4,
-                      color: Styles.polyColorStrauss,
-                      isDotted: false,
-                    ),
-                  ],
-                ),
-                MarkerLayer(
-                  markers: [
-                    if (_currentLocation != null)
-                      Marker(
-                        height: 80,
-                        width: 80,
-                        point: _currentLocation!,
-                        builder: (_) => Icon(
-                          Icons.my_location,
-                          color: Styles.primaryColor,
+                  MarkerLayer(
+                    markers: [
+                      if (_currentLocation != null)
+                        Marker(
+                          height: 80,
+                          width: 80,
+                          point: _currentLocation!,
+                          builder: (_) => Icon(
+                            Icons.my_location,
+                            color: Styles.primaryColor,
+                          ),
                         ),
-                      ),
-                    for (int i = 0; i < mapMarkers.length; i++)
-                      Marker(
-                        height: 60,
-                        width: 60,
-                        point: mapMarkers[i].location,
-                        builder: (_) => CustomIcon(
-                          location: mapMarkers[i].location,
-                          imageAsset: WaypointImages().straussWaypoint,
-                          onTap: () {
-                            setState(() {
-                              _isCardVisible = true;
-                              _selectedMarkerIndex = i;
-                              audioPlayer.stop();
-                              audioPlayer.seek(Duration.zero);
-                            });
-                          },
+                      for (int i = 0; i < mapMarkers.length; i++)
+                        Marker(
+                          height: 60,
+                          width: 60,
+                          point: mapMarkers[i].location,
+                          builder: (_) => CustomIcon(
+                            location: mapMarkers[i].location,
+                            imageAsset: WaypointImages().straussWaypoint,
+                            onTap: () {
+                              setState(() {
+                                _isCardVisible = true;
+                                _selectedMarkerIndex = i;
+                                audioPlayer.stop();
+                                audioPlayer.seek(Duration.zero);
+                              });
+                            },
+                          ),
                         ),
-                      ),
-                  ],
-                ),
-
-                //Design von den Karten stored in marker_card_baker.dart
-                MarkerCard(
-                  _isCardVisible,
-                  _selectedMarkerIndex,
-                  audioPlayer,
-                  isPlaying,
-                  playPauseAudio,
-                  restartAudio,
-                ),
-              ],
+                    ],
+                  ),
+                  MarkerCard(
+                    key: _markerCardKey,
+                    _isCardVisible,
+                    _selectedMarkerIndex,
+                    audioPlayer,
+                    isPlaying,
+                    playPauseAudio,
+                    restartAudio,
+                  ),
+                ],
+              ),
             ),
           ),
         ],
       ),
     );
-  }
-
-  //close AudioPlayer and StreamSubscription when leaving the page
-  @override
-  void dispose() {
-    // Cancel your stream subscription or any other ongoing operation here
-    audioPlayer.dispose();
-    playerStateStreamSubscription?.cancel();
-    super.dispose();
   }
 }
