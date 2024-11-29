@@ -45,4 +45,11 @@ The **MusicaFemina Stadtspaziergänge App** is an interactive web application, b
 - This is a **work in progress** with a **demo version** currently available.
 
 Explore the project: [l4ndl0s1.github.io](https://l4ndl0s1.github.io)  
+---
+## Screenshots
+
+<img src="images/IMG_6684.PNG" alt="MusicaFemina " width="400">
+<img src="images/IMG_6685.PNG" alt="MusicaFemina " width="400">
+<img src="images/IMG_6686.PNG" alt="MusicaFemina " width="400">
+<img src="images/IMG_6687.PNG" alt="MusicaFemina "  width="400">
 
